@@ -41,8 +41,7 @@ jobs:
       - run: npm test
       - run: npm run build
 
-      # Fails the build on `high` or `critical` advisories only — `moderate`
-      # and `low` are surfaced as output but don't gate. Adjust if you want
-      # to be stricter.
+      # High/critical advisories fail. audit-ci.jsonc documents the one scoped
+      # exception for the unpatched build-only Tailwind glob-parser advisory.
       - name: Audit dependencies
-        run: npm audit --audit-level=high
+        run: npm run audit

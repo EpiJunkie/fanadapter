@@ -42,7 +42,18 @@ npm run build
 
 # 4. Run ESLint rules check
 npm run lint
+
+# 5. Run the CI dependency audit
+npm run audit
 ```
+
+The audit fails on high and critical advisories. `audit-ci.jsonc` scopes one exception to
+[GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) through Tailwind 3:
+its `braces` glob parser has no patched release and only processes this repo's fixed content
+globs in `tailwind.config.js`. It is absent from the static browser bundle. Remove the exception
+when an upstream patch or a Tailwind migration removes that dependency; keep content patterns
+under repository control. `npm audit` shows the full unfiltered report; other high/critical
+advisories still fail CI.
 
 When running `npm run dev`, Vite will serve the application at `http://localhost:5173/fanadapter/`. Open this URL in Chrome, Edge, or Brave, click **Connect**, and choose the adapter's USB serial (CDC) device from the browser permission pop-up.
 
