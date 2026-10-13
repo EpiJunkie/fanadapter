@@ -20,7 +20,7 @@ trim_trailing_whitespace = false
 indent_size = 2
 max_line_length = 100
 
-# Match firmware/.clang-format: 2-space indent, 100-col limit.
+# Firmware source defaults: 2-space indent, 100-col limit.
 [*.{c,cpp,h,hpp,ino}]
 indent_size = 2
 max_line_length = 100

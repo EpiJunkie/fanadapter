@@ -1,15 +1,11 @@
 // Input -> output mapping: the Config schema, persistence, and the binding evaluators.
 //
-// This is the C port of the Teensy firmware/mapping.{h,cpp}. The Config struct, InputBinding,
-// ChannelBindings and GearOutputCalibration are byte-IDENTICAL to the Teensy so the JSON wire shape
-// and the stored blob round-trip across both firmwares — the _Static_asserts lock the layout, and
-// CONFIG_VERSION must be bumped on any field change (older stored blobs are then rejected and the
-// firmware boots defaults). See AGENTS.md "cross-file invariants".
+// Config, InputBinding, ChannelBindings and GearOutputCalibration define the stored layout and
+// the JSON contracts mirrored by webconfig and Fanadapter.Core. _Static_assert locks the layout;
+// bump CONFIG_VERSION on field changes so older saved blobs are rejected. See AGENTS.md.
 //
-// The one intentional difference from the Teensy: the evaluators read inputs through the modular
-// InputSource folds (input_fold_*) instead of the USB device pool directly, so a binding aggregates
-// across USB ∪ serial-injected devices (OR for buttons/hat/key, MAX for axes) — the math is the
-// same, the source set is wider.
+// Evaluators read through InputSource folds (OR buttons/hat/key, MAX axes) to aggregate all
+// matching devices. Axis scaling must match both clients' processed previews.
 #pragma once
 #include <stdbool.h>
 #include <stdint.h>
@@ -37,8 +33,8 @@ enum {
   INPUT_KEY    = 4,
 };
 
-// A single input binding. threshold/rawMin/rawMax/deadzone* are compared against POST-scale values
-// (0..65535). Explicit padding keeps the size locked at 18 bytes.
+// A single input binding. rawMin/rawMax use native axis units; threshold/deadzone* use POST-scale
+// values (0..65535). Explicit padding keeps the size locked at 18 bytes.
 typedef struct {
   uint16_t vid; // 0 = unmapped (paired with type = INPUT_NONE)
   uint16_t pid;

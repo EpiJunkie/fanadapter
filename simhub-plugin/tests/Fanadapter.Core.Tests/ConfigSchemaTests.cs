@@ -141,12 +141,10 @@ namespace Fanadapter.Core.Tests
 
         [Theory]
         [InlineData("fanadapter-stm32", true)]
-        [InlineData("fanadapter", false)]
+        [InlineData("unrecognized-firmware", false)]
         public void DirectOutputSupportIsDetectedFromTheFirmwareName(string fw, bool expected)
         {
-            // The Teensy dispatcher answers unknown_cmd for set_gear/set_outputs/
-            // pulse_shift/release_outputs, so this gate decides whether the
-            // SimHub drive features are offered at all.
+            // Only identified STM32 firmware exposes the PC direct-output features.
             Assert.Equal(expected, new VersionInfo { Firmware = fw }.SupportsDirectOutput);
         }
     }
@@ -165,7 +163,7 @@ namespace Fanadapter.Core.Tests
 
         [Theory]
         [InlineData(0x1209, 0xFA00, true)]  // STM32 native CDC
-        [InlineData(0x16C0, 0x0483, true)]  // Teensy, any PID
+        [InlineData(0x16C0, 0x0483, false)] // Unrecognized USB identity
         [InlineData(0x1A86, 0x7522, true)]  // CH340K bridge
         [InlineData(0x1209, 0x0001, false)] // pid.codes, but not ours
         [InlineData(0x0403, 0x6001, false)] // FTDI — selectable, just not ranked

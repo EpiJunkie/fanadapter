@@ -25,9 +25,8 @@ namespace Fanadapter.Core
     }
 
     /// <summary>
-    /// Finds candidate COM ports. The firmware can appear behind three different
-    /// USB identities — the STM32's native CDC, a Teensy's CDC, or a USB-UART
-    /// bridge carrying the STM32's USART1 console — and bridge chips vary by
+    /// Finds candidate COM ports. Firmware appears as STM32 native CDC or a
+    /// USB-UART bridge carrying the USART1 console — and bridge chips vary by
     /// brand, so this ranks rather than filters: every port stays selectable and
     /// known IDs just float to the top. Confirming a port means asking it for
     /// its version, which is what <see cref="Protocol.GetVersionAsync"/> is for.
@@ -43,7 +42,6 @@ namespace Fanadapter.Core
         private static readonly KnownId[] KnownIds =
         {
             new KnownId { Vid = 0x1209, Pid = 0xFA00 }, // STM32 native CDC (pid.codes)
-            new KnownId { Vid = 0x16C0 },               // Teensy / PJRC CDC
             new KnownId { Vid = 0x1A86 },               // WCH CH340 family bridge
         };
 

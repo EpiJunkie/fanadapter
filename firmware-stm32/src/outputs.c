@@ -159,7 +159,7 @@ void outputs_request_gear(ChannelId target) {
 
   if (target != CH_GEAR_N && s_current != CH_GEAR_N) {
     // Non-neutral -> non-neutral: drop to neutral now, latch the target after the transit wait so
-    // the wheelbase sees a release between gears. Replaces the Teensy's blocking delay(50).
+    // the wheelbase sees a release between gears. The transit FSM advances without blocking.
     write_gear_dac(CH_GEAR_N);
     s_current      = CH_GEAR_N;
     s_pending      = target;

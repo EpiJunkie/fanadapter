@@ -1,4 +1,4 @@
-// Config schema, persistence, and binding evaluators. C port of firmware/mapping.cpp. See mapping.h.
+// Config schema, persistence, and binding evaluators. See mapping.h.
 #include "mapping.h"
 
 #include <string.h>
@@ -12,7 +12,7 @@
 extern int console_printf(const char *fmt, ...);
 
 // ---------------- Defaults ----------------
-// X/Y voltage table carried over verbatim from the Teensy GEARS[] constants.
+// X/Y DAC codes matching the voltage table in schematics/README.md.
 const GearOutputCalibration GEAR_DEFAULT_OUT[NUM_GEAR_OUTPUTS] = {
     {4095, 3430}, // R
     {2790, 3430}, // 1
@@ -54,8 +54,8 @@ static uint16_t  g_ovr_axis_value[CH_COUNT];
 static bool g_seq_up_prev, g_seq_down_prev;
 
 // ---------------- CRC-32/ISO-HDLC (zlib/PNG) ----------------
-// Polynomial 0xEDB88320 reflected, init 0xFFFFFFFF, final XOR 0xFFFFFFFF. Identical to the Teensy
-// and to webconfig/src/lib/crc32.ts.
+// Polynomial 0xEDB88320 reflected, init 0xFFFFFFFF, final XOR 0xFFFFFFFF. Matches
+// webconfig/src/lib/crc32.ts.
 static uint32_t crc32(const uint8_t *data, size_t len) {
   uint32_t crc = 0xFFFFFFFFu;
   for (size_t i = 0; i < len; ++i) {
@@ -132,7 +132,8 @@ GearOutputCalibration *mapping_gearout_for(ChannelId id) {
 // ---------------- Evaluators ----------------
 
 // Linear remap (rawMin/rawMax) + invert + deadzones. All-zero rawMin/rawMax passes raw through so
-// the UI's uncalibrated first-look still shows movement. Identical to the Teensy / scaleAxis.ts.
+// the UI's uncalibrated first-look still shows movement. Matches webconfig/src/lib/scaleAxis.ts
+// and Fanadapter.Core/ScaleAxis.cs.
 static uint16_t scale_axis(uint16_t raw, const InputBinding *b) {
   uint32_t scaled;
   if (b->rawMin == 0 && b->rawMax == 0) {
@@ -231,7 +232,7 @@ bool eval_channel_button(const ChannelBindings *cb) {
 // ---------------- Channel updaters ----------------
 
 // H-pattern shifter. Computes the target gear (test-override > hold/latch logic) and hands it to the
-// non-blocking transit FSM in outputs.c. Ported from the Teensy updateShifter().
+// non-blocking transit FSM in outputs.c. Selects the target gear from USB bindings or PC overrides.
 static void update_shifter(void) {
   // Test override wins in both modes.
   if (g_test_gear_until != 0 && (int32_t)(HAL_GetTick() - g_test_gear_until) < 0) {

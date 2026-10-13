@@ -7,7 +7,7 @@ namespace Fanadapter.Core
 {
     /// <summary>
     /// Typed wrappers over the firmware's JSON command set. Mirrors the command
-    /// catalogue in firmware/protocol.cpp and firmware-stm32/src/protocol.c —
+    /// catalogue in firmware-stm32/src/protocol.c —
     /// see the cross-file invariants table in AGENTS.md before changing a shape.
     /// </summary>
     public class Protocol
@@ -91,7 +91,7 @@ namespace Fanadapter.Core
             return SendOkAsync(cmd);
         }
 
-        /// <summary>Persists the working config to EEPROM / flash.</summary>
+        /// <summary>Persists the working config to flash.</summary>
         public Task SaveConfigAsync() => SendOkAsync(Cmd("save_config"), 5000);
 
         /// <summary>Restores defaults in RAM only — not persisted until SaveConfigAsync.</summary>
@@ -139,8 +139,7 @@ namespace Fanadapter.Core
 
         // ---------- Direct output (PC drives the wheelbase) ----------
         //
-        // STM32 firmware only — the Teensy dispatcher answers unknown_cmd. These
-        // override the adapter's own USB-device mapping for the channels they
+        // These commands override the adapter's own USB-device mapping for the channels they
         // touch, and the override is STICKY: there is no firmware-side timeout,
         // so whatever was last commanded stays applied until ReleaseOutputsAsync.
         // Every path that stops driving must call it, or the wheelbase is left
@@ -208,10 +207,8 @@ namespace Fanadapter.Core
 
         /// <summary>
         /// Reboots into the ROM bootloader for a firmware flash: the COM port
-        /// disappears and a USB DFU device (0483:DF11) takes its place. STM32
-        /// only — the Teensy answers unknown_cmd, same as the direct-output
-        /// commands. The plugin has no flasher; webconfig's Flash dialog (or
-        /// dfu-util) does the programming. Close the port right after this.
+        /// disappears and a USB DFU device (0483:DF11) takes its place. The plugin,
+        /// webconfig, or dfu-util then flashes it. Close the port right after this.
         /// </summary>
         public Task DfuAsync() => SendOkAsync(Cmd("dfu"), 1500);
 
@@ -286,8 +283,7 @@ namespace Fanadapter.Core
         }
 
         /// <summary>
-        /// True when the firmware simply doesn't know the command — the marker
-        /// for a Teensy being asked to do direct output.
+        /// True when older or unrecognized firmware does not implement the command.
         /// </summary>
         public bool IsUnknownCommand => ErrorCode == "unknown_cmd";
     }

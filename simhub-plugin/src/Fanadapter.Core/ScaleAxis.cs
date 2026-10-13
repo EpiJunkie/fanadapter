@@ -1,8 +1,8 @@
 namespace Fanadapter.Core
 {
     /// <summary>
-    /// C# mirror of the firmware's <c>scale_axis()</c> (firmware/mapping.cpp,
-    /// firmware-stm32/src/mapping.c) and of webconfig's scaleAxis.ts.
+    /// C# mirror of the firmware's <c>scale_axis()</c> (firmware-stm32/src/mapping.c)
+    /// and of webconfig's scaleAxis.ts.
     ///
     /// Used only to preview what the firmware will do while the user drags the
     /// calibration sliders — the firmware still owns the real value. That makes

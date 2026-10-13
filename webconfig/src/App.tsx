@@ -1167,7 +1167,7 @@ function Header({
                 variant="outline"
                 size="sm"
                 onClick={onReset}
-                title="Reset bindings in RAM (does not touch EEPROM until Save)"
+                title="Reset bindings in RAM (does not touch flash until Save)"
               >
                 <RotateCcw className="h-4 w-4" />
                 Reset
@@ -1452,7 +1452,7 @@ function FirmwareDialog({
           <Alert>
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
-              This adapter runs the Teensy firmware — it flashes with the PJRC loader, not over DFU.
+              The connected firmware does not support DFU updates.
             </AlertDescription>
           </Alert>
         ) : (
@@ -2613,9 +2613,9 @@ function RangeSliderField({
 // ------------------ Logs view ------------------
 //
 // Surfaces every non-JSON line the firmware emits over USB CDC Serial
-// (anything sent via Serial.print/println in the sketch). Useful for
+// (anything sent through the firmware console). Useful for
 // watching the CSL Elite UART handshake state, gear transitions, and
-// EEPROM load/save messages without disconnecting WebSerial to attach a
+// flash config load/save messages without disconnecting WebSerial to attach a
 // separate terminal.
 
 function LogsView({
@@ -2655,7 +2655,7 @@ function LogsView({
         {logs.length === 0 ? (
           <p className="py-8 text-center text-sm text-muted-foreground">
             No log lines yet. The firmware emits status messages on device attach/ detach,
-            gear/shift transitions, EEPROM load/save, and CSL Elite handshake.
+            gear/shift transitions, flash config load/save, and CSL Elite handshake.
           </p>
         ) : (
           <div className="max-h-[60vh] overflow-y-auto rounded-md border bg-muted/30 p-2 font-mono text-xs leading-relaxed">

@@ -1,14 +1,10 @@
-// CSL Elite V2 pedal-port UART emulator on USART2. C port of firmware/pedals.cpp. See pedals.h.
+// CSL Elite V2 pedal-port UART emulator on USART2. See pedals.h.
 //
-// Faithful port of the Teensy state machine — same handshake bytes, same lenient STEP2 collector,
-// same 2 s warmup, same 100 Hz framing — with three platform swaps:
-//   * Serial3            -> USART2 HAL UART on PA2 (TX) / PA3 (RX), 8N1.
-//   * millis()           -> HAL_GetTick().
-//   * Serial3.read/avail -> a register-level RXNE interrupt ring (USART2_IRQHandler), drained here.
-// TX is a blocking HAL_UART_Transmit: the streaming frame is 12 bytes (~1 ms at 115200), gated to
-// 100 Hz, and pedals_update() runs LAST in the loop, so the brief block doesn't slip the cadence —
-// exactly what the Teensy did. (An IT/DMA TX with a tx-in-flight guard is a possible future
-// optimization; blocking is the proven, simpler path and what this untested-on-HW port ships with.)
+// Handshake bytes, lenient STEP2 collection, 2 s warmup and 100 Hz framing follow the CSL Elite V2
+// protocol. USART2 HAL UART runs on PA2 (TX) / PA3 (RX), 8N1. A register-level RXNE interrupt ring
+// (USART2_IRQHandler) is drained here; timing uses HAL_GetTick(). TX blocks for the 12-byte frame
+// (~1 ms at 115200), gated to 100 Hz. pedals_update() runs LAST in the loop; keep blocking work
+// ahead of it bounded so the wheelbase stream and USB host polling retain their cadence.
 #include "pedals.h"
 
 #include "stm32h7xx_hal.h"
@@ -35,7 +31,6 @@ static uint32_t       s_last_stream_ms;
 // UART framing/overrun errors (a matched-baud stale query produces none). The RX ISR tallies those
 // errors; on a burst we re-arm the handshake. Without this the adapter stays stuck in STREAMING, the
 // wheelbase falls back to analog pedal sensing, and our 100 Hz TX reads as jitter on those analog pins.
-// (This dead-end carried over from the Teensy, which only recovered via the manual re-arm button.)
 #define RESTART_ERR_THRESHOLD 32u
 static volatile uint32_t s_rx_err_count;
 static uint32_t          s_err_decay_ms;
@@ -57,7 +52,7 @@ static uint8_t s_step2_idx;
 static bool    s_step2_got00, s_step2_got02, s_step2_got03;
 
 // Per-query acks (sent individually per matching query — some firmware revs enforce a per-packet
-// timeout that a single bulk 36-byte reply misses). Same bytes as the Teensy / proxy.go STEP2_TX.
+// timeout that a single bulk 36-byte reply misses). Matches the community proxy.go STEP2_TX reference.
 static const uint8_t STEP2_TX_CMD_02[12] = {0x7B, 0x05, 0x06, 0x62, 0x00, 0x00,
                                             0x00, 0x00, 0x00, 0x00, 0x6D, 0x7D};
 static const uint8_t STEP2_TX_CMD_00[12] = {0x7B, 0x07, 0x0B, 0x00, 0x00, 0x00,
@@ -68,7 +63,7 @@ static const uint8_t STEP2_TX_CMD_03[12] = {0x7B, 0x08, 0x01, 0x06, 0x07, 0x00,
 // Pedal levels (0..65535) — refreshed by mapping_tick(), streamed in each frame.
 static volatile uint16_t s_throttle, s_brake, s_clutch, s_handbrake;
 
-// CRC-8 Dallas/Maxim (poly 0x8C), table-driven — identical to the Teensy.
+// CRC-8 Dallas/Maxim (poly 0x8C), table-driven.
 static uint8_t s_crc_table[256];
 static void    crc_init(void) {
   for (int i = 0; i < 256; i++) {

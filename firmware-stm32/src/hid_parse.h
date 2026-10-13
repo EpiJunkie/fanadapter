@@ -2,9 +2,8 @@
 //
 // TinyUSB hands us the raw report descriptor at mount and raw reports at runtime, with NO field
 // offsets (its built-in parser only yields top-level usages). So we walk the descriptor ourselves
-// into a flat field map, then decode each incoming report by that map — the analogue of what the
-// Teensy USBHIDParser did for free. Validated against the four captured wheel descriptors
-// (tools/hid_descriptor_capture.txt): Logitech C278 (3 buttons + Z, report id 6), C26B (8 buttons,
+// into a flat field map, then decode each incoming report by that map. Validated against
+// tools/hid_descriptor_capture.txt: Logitech C278 (3 buttons + Z, report id 6), C26B (8 buttons,
 // id 3), Simnet CAFE:A301 pedals (X/Y/Z 12-bit, id 1) — all report-ID'd, standard pages.
 #pragma once
 #include <stdbool.h>

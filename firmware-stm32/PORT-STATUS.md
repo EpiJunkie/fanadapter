@@ -1,6 +1,6 @@
-# STM32H743 port — development notes
+# STM32H743 firmware — development notes
 
-Engineering record for the Teensy → STM32 firmware port: what's implemented, what was hard, and
+Engineering record for the STM32 firmware: what's implemented, what was hard, and
 what not to re-derive. **Read this before changing firmware code.**
 
 **If you just want to build or wire one, you're in the wrong file — see
@@ -9,7 +9,7 @@ there. This file deliberately doesn't repeat them.
 
 ## Status
 
-**DONE — full feature parity with the Teensy build, hardware-validated end to end**, including a
+**DONE — hardware-validated end to end**, including a
 real driving session on a ClubSport DD+. USB-host HID decode, mapping, DAC H-pattern gears,
 sequential, handbrake, and the CSL Elite pedal-UART stream all drive the wheelbase, with webconfig
 on the board's native USB CDC.
@@ -33,18 +33,15 @@ investigation record, the measured threshold sweep, and the one remaining >0.5 s
 - **M1 — HID decode + protocol:** generic report-descriptor walker (`hid_parse.c`), 8-slot device
   pool (`usb_input.c`), the `InputSource` vtable (`input_source.c` — the cornerstone), and
   `protocol.c` with shapes matched to webconfig. Verified against 4 devices / 7 HID interfaces.
-- **Axis fidelity:** `hid_parse.c` stores the **raw native** logical value (matching the Teensy's
-  `m_axes[i] = (uint16_t)value`) — a 10-bit handbrake reads 0..1023, a 12-bit pedal 0..4095, clean
+- **Axis fidelity:** `hid_parse.c` stores the **raw native** logical value (cast to `uint16_t`) — a 10-bit handbrake reads 0..1023, a 12-bit pedal 0..4095, clean
   step-of-1. An earlier version normalized to 0..65535 and produced confusing 16/64-count jumps.
   `scaleAxis` maps `[rawMin,rawMax]` → 0..65535 at eval time.
-- **M2 — Config + flash + get/set/save/reset:** `mapping.{c,h}` (Config byte-identical to the
-  Teensy, **1132 B, CONFIG_VERSION 3**, `_Static_assert`-locked; `crc32` verbatim from
-  `webconfig/src/lib/crc32.ts`), `json_min.{c,h}` (zero-alloc JSON reader replacing ArduinoJson),
+- **M2 — Config + flash + get/set/save/reset:** `mapping.{c,h}` (Config **1132 B, CONFIG_VERSION 3**, `_Static_assert`-locked; `crc32` verbatim from
+  `webconfig/src/lib/crc32.ts`), `json_min.{c,h}` (zero-alloc JSON reader),
   `config_store.{c,h}`. `get_config` streams in small chunks (USART1 blocks until sent, so no
   truncation). **Two flash bugs here cost a bench session — see below.**
 - **M3 — DAC H-pattern:** `outputs.{c,h}` — **DAC1 ch1 = PA4 (X), ch2 = PA5 (Y)**, codes map 1:1
-  to the schematics voltage table (output buffer on). Non-blocking neutral-transit FSM replaces the
-  Teensy's `delay(50)`. Sequential pulse landed here too: open-drain **PC6/PC7**, idle HIGH,
+  to the schematics voltage table (output buffer on). Non-blocking neutral-transit FSM inserts a 50 ms release between gears. Sequential pulse landed here too: open-drain **PC6/PC7**, idle HIGH,
   non-blocking FSM.
 - **M4 — direct output control** (replaced an earlier "serial virtual-device inject" design): the
   PC (SimHub / the web app) owns the mapping and commands outputs directly. `set_gear`,
@@ -54,16 +51,16 @@ investigation record, the measured threshold sweep, and the one remaining >0.5 s
 - **M5 — handbrake PWM fallback:** TIM3_CH3 on **PC8** (AF2), ARR=4095 / PSC=0 → ~15.6 kHz for an
   RC low-pass. Init is non-fatal — a TIM fault must not brick the USB host. This is the *fallback*;
   the primary path is the pedal stream, and `mapping.c` dual-writes both.
-- **M6 — CSL Elite pedal UART (the keystone):** `pedals.{c,h}` on **USART2 (PA2/PA3), 8N1** — a
-  faithful port of the Teensy state machine (INIT→STEP0→STEP1→STEP2→STREAMING), same handshake
+- **M6 — CSL Elite pedal UART (the keystone):** `pedals.{c,h}` on **USART2 (PA2/PA3), 8N1** — the
+  CSL Elite V2 state machine (INIT→STEP0→STEP1→STEP2→STREAMING), handshake
   bytes (0x0A→0x1A, 0x05→0x15), 250000↔115200 switch, 2 s warmup drain, lenient any-order STEP2
   collector, CRC-8 (poly 0x8C), 100 Hz 12-byte `0x7B..0x7D` frames. RX is a register-level RXNE
   ring (priority 5, above USB); TX is blocking `HAL_UART_Transmit` (12 B ≈ 1 ms at 115200, gated to
-  100 Hz — the proven Teensy approach). **This is what makes `set_outputs` and USB-mapped pedals
+  100 Hz). **This is what makes `set_outputs` and USB-mapped pedals
   electrically reach the wheelbase** — before M6 those values stopped at the snapshot.
 - **M7 — polish:** `test_axis`, `test_pulse`, `reboot`, `reset_pedals`, `pedals_status`. All shapes
-  match the Teensy and the existing `webconfig/src/lib/serial.ts` wrappers — **no webconfig change
-  was needed for the entire port.**
+  match the existing `webconfig/src/lib/serial.ts` wrappers — **no webconfig change
+  was needed for bring-up.**
 
 ## Bugs already fixed — do not reintroduce
 
@@ -126,8 +123,7 @@ Which is also why **wheelbase-restart auto-recovery** exists: once STREAMING we 
 power-cycled wheelbase (re-initiating its handshake at 250000 while we're camped at 115200) used to
 leave us streaming into a base that had fallen back to analog. The mismatched baud arrives as a
 burst of framing/overrun errors; the RX ISR tallies them and STREAMING re-arms the handshake on a
-burst (`RESTART_ERR_THRESHOLD = 32`, 1 Hz decay so isolated glitches don't trip it). The Teensy only
-ever recovered via the manual re-arm button.
+burst (`RESTART_ERR_THRESHOLD = 32`, 1 Hz decay so isolated glitches don't trip it). Manual re-arm remains available through `reset_pedals`.
 
 ### "Inputs freeze and everything lags" is the CONSOLE starving the loop — not USB
 

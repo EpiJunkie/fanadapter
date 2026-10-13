@@ -6,7 +6,7 @@
 
 import type { Config, DeviceSlot, OutputsEvent, VersionInfo } from './types'
 
-// No port-picker VID filter. The firmware can arrive over a Teensy CDC (0x16c0), an STM32 native CDC
+// No port-picker VID filter. The firmware can arrive over STM32 native CDC
 // (pid.codes 0x1209), or an external USB-UART bridge (e.g. a WCH CH340 carrying USART1 — and bridge
 // chips vary by VID/PID/brand, e.g. CH340K is 0x1a86/0x7522). Rather than chase an allowlist that can
 // silently exclude a valid bridge, show ALL serial ports and let the user pick — the device label
@@ -124,7 +124,7 @@ export class SerialClient {
   private async openPort(port: SerialPort): Promise<void> {
     // 8E1: the STM32 USART1 console runs 8-data / EVEN-parity / 1-stop (it shares the format with the
     // ROM bootloader so one bridge config carries both console + flashing). Parity is ignored by a
-    // native USB CDC (Teensy / STM32-CDC), so this is harmless there and required over the UART bridge.
+    // native USB CDC (STM32-CDC), so this is harmless there and required over the UART bridge.
     await port.open({ baudRate: 115200, dataBits: 8, parity: 'even', stopBits: 1 })
     this.port = port
 
@@ -418,16 +418,15 @@ export class SerialClient {
     await this.send({ cmd: 'release_outputs' })
   }
 
-  // Triggers a soft-reset of the Teensy. The firmware sends `ok` and then
+  // Triggers a soft-reset of the adapter. The firmware sends `ok` and then
   // immediately drops USB, so the port disappears within ~100ms — callers
   // should disconnect() right after this resolves.
   async reboot(): Promise<void> {
     await this.send({ cmd: 'reboot' }, 1500)
   }
 
-  // Reboot into the ROM bootloader for a firmware flash (STM32 only — the Teensy answers
-  // unknown_cmd). Acks first, then the CDC port disappears and a DFU device (0483:df11) takes its
-  // place; callers should disconnect() right after this resolves, then drive lib/dfu.ts.
+  // Reboot into the ROM bootloader for a firmware flash. Acks first, then the CDC port disappears
+  // and a DFU device (0483:df11) takes its place. Disconnect after this resolves, then use lib/dfu.ts.
   async dfu(): Promise<void> {
     await this.send({ cmd: 'dfu' }, 1500)
   }

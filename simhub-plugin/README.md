@@ -28,11 +28,7 @@ driving.
 - **.NET SDK 8.0+** to build. The plugin targets .NET Framework 4.8 — SimHub's
   requirement — but the reference assemblies come from a NuGet package, so no
   Developer Pack install is needed.
-- **STM32 firmware** for anything that drives outputs from the PC. The Teensy
-  firmware answers `unknown_cmd` to the four direct-output commands, so the
-  SimHub drive tab needs [`firmware-stm32/`](../firmware-stm32). Adapter-side
-  configuration works against either firmware, and the plugin detects which one
-  it is talking to and says so.
+- **[STM32 firmware](../firmware-stm32/README.md)** on the adapter. The plugin detects firmware capabilities before offering direct output or updates.
 
 ## Install
 
@@ -54,7 +50,7 @@ open, so installing over a running SimHub fails with a file lock.
 ### Connecting
 
 The port list ranks likely adapters first (the STM32's native CDC at
-`1209:FA00`, a Teensy at `16C0`, a CH340 bridge at `1A86`) but never hides
+`1209:FA00`, a CH340 bridge at `1A86`) but never hides
 anything, so an unrecognised USB-UART bridge is still selectable. Connect, and
 the header shows which firmware answered. The chosen port is remembered and
 reconnected on the next start.
@@ -123,7 +119,7 @@ change, because SimHub tears its plugins down and rebuilds them each time you
 switch games. Two things end it, both deliberate: **Stop driving pedals** and
 **Release outputs**. A release that the plugin does on its own (shutdown, game
 change, disconnect) leaves the choice intact so the stream comes back. If the
-choice can't be honoured on a connect — a Teensy answered, or no pedal has a
+choice can't be honoured on a connect — unsupported firmware answered, or no pedal has a
 source — the plugin logs why and keeps it for next time rather than
 quietly forgetting it. Stop and Release take effect even if saving settings
 fails; that failure is logged, and the choice may need to be saved again before
@@ -151,14 +147,13 @@ The Start/Stop button also follows automatic pedal-stream resume.
 zero until something moves: the firmware only reports inputs when they change,
 so an idle rig reading all zeros is correct, not broken.
 
-Next to the slot count are two diagnostics for a known, rare firmware bug where
-one device's inputs freeze at their last values while it stays listed
-(STM32 adapters only). Run them **while it is frozen** — results go to the Logs
-tab, every line of which is timestamped: **USB status** logs each slot's report
-pipe state (a growing `age_ms` on a device you're actively moving is the
-signature), and **Kick USB pipes** aborts and re-arms every pipe. Whether a kick
-revives the frozen device is the evidence needed to fix the bug for real, so
-note what you saw.
+Next to the slot count are **USB status** and **Kick USB pipes** diagnostics.
+If a device freezes while still listed, run USB status while moving it; results
+go to the timestamped Logs tab. A growing `age_ms` identifies a silent report
+pipe. Kick aborts and re-arms the pipes, but did not revive the frozen pedal
+in bench tests; replug the affected device at the hub to recover. Current
+firmware avoids the long polling gaps that caused the freeze. See the
+[firmware troubleshooting guide](../firmware-stm32/README.md#7-troubleshooting).
 
 **Mappings** binds those devices to wheelbase channels. Press **Listen**, hold
 still while it measures the noise floor, then move the control you want. Buttons,
@@ -182,7 +177,7 @@ one for half a second so you can find the right pair alone at the rig.
 Changes apply to the adapter immediately but live in its RAM. **Save to adapter**
 is what makes them survive a power cycle.
 
-### Firmware updates (STM32 adapters)
+### Firmware updates
 
 **Update firmware** in the ADAPTER section runs the whole cycle on its own:
 downloads the latest published build (the same one webconfig serves, from the
@@ -196,8 +191,7 @@ update again is the recovery.
 Windows needs the WinUSB driver bound to `STM32 BOOTLOADER` (installing
 STM32CubeProgrammer or one Zadig run does it; any machine where `dfu-util`
 works already has it). Forks hosting their own Pages deploy can point the
-updater elsewhere via the `FirmwareUrl` plugin setting. Teensy adapters flash
-with the PJRC loader instead — the button stays disabled there.
+updater elsewhere via the `FirmwareUrl` plugin setting. The update button requires firmware that supports ROM DFU entry.
 
 ## Build
 

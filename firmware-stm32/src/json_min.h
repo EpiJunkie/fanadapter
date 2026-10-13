@@ -1,9 +1,8 @@
 // Minimal zero-allocation JSON reader for the line-based protocol.
 //
-// ArduinoJson (used on the Teensy) isn't available here. The wire protocol is small and regular —
-// a top-level object of scalars plus at most one level of nesting ("binding" object in set_binding;
-// "axes"/"keys" arrays in the M4 inject_* commands) — so a purpose-built tokenizer is enough and
-// avoids pulling in a parser. json_parse_object() walks the immediate members of an object into a
+// The wire protocol is small and regular: a top-level object of scalars with nested objects/arrays
+// (e.g. "binding" in set_binding). A purpose-built tokenizer avoids pulling in a parser.
+// json_parse_object() walks the immediate members of an object into a
 // flat json_kv[] (values point INTO the source line, no copies); nested objects/arrays come back as
 // raw slices you re-parse with json_parse_object()/json_array_ints().
 #pragma once
