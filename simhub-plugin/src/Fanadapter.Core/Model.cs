@@ -7,8 +7,8 @@ using Newtonsoft.Json.Linq;
 namespace Fanadapter.Core
 {
     /// <summary>
-    /// C# mirror of the firmware Config schema (firmware/mapping.h). Property
-    /// names carry explicit JSON names matching what protocol.cpp emits — the
+    /// C# mirror of the firmware Config schema (firmware-stm32/src/mapping.h). Property
+    /// names carry explicit JSON names matching what protocol.c emits — the
     /// wire shape has to round-trip exactly, since webconfig and this plugin
     /// both write the same firmware.
     /// </summary>
@@ -305,16 +305,14 @@ namespace Fanadapter.Core
 
         /// <summary>
         /// The direct-output command set (set_gear / set_outputs / pulse_shift /
-        /// release_outputs) exists only in the STM32 firmware — the Teensy
-        /// dispatcher answers unknown_cmd. Everything that drives outputs from
-        /// the PC has to check this first.
+        /// release_outputs) is supported by identified STM32 firmware.
+        /// Everything that drives outputs from the PC has to check this first.
         /// </summary>
         public bool SupportsDirectOutput =>
             Firmware != null && Firmware.IndexOf("stm32", StringComparison.OrdinalIgnoreCase) >= 0;
 
         /// <summary>
-        /// The dfu command (reboot into the ROM bootloader for a firmware update) is likewise
-        /// STM32-only; the Teensy flashes with the PJRC loader instead.
+        /// The dfu command reboots identified STM32 firmware into the ROM bootloader for an update.
         /// </summary>
         public bool SupportsDfu => SupportsDirectOutput;
 

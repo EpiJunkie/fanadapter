@@ -27,7 +27,7 @@ namespace Fanadapter.SimHub.UI
         public string Gear { get; }
         public string Label { get; }
 
-        /// <summary>0..4095 — the STM32 drives a real 12-bit DAC, the Teensy a 12-bit PWM.</summary>
+        /// <summary>0..4095 — the STM32 drives a real 12-bit DAC.</summary>
         public int X
         {
             get => _model.X;

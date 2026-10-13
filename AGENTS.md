@@ -4,33 +4,27 @@ This file provides guidance for AI coding agents working in this repository.
 
 ## What this repo is
 
-`fanadapter` is a USB HID → Fanatec wheelbase adapter (Teensy 4.1 or STM32H743) plus a browser-based WebSerial UI for configuring it, and a SimHub plugin that drives the same protocol from the PC:
+`fanadapter` is a USB HID → Fanatec wheelbase adapter (STM32H743) plus a browser-based WebSerial UI for configuring it, and a SimHub plugin that drives the same protocol from the PC:
 
-- **`firmware/`** — **ARCHIVED, no longer developed** (see the banner in its README). Arduino sketch (Teensyduino) for the Teensy 4.1: enumerates USB HID joysticks, gamepads, and multi-axis controllers via the native USB host port and drives Fanatec RJ12 ports (H-pattern PWM, sequential open-drain, handbrake PWM, pedal-port UART). Development moved to `firmware-stm32/`; features added since the port (direct-output commands, `dfu`, the USB diagnostics) are STM32-only and are **not** back-ported. `firmware/README.md` nevertheless remains the **canonical protocol/schema/wiring reference both builds share** — don't delete or let it rot, and keep it accurate for the shared contracts. Its ~1132-byte `Config` and `scaleAxis` are still the reference implementations the other three consumers mirror (see the cross-file invariants table); if you change a shared contract, decide deliberately whether the Teensy moves with it or is left behind, and say which in the commit.
 - **`webconfig/`** — Vite + React 19 + TypeScript + Tailwind + shadcn/ui app that talks to the firmware over WebSerial (line-based JSON). Also a one-click STM32 firmware updater: the Pages deploy builds the firmware and publishes `firmware/fanadapter-stm32.{json,bin}` beside the app, and the header's Flash dialog reboots the board into its ROM bootloader (`{"cmd":"dfu"}`), flashes over WebUSB/DfuSe (`src/lib/dfu.ts`) via the persisted device grant, and reconnects over the persisted serial grant — picker only on the first update per machine. Deployed to GitHub Pages by `.github/workflows/pages.yml` on push to `main` (which is why that workflow also triggers on `firmware-stm32/**`).
-- **`firmware-stm32/`** — **C** port of the firmware to an **STM32H743** (WeAct MiniSTM32H743VITX): PlatformIO + STM32Cube HAL + TinyUSB. Speaks the same WebSerial JSON protocol and byte-identical `Config` schema as `firmware/`, so one `webconfig` serves both. Full feature parity with the Teensy, **hardware-validated end-to-end on a real wheelbase** (M0–M7): USB-host HID decode, the mapping evaluators, DAC H-pattern on PA4/PA5, sequential pulses on PC6/PC7, a TIM3 handbrake-PWM fallback on PC8, and the CSL Elite pedal-port UART emulator on USART2/PA2-PA3 (with wheelbase-power-cycle auto-recovery), plus a **direct-output** command set (`set_gear` / `set_outputs` / `pulse_shift` / `release_outputs`, and since protocol 6 `stream_axes` — a no-reply `set_outputs` twin for the 100 Hz PC pedal path) for PC/SimHub-driven output that overrides the USB-device mapping, and a **`dfu`** command (also STM32-only) that reboots into the ROM bootloader for a hands-free reflash — webconfig's Flash dialog drives it. Three STM32-only diagnostics — **`usb_status`** (per-slot pipe state + raw dwc2 host-channel dump + patched-in counters), **`usb_kick`** (abort + re-arm every pipe; measured to NOT revive a wedged one), **`usb_stall`** (skip `tuh_task()` for N ms — the reproducer that settled it) — closed the "hub device goes silent while still enumerated" freeze: **the Simnet pedal's own firmware hangs when unpolled ~2 s mid-stream** (measured threshold 1.6–2.0 s), and old adapter firmware created such gaps; current firmware keeps polling gaps ≤~120 ms, and **nothing added to the main loop may ever stall it near 1 s** (the one residual offender is `save_config`'s ~1 s IRQ-off flash erase). Full investigation record — including three real-but-not-causal dwc2 bugs fixed via `apply_tinyusb_patches.py` (a build-time patch step that fails the build if it can't verify itself) and the cautionary tale of the "every code fact right, mechanism still impossible" queue-overflow theory — in PORT-STATUS. Reflashing preserves saved config regardless of path (config lives in bank 2; DFU and the UART flasher both erase only bank-1 sectors). **Both USB controllers are used at once: OTG_FS (the on-board USB-C) is the CDC device — webconfig + console + DFU + power — and OTG_HS (PB14/PB15 header) is the USB host for the powered hub. That split is forced by hardware: the USB-C is a device receptacle (UFP/Rd), so a hub plugged into it can never attach.** Two docs, don't conflate them: **`firmware-stm32/README.md`** is the user-facing build & wiring guide (board choice, pin map, wiring, flashing, troubleshooting), and **`firmware-stm32/PORT-STATUS.md`** is the development record (milestones, fixed bugs and why, gotchas) — **read PORT-STATUS before touching the STM32 firmware.**
+- **`firmware-stm32/`** — **C** firmware for an **STM32H743** (WeAct MiniSTM32H743VITX): PlatformIO + STM32Cube HAL + TinyUSB. Speaks the WebSerial JSON protocol and `Config` schema mirrored by webconfig and the SimHub plugin, **hardware-validated end-to-end on a real wheelbase** (M0–M7): USB-host HID decode, the mapping evaluators, DAC H-pattern on PA4/PA5, sequential pulses on PC6/PC7, a TIM3 handbrake-PWM fallback on PC8, and the CSL Elite pedal-port UART emulator on USART2/PA2-PA3 (with wheelbase-power-cycle auto-recovery), plus a **direct-output** command set (`set_gear` / `set_outputs` / `pulse_shift` / `release_outputs`, and since protocol 6 `stream_axes` — a no-reply `set_outputs` twin for the 100 Hz PC pedal path) for PC/SimHub-driven output that overrides the USB-device mapping, and a **`dfu`** command that reboots into the ROM bootloader for a hands-free reflash — webconfig's Flash dialog drives it. Three USB-host diagnostics — **`usb_status`** (per-slot pipe state + raw dwc2 host-channel dump + patched-in counters), **`usb_kick`** (abort + re-arm every pipe; measured to NOT revive a wedged one), **`usb_stall`** (skip `tuh_task()` for N ms — the reproducer that settled it) — closed the "hub device goes silent while still enumerated" freeze: **the Simnet pedal's own firmware hangs when unpolled ~2 s mid-stream** (measured threshold 1.6–2.0 s), and old adapter firmware created such gaps; current firmware keeps polling gaps ≤~120 ms, and **nothing added to the main loop may ever stall it near 1 s** (the one residual offender is `save_config`'s ~1 s IRQ-off flash erase). Full investigation record — including three real-but-not-causal dwc2 bugs fixed via `apply_tinyusb_patches.py` (a build-time patch step that fails the build if it can't verify itself) and the cautionary tale of the "every code fact right, mechanism still impossible" queue-overflow theory — in PORT-STATUS. Reflashing preserves saved config regardless of path (config lives in bank 2; DFU and the UART flasher both erase only bank-1 sectors). **Both USB controllers are used at once: OTG_FS (the on-board USB-C) is the CDC device — webconfig + console + DFU + power — and OTG_HS (PB14/PB15 header) is the USB host for the powered hub. That split is forced by hardware: the USB-C is a device receptacle (UFP/Rd), so a hub plugged into it can never attach.** Two docs, don't conflate them: **`firmware-stm32/README.md`** is the user-facing build & wiring guide (board choice, pin map, wiring, flashing, troubleshooting), and **`firmware-stm32/PORT-STATUS.md`** is the development record (milestones, fixed bugs and why, gotchas) — **read PORT-STATUS before touching the STM32 firmware.**
 
 - **`simhub-plugin/`** — **C#** ([SimHub](https://www.simhubdash.com/)) plugin, .NET Framework 4.8 + WPF, that speaks the same line-based JSON protocol over a COM port. Two projects: **`Fanadapter.Core`** holds the transport, protocol, schema, `ScaleAxis` and `CaptureEngine` and has **no SimHub references** (so its xunit tests run without SimHub installed), and **`Fanadapter.SimHub`** is the plugin itself. It splits by where the input device is plugged in: devices on the **PC** are captured and mapped by SimHub's own input system, and the plugin only turns the result into direct-output commands (`DriveController`); devices on the **adapter's USB hub** are invisible to the PC, so for those the plugin mirrors webconfig's configuration UI (Devices / Mappings / Outputs tabs). Also carries the one-click firmware updater (`FirmwareUpdateViewModel` + `Fanadapter.Core/DfuseFlasher.cs` over WinUSB — no device picker at all, unlike webconfig's WebUSB variant). Full feature parity with webconfig **except** the guided setup wizard and presets. Hardware-validated against the STM32 adapter. Build, install and usage: `simhub-plugin/README.md`.
 
-Detailed hardware docs, port pinouts, protocol references, calibration guides: `firmware/README.md`. Webconfig deploy + dev: `webconfig/README.md`. This file only covers the parts that need cross-file context.
+Build and board wiring: `firmware-stm32/README.md`. RJ12 pinouts and assembly: `schematics/README.md`. Canonical protocol, schema and calibration reference: `firmware-stm32/PROTOCOL.md`. Webconfig deploy + dev: `webconfig/README.md`. This file only covers the parts that need cross-file context.
 
 ## Commands
 
-### Firmware (Teensy — archived build, kept working but not developed)
+### Firmware (STM32)
 
 ```sh
-# Compile
-arduino-cli compile --fqbn teensy:avr:teensy41 firmware
+python -m platformio run -d firmware-stm32 -e weact_h743
 
-# Flash (Teensy presents as a serial port; replace COM11 with the actual port)
-arduino-cli upload -p COM11 --fqbn teensy:avr:teensy41 firmware
+# Board must be in ROM DFU mode; use BOOT0/RST for first flash or {"cmd":"dfu"} thereafter.
+python -m platformio run -d firmware-stm32 -e weact_h743 -t upload
 ```
 
-Required external library: **ArduinoJson** ≥ 7.0 — `arduino-cli lib install ArduinoJson`.
-
-The flash uploader can't acquire the port while WebSerial is connected — the UI's **Disconnect** button must be hit first, or you get an "Access is denied" error (Windows). The firmware also exposes a `{"cmd":"reboot"}` JSON command (SCB AIRCR soft reset) so re-flashing isn't needed for a restart.
-
-There are no firmware tests.
+Requires Python + PlatformIO. Browser and SimHub updaters consume the firmware published by the Pages deployment and preserve saved config in flash bank 2. `{"cmd":"reboot"}` restarts the application without reflashing. There are no firmware tests; build and hardware validation are the checks.
 
 ### Webconfig
 
@@ -44,7 +38,7 @@ npm run lint        # ESLint
 
 Base path defaults to `/fanadapter/` (override with `VITE_BASE=/path/`). WebSerial only works in Chromium-based browsers on desktop.
 
-There are no webconfig tests.
+Run `npm test` for the axis-scaling contract vectors; `npm run format:check`, `npm run lint`, and `npm run build` are the other CI checks.
 
 ### SimHub plugin
 
@@ -66,20 +60,22 @@ The full solution also runs `Fanadapter.SimHub.Tests`: STA/WPF lifecycle tests u
 
 ## Architecture
 
-### Firmware module layout (`firmware/`)
+### Firmware module layout (`firmware-stm32/src/`)
 
-Five translation units, loop-dispatched in `firmware.ino` in this order — order matters:
+`main.c` dispatches the loop in this order — order matters:
 
 ```
-g_usb.Task() → pollUsbDriverStatus() → protocolTick() → mappingTick() → pedalsUpdate()
+tuh_task() → tud_task() → console_cli_poll() → usb_input_task(now)
+  → mapping_tick() → protocol_tick(now) → pedals_update()
 ```
 
-- `device_pool.{h,cpp}` — 8-slot pool of `GenericJoystickHID` consumers. Claims any joystick, gamepad, multi-axis controller, or keyboard HID collection (any VID/PID), first-come-first-served. Axis/button counts are discovered lazily from observed reports — they start at 0 and grow. Each slot also snapshots the device's USB **manufacturer / product** string descriptors at claim time (sanitised to printable ASCII so the protocol's JSON stays valid UTF-8), exposed via `manufacturerName()` / `productName()` and surfaced in `list_devices` / `device_attached`. The strings are read straight from `dev->strbuf` — populated before `claim_collection()` fires, so `mydevice = dev` plus the inherited `product()` accessor is enough. **Hat Switch (D-pad)** is a first-class input type alongside button and axis: each device tracks `m_hat` (0..7 direction, or `HAT_RELEASED = 0xFF`) and `m_hasHat` (set true on first hat report). Bindings of type `INPUT_HAT` match a specific direction strictly — diagonals don't fire cardinal bindings. For lenient matching (e.g. "N or NE" → shift up), bind multiple slots on the same channel. **Keyboards** are tracked similarly: up to `MAX_KEYS_PRESSED = 6` simultaneously-pressed scancodes are kept in `m_keys[]`, `m_hasKeyboard` set on first key event. Bindings of type `INPUT_KEY` carry the HID Keyboard/Keypad scancode in `index` (0x04 = A, …, 0xE0..0xE7 = modifiers) and fire while that scancode is in the pressed set.
-- `mapping.{h,cpp}` — `Config` schema, EEPROM I/O, `evalAxis` / `evalButton` evaluators, per-channel updaters that drive PWM pins and the pedal stream. **`Config` is 1132 bytes with `static_assert`-locked layout** (the STM32 port asserts the same size — that's the "byte-identical schema" guarantee); any field change without a matching size update is a compile error. Bump `CONFIG_VERSION` (`mapping.h`) on schema changes — EEPROMs from older versions are rejected and the firmware boots with defaults.
-- `protocol.{h,cpp}` — Line-based JSON command dispatcher over USB CDC Serial (`ArduinoJson v7`). Lines starting with `{` are JSON commands; other characters go to the CLI callback. Emits async events (`device_attached`, `device_detached`, `live`, `outputs`) — rate-limited to ~50 Hz inputs / ~30 Hz outputs.
-- `pedals.{h,cpp}` — CSL Elite V2 UART emulator on Serial3 (pins 14/15). State machine: STEP0 (250000 baud, expects `0x0A` → sends `0x1A`) → STEP1 (`0x05` → `0x15`) → STEP2 (switches to 115200, 12-byte framed query/response) → STREAMING (100 Hz pedal packets). **Boot warmup**: on startup we silently drain Serial3 for 2 s before engaging the handshake — gives the wheelbase a clean silence window to reset its end after a Teensy reboot (otherwise it hangs sending `0x0A` without following with `0x05`).
-- `name.c` — Custom USB descriptor overrides (`usb_names.h`). Declares the board's USB Manufacturer Name as `"fanadapter"` and Product Name as `"Fanadapter v0.6.0"` to replace the generic `"USB Serial"` device string. The version here must track the firmware version reported by `protocol.cpp` (`ver`) and the `firmware.ino` boot banner — bump all three together. `PRODUCT_NAME_LEN` is the character count and must match if the string length changes.
-- `firmware.ino` — orchestrator only. USB host instances (`USBHIDParser × 8`, `USBHub × 2`), pin/PWM setup (PIN_X=4, PIN_Y=5, PIN_SEQ_UP=6, PIN_SEQ_DOWN=7, PIN_HANDBRAKE=8, 12-bit PWM @ 36 kHz), minimal CLI (`u`/`p`/`X`/`?`).
+- `usb_input.{c,h}` — 8-slot HID device pool; descriptor-derived axes/buttons/hat/keyboard capabilities, sanitized manufacturer/product strings, and report-pipe monitoring. Rejects input-less HID interfaces. Strict hat-direction bindings select 0..7; released is 0xFF. Keyboard bindings use HID scancodes and support six pressed keys.
+- `hid_parse.{c,h}` — descriptor walker and native-resolution report decoder. `input_source.{c,h}` folds matching VID/PID devices through an input-source vtable (OR buttons/hat/key, MAX axes).
+- `mapping.{c,h}` — `Config` schema, axis/button evaluators, hold/latch gear selection, tests and sticky direct-output overrides. `Config` is 1132 bytes with `_Static_assert`-locked layout; bump `CONFIG_VERSION` on field changes. `config_store.{c,h}` persists it in flash bank 2.
+- `outputs.{c,h}` — DAC H-pattern on PA4/PA5, non-blocking neutral transit, open-drain sequential pulses on PC6/PC7, optional handbrake PWM on PC8.
+- `pedals.{c,h}` — USART2 on PA2 (TX) / PA3 (RX), 8N1. INIT → STEP0 (250000 baud, 0x0A → 0x1A) → STEP1 (0x05 → 0x15) → STEP2 (115200 baud query/ack) → STREAMING (100 Hz pedal frames). Drains RX silently for 2 s on boot; detects wheelbase restarts via UART error bursts.
+- `protocol.{c,h}` + `json_min.{c,h}` — line-based JSON dispatcher and telemetry over USB CDC / USART1. Inputs emit on change up to ~30 Hz; outputs stream ~30 Hz. `FW_VER` in `protocol.c` is published in the Pages firmware manifest.
+- `usb_descriptors.c` — native CDC identity VID 1209 / PID FA00. `main.c` owns clocks, hardware init, console TX policies and CLI (`dfu`, `reboot`, `?`).
 
 ### Channel model
 
@@ -89,7 +85,7 @@ Same-VID/PID device aggregation across the 8 host pool slots is layered *under* 
 
 ### H-pattern shifter modes
 
-`updateShifter()` has two modes selected by `Config.gearMode`:
+`update_shifter()` has two modes selected by `Config.gearMode`:
 
 - **`hold`** (default, real H-shifter semantics): gear active only while its binding is held. 0 active → neutral, 1 → that gear, **2+ → neutral** (defensive: when two switches close simultaneously, staying in neutral is safer than picking a random gear). A binding on `gear_N` acts as a panic-neutral override.
 - **`latch`** (keyboard / gamepad friendly): rising-edge on any gear binding *switches* the current gear; it stays there until another rising edge moves it elsewhere — including `gear_N` as the explicit "shift to neutral" key. First edge per tick wins on simultaneous presses. No defensive multi-press handling — the user opted into this mode deliberately.
@@ -98,20 +94,20 @@ Same-VID/PID device aggregation across the 8 host pool slots is layered *under* 
 
 ### Handbrake routing
 
-`updateHandbrake()` writes the same value to **both** the PWM pin and the pedal stream's handbrake field. Modern Fanatec firmware (DD+) prefers the pedal-stream value when the pedal port is present; the dedicated handbrake RJ12 is left unplugged in this build. The dual write exists so the wiring stays forward-compatible.
+`update_handbrake()` writes the same value to **both** the PWM pin and the pedal stream's handbrake field. Modern Fanatec firmware (DD+) prefers the pedal-stream value when the pedal port is present; the dedicated handbrake RJ12 is left unplugged in this build. The dual write exists so the wiring stays forward-compatible.
 
 ### Cross-file invariants (firmware ↔ webconfig ↔ SimHub plugin)
 
-**`firmware-stm32/` is the source of truth.** It is the actively developed build, so a contract change starts there and then moves the TypeScript and the C# in the same commit. Missing one is silent: nothing fails to compile, the client just misreads the device. The archived Teensy sketch in `firmware/` is a **frozen fourth mirror** — it still implements these contracts (identically, by construction: the `Config` layout is `static_assert`-locked to the same 1132 bytes on both), and `firmware/README.md` remains the canonical prose reference for them, but it does not gain new ones. When you change a shared contract, decide deliberately whether the Teensy follows and say which in the commit message; when you add something new, it is STM32-only unless someone explicitly ports it.
+**`firmware-stm32/` is the source of truth.** Contract changes start there and move to TypeScript and C# in the same commit. Missing a consumer is silent: nothing fails to compile, but a client can misread the device. `firmware-stm32/PROTOCOL.md` is the canonical prose reference.
 
-| Firmware (STM32 — source of truth) | Webconfig | SimHub plugin | Archived Teensy mirror | What must match |
-|---|---|---|---|---|
-| `src/mapping.h` (`Config`, `InputBinding`, `ChannelBindings`) | `webconfig/src/lib/types.ts` | `Fanadapter.Core/Model.cs` | `firmware/mapping.h` | Field names, types, channel keys. JSON wire shape must round-trip. Both builds `static_assert` the same 1132-byte layout. |
-| `src/mapping.c` (`scale_axis`) | `webconfig/src/lib/scaleAxis.ts` | `Fanadapter.Core/ScaleAxis.cs` | `firmware/mapping.cpp` (`scaleAxis`) | Identical math. Every client's "processed" preview must mirror what the firmware actually writes. |
-| `src/mapping.c` (CRC-32/ISO-HDLC) | `webconfig/src/lib/crc32.ts` | — | `firmware/mapping.cpp` | Same polynomial / init / final-XOR. Currently unused on the JS side but reserved for preset validation. |
-| — | `App.tsx` capture flow | `Fanadapter.Core/CaptureEngine.cs` | — | Same three-phase thresholds and commit maths. Not a firmware contract, but a divergence means the two clients calibrate the same pedal differently. |
-| — | `src/lib/dfu.ts` (DfuSe flasher) | `Fanadapter.Core/DfuseFlasher.cs` | — | Same DfuSe sequence (set-address before every block, wBlockNum=2, leave = zero-length DNLOAD), suffix strip, plausibility check, sector-erase policy. The contract is ST's ROM (AN3156), not our firmware — but a divergence means the two clients flash differently. Both consume the Pages deploy's `firmware/fanadapter-stm32.{json,bin}`. |
-| `src/protocol.c` (`CHANNEL_NAMES`, JSON command shapes, `PROTO_VERSION`) | `webconfig/src/lib/serial.ts`, `types.ts` (`CHANNELS`) | `Fanadapter.Core/Protocol.cs`, `Model.cs` | `firmware/protocol.cpp` (frozen at protocol 5) | Channel name strings, command names, request/response shapes. The STM32 is **protocol 6**; the Teensy stayed at 5 and answers `unknown_cmd` for everything added since — clients must feature-gate, not assume (`SupportsDirectOutput`, `SupportsAxisStreaming`, `SupportsDfu` in Model.cs). |
+| Firmware (`firmware-stm32/`) | Webconfig | SimHub plugin | What must match |
+|---|---|---|---|
+| `src/mapping.h` (`Config`, `InputBinding`, `ChannelBindings`) | `webconfig/src/lib/types.ts` | `Fanadapter.Core/Model.cs` | Field names, types, channel keys. JSON wire shape must round-trip; firmware asserts the 1132-byte stored layout. |
+| `src/mapping.c` (`scale_axis`) | `webconfig/src/lib/scaleAxis.ts` | `Fanadapter.Core/ScaleAxis.cs` | Identical math; processed previews must mirror firmware outputs. |
+| `src/mapping.c` (CRC-32/ISO-HDLC) | `webconfig/src/lib/crc32.ts` | — | Same polynomial / init / final-XOR; JS reserved for preset validation. |
+| — | `App.tsx` capture flow | `Fanadapter.Core/CaptureEngine.cs` | Same three-phase thresholds and commit math. |
+| — | `src/lib/dfu.ts` | `Fanadapter.Core/DfuseFlasher.cs` | Same DfuSe sequence, suffix strip, plausibility checks and bank-1-only erase policy. Both use Pages' `firmware/fanadapter-stm32.{json,bin}`. |
+| `src/protocol.c` (command shapes, `PROTO_VERSION`) | `webconfig/src/lib/serial.ts`, `types.ts` (`CHANNELS`) | `Fanadapter.Core/Protocol.cs`, `Model.cs` | Channel/command names and payloads. Current protocol is 6; keep capability checks for older or unrecognized firmware (`SupportsDirectOutput`, `SupportsAxisStreaming`, `SupportsDfu`). |
 
 Both clients defensively accept the v2 (array) and legacy v1 (single object) channel shapes so they keep rendering against older firmware — `getChannelBindings()` in types.ts, `ChannelBindingsConverter` in Model.cs. Keep both fallbacks when changing the schema.
 
@@ -133,12 +129,12 @@ Baseline accumulation lives in a `useRef` (not React state) to avoid render loop
 
 ## Things to know before editing
 
-- **`CONFIG_VERSION` bumps wipe user EEPROMs on next flash.** The firmware boots with empty bindings on version mismatch (defaults preserved for gear DAC voltages and pulse width). Mention this in commit messages when applicable.
-- **Pedal handshake desync survives soft reboots.** A `{"cmd":"reboot"}` (or any firmware re-flash) doesn't reset the wheelbase's UART state. The 2-second boot warmup helps, but recovery sometimes needs the **Re-arm pedals handshake** button in the Outputs tab (calls `pedalsForceReset` → `cmd: reset_pedals`) or a physical USB replug.
+- **`CONFIG_VERSION` bumps invalidate saved flash configuration on next boot.** The firmware boots with empty bindings on version mismatch (defaults preserved for gear DAC voltages and pulse width). Mention this in commit messages when applicable.
+- **Pedal handshake desync survives soft reboots.** A `{"cmd":"reboot"}` (or any firmware re-flash) doesn't reset the wheelbase's UART state. The 2-second boot warmup helps, but recovery sometimes needs the **Re-arm pedals handshake** button in the Outputs tab (calls `pedals_force_reset` → `cmd: reset_pedals`) or a physical USB replug.
 - **`0x7B`-framed bytes during STREAMING are normal.** The wheelbase keeps emitting stale STEP 2 queries even after handshake completes — don't interpret them as a re-handshake request. The `STATE_STREAMING` byte handler ignores them.
 - **Multiple devices can share a channel.** Conflict-clearing across channels was tried and removed — one physical input can deliberately drive multiple outputs (e.g. one button bound to both `gear_R` and `shift_down`). Defensive neutral handles the H-pattern multi-active case.
-- **Loop dispatch order.** `pedalsUpdate()` runs last in the main loop. If you add new long-running work to `mappingTick()` or `protocolTick()`, the pedal stream's 100 Hz cadence can slip and the wheelbase will drop pedals.
-- **WebSerial holds COM exclusively.** The firmware uploader and any other serial tool can't talk to the Teensy while the UI is connected. Disconnect first, or use the JSON `reboot` command if you just need a restart.
+- **Loop dispatch order.** `pedals_update()` runs last in the main loop. If you add new long-running work to `mapping_tick()` or `protocol_tick()`, the pedal stream's 100 Hz cadence can slip and the wheelbase will drop pedals.
+- **WebSerial holds COM exclusively.** The firmware uploader and any other serial tool can't talk to the adapter while the UI is connected. Disconnect first, or use the JSON `reboot` command if you just need a restart.
 - **(STM32) Never gate CDC output on `tud_cdc_connected()`.** That also requires the host to assert DTR, and `webconfig` deliberately *deasserts* DTR on connect (so opening a port can't reset an MCU sitting behind a CH340 bridge). Gating on it makes the firmware receive and execute commands but never reply — every request dies with `command timeout`. Use **`tud_mounted()`**. Same trap for any new inbound path: the console must drain **both** the USART1 ring and `tud_cdc_read()`.
 - **(STM32) rhport numbers are fixed by hardware; roles are not.** OTG_FS is *always* rhport 0 and OTG_HS *always* rhport 1, so the ISRs must pass those literals — hence `OTGFS_RHPORT`/`OTGHS_RHPORT` kept separate from the role aliases `DEVICE_RHPORT`/`HOST_RHPORT` in `main.c`. Wiring an ISR to a *role* alias breaks silently the moment roles swap.
 - **(STM32) The on-board USB-C can only ever be a USB *device*.** It's wired as a UFP receptacle (CC pulled down with Rd) — which is why DFU works through it, and why a hub plugged into it never attaches (both ends present as devices; no adapter fixes it). The host must hang off the PB14/PB15 header. And **a hub needs VBUS on its upstream port to detect a host** — feed it from the board's 5 V or it silently never attaches.
@@ -158,13 +154,13 @@ Baseline accumulation lives in a `useRef` (not React state) to avoid render loop
 - **(webconfig) The firmware updater's device picker MUST stay on its own button.** Chromium requires a *fresh* user gesture for `navigator.usb.requestDevice()`, and by the time the update flow discovers the grant is missing (after the serial reboot + bus wait), the original click's activation is spent — calling the picker there throws. Both grants persist per origin+device (`usb.getDevices()` / `serial.getPorts()`), which is what makes every update after the first fully hands-free; don't "simplify" the granted-device paths away. Related: entering the bootloader from software works only via the token + reset + early-branch path in `main.c` (a late branch serves no ROM interfaces — twice-bisected; see PORT-STATUS), and on Windows WebUSB only sees the DFU device when WinUSB is bound to it.
 - **(SimHub) Newtonsoft comes from NuGet with `ExcludeAssets="runtime"`, pinned to the version SimHub ships (13.0.4).** Referencing SimHub's copy by `HintPath` instead would make `Fanadapter.Core` — and therefore its tests — unbuildable without SimHub installed. Excluding the runtime asset keeps the DLL out of our output so the CLR loads SimHub's single copy. If SimHub bumps Newtonsoft, bump the pin.
 - **No agent attribution on commits.** Do not add Co-Authored-By or similar attribution lines for AI assistants on commits in this repo.
-- **Repo root is the directory containing this file.** `firmware/`, `webconfig/`, `firmware-stm32/` and `simhub-plugin/` are siblings. The Arduino sketch convention requires `firmware/firmware.ino` (folder name = .ino name) — don't rename one without the other.
+- **Repo root is the directory containing this file.** `firmware-stm32/`, `webconfig/`, `schematics/` and `simhub-plugin/` are siblings.
 - **Keep docs in sync with the code.** When a change affects something documented here or in a README, update both in the same commit. Things that warrant a doc edit:
-  - Schema bumps (`CONFIG_VERSION`, new fields, layout changes) → `AGENTS.md` cross-file invariants table, `firmware/README.md` JSON command reference, preset shape in `webconfig/README.md`, **and `Fanadapter.Core/Model.cs`**.
-  - New / renamed / removed JSON commands or events → JSON command reference in `firmware/README.md`, the serial client in `webconfig/src/lib/serial.ts`, **`Fanadapter.Core/Protocol.cs`**, and the cross-file table here.
-  - New channel keys or output behavior → channel model section here, the channel list in `firmware/README.md`, the `CHANNELS` table in `webconfig/src/lib/types.ts`, and `Schema` in `Fanadapter.Core/Model.cs`.
+  - Schema bumps (`CONFIG_VERSION`, new fields, layout changes) → `AGENTS.md` cross-file invariants table, `firmware-stm32/PROTOCOL.md` JSON command reference, preset shape in `webconfig/README.md`, **and `Fanadapter.Core/Model.cs`**.
+  - New / renamed / removed JSON commands or events → JSON command reference in `firmware-stm32/PROTOCOL.md`, the serial client in `webconfig/src/lib/serial.ts`, **`Fanadapter.Core/Protocol.cs`**, and the cross-file table here.
+  - New channel keys or output behavior → channel model section here, the channel list in `firmware-stm32/PROTOCOL.md`, the `CHANNELS` table in `webconfig/src/lib/types.ts`, and `Schema` in `Fanadapter.Core/Model.cs`.
   - Module additions / renames / loop-order changes → firmware module layout section here and the README's firmware section.
-  - Hardware wiring or pin changes → `firmware/README.md` wiring reference (Teensy) or `firmware-stm32/README.md` pin map (STM32); mention the pin in the firmware module layout here if it's surfaced as a constant.
+  - Hardware wiring or pin changes → `schematics/README.md` RJ12 wiring reference and `firmware-stm32/README.md` board pin map; mention the pin in the firmware module layout here if it's surfaced as a constant.
   - Behavior gotchas that you debugged through (handshake quirks, edge cases) → add a bullet to "Things to know before editing" so the next agent doesn't re-derive it.
 
   If unsure whether a change is doc-worthy, ask: "would the next agent waste time re-discovering this?" If yes, document it.

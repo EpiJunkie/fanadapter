@@ -4,7 +4,7 @@
 
 | Part | Covers | License | SPDX |
 |---|---|---|---|
-| **Software** | firmware (`firmware/`), the webconfig app (`webconfig/`), sketches, and configuration utilities | Apache License 2.0 | `Apache-2.0` |
+| **Software** | firmware (`firmware-stm32/`), the webconfig app (`webconfig/`), sketches, and configuration utilities | Apache License 2.0 | `Apache-2.0` |
 | **Hardware design** | schematics, pinouts, Bill of Materials, and any PCB layouts / enclosure models added later | CERN Open Hardware Licence Version 2 — Permissive | `CERN-OHL-P-2.0` |
 
 ## Provenance

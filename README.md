@@ -1,6 +1,6 @@
 # fanadapter
 
-USB HID → Fanatec wheelbase adapter — on a Teensy 4.1 or an STM32H743 — combined with a browser-based WebSerial configuration UI and a SimHub plugin.
+USB HID → Fanatec wheelbase adapter — on an STM32H743 — combined with a browser-based WebSerial configuration UI and a SimHub plugin.
 
 An open-source adapter that lets arbitrary USB HID sim racing peripherals (H-pattern shifters, sequential shifters, handbrakes, and USB pedals — plus gamepads, D-pad/Hat controllers, and keyboards) connect to a Fanatec wheelbase as if they were native Fanatec gear. This is particularly valuable on game consoles (PS4/PS5/Xbox Series X|S) where third-party USB peripherals cannot be plugged directly into the console.
 
@@ -11,14 +11,13 @@ From the perspective of the wheelbase, the adapter looks like genuine Fanatec ha
 ## Architecture Block Diagram
 
 ```
-USB H-pattern shifter ─┐                          [Teensy 4.1]
-USB sequential shifter ┼──► [Powered USB Hub] ──►      or      ──► RJ12 ──► Fanatec Wheelbase
-USB handbrake ─────────┤                          [STM32H743]     RJ12        (up to 3 ports)
-USB pedals ────────────┘                                          RJ12
+USB H-pattern shifter ─┐
+USB sequential shifter ┼──► [Powered USB Hub] ──► [STM32H743] ──► RJ12 ──► Fanatec Wheelbase
+USB handbrake ─────────┤                                         RJ12        (up to 3 ports)
+USB pedals ────────────┘                                         RJ12
 ```
 
-Both firmware builds speak the same protocol, config schema and UI, but the **STM32H743 build is
-the active one** — the Teensy sketch is archived and no longer developed.
+Configure the adapter with the [live web configurator](https://gugic.github.io/fanadapter/) or the SimHub plugin. The browser also provides firmware updates over WebUSB/DFU.
 
 ---
 
@@ -37,30 +36,27 @@ the active one** — the Teensy sketch is archived and no longer developed.
   * Bases without dedicated handbrake ports (Pre-DD generation may share the handbrake with the pedal port).
 
 ### USB Hubs (Important)
-Because the Teensy 4.1 has a single onboard USB host port, a **powered USB 2.0 hub** is required to connect multiple peripherals. 
-* **Known Incompatible:** Sabrent 4-port USB 2.0 hub (VID `0x5E3`, PID `0x610`, Genesys Logic GL850G chip) — causes partial enumeration and detach cascades under Teensy's USB host stack. **Do not use this hub.**
-* **Recovery:** If devices stop responding, unplug the hub, connect it to a PC for 5 seconds to reset its state machine, and plug it back into the Teensy.
+A **powered USB 2.0 hub** connects multiple peripherals to the STM32's USB host on **PB14/PB15**. Feed the hub's upstream VBUS from the board's 5 V rail so it detects the host. The on-board USB-C connects to the PC for power, configuration and firmware updates; it cannot host a hub.
+
+If devices stop responding, replug the affected device at the hub. See the [STM32 troubleshooting guide](firmware-stm32/README.md#7-troubleshooting) for polling gaps and USB diagnostics.
 
 ---
 
 ## Repository Layout
 
-The project is structured into five main directories:
+The project is structured into four main directories:
 
-1. **[`firmware/`](firmware/README.md)** — ⚠️ *archived, no longer developed*  
-   The original Arduino sketch (Teensyduino) for the Teensy 4.1. It reads USB HID inputs from the devices pool via `USBHost_t36`, evaluates custom user mappings, manages calibration saved to EEPROM, and emulates CSL Elite V2 pedals along with driving shifter and handbrake ports. **Build the STM32 version below instead** — this one still works but gets no new features, and everything added since the port (PC/SimHub direct output, one-click DFU flashing, USB diagnostics) is STM32-only. Its README remains the shared reference for the JSON protocol, config schema and RJ12 wiring.
+1. **[`firmware-stm32/`](firmware-stm32/README.md)**
+   Firmware for the **STM32H743** core board (WeAct MiniSTM32H743VITX), written in C with PlatformIO, STM32Cube HAL and TinyUSB. Hardware-validated on a real wheelbase, with DAC H-pattern outputs, sequential shifts, handbrake, pedal-port UART, PC direct output, DFU updates and USB diagnostics. The [protocol and calibration reference](firmware-stm32/PROTOCOL.md) documents its shared contracts with both clients.
 
-2. **[`firmware-stm32/`](firmware-stm32/README.md)**  
-   An alternative build of the same adapter on an **STM32H743** core board (WeAct MiniSTM32H743VITX), written in C on PlatformIO + STM32Cube HAL + TinyUSB. Full feature parity with the Teensy build and validated on the same wheelbase — it speaks the identical JSON protocol and config schema, so one `webconfig` serves both. Cheaper and easier to source than a Teensy, with a real DAC (no RC filter needed on the gear outputs) and two USB controllers, at the cost of a fussier toolchain.
+2. **[`webconfig/`](webconfig/README.md)**
+   A React 19 + TypeScript + Tailwind + shadcn/ui interface for desktop Chromium browsers. Captures bindings, calibrates axes, tests outputs, and updates firmware over WebUSB/DFU. [Open the configurator](https://gugic.github.io/fanadapter/).
 
-3. **[`webconfig/`](webconfig/README.md)**  
-   A beautiful, modern React 19 + TypeScript + Tailwind + shadcn/ui configuration interface. It runs directly in desktop Chromium-based browsers (Chrome, Edge, Brave) and communicates with the firmware over WebSerial (line-based JSON) to capture binds, calibrate axis deadzones, and test outputs. It also does one-click STM32 firmware updates over WebUSB/DFU — no toolchain, no button-pressing (the SimHub plugin carries the same updater over WinUSB).
-   
-4. **[`simhub-plugin/`](simhub-plugin/README.md)**  
-   A [SimHub](https://www.simhubdash.com/) plugin (C# / .NET Framework 4.8 / WPF) that speaks the same JSON protocol over a COM port. Devices plugged into the **PC** are captured and mapped by SimHub's own input system, and the plugin turns the result into direct output commands to the wheelbase; devices plugged into the **adapter's own USB hub** are configured through a mirror of the webconfig UI. Also publishes the adapter's live state as SimHub properties for dashboards.
+3. **[`simhub-plugin/`](simhub-plugin/README.md)**
+   A [SimHub](https://www.simhubdash.com/) plugin (C# / .NET Framework 4.8 / WPF). PC-attached controllers drive the wheelbase through direct-output commands; devices on the adapter's hub are configured through a mirror of webconfig. Includes firmware updates over WinUSB and live dashboard properties.
 
-5. **[`schematics/`](schematics/README.md)**  
-   Detailed hardware pinouts, port protocols, wiring diagrams, Bill of Materials (BoM), and step-by-step physical assembly and pre-flight multimeter tests.
+4. **[`schematics/`](schematics/README.md)**
+   RJ12 pinouts, port protocols, wiring diagrams, a bill of materials, assembly instructions and multimeter checks for the STM32 hardware.
 
 ---
 
@@ -69,14 +65,13 @@ The project is structured into five main directories:
 The following features and improvements are planned for future updates:
 
 * **Analog Pedal Fallback** — Supporting older bases predating CSL Elite V2 by implementing a 4-channel analog DAC output stage (MCP4728) on the pedal RJ12.
-* **Software-Controlled Handbrake Detect** — Controlling Shifter 1 / Handbrake port detection via a Teensy GPIO rather than hardwired ground, allowing the adapter to show or hide ports dynamically.
+* **Software-Controlled Handbrake Detect** — Controlling Shifter 1 / Handbrake port detection via an STM32 GPIO rather than hardwired ground, allowing the adapter to show or hide ports dynamically.
 * **Custom PCB Design** — A small, custom-routed KiCad PCB to replace the breadboard.
 * **3D-Printed Enclosure** — A robust case with panel-mounted RJ12 jacks and a secure powered USB hub integration.
 * **OLED Display & Buttons** — On-board configuration interface for status reports, calibration, and profile-switching without a computer.
 * ~~**SimHub Integration**~~ — **Done:** the [`simhub-plugin/`](simhub-plugin/README.md) drives the same JSON protocol from SimHub, so a shifter or pedal set attached to the PC can command the wheelbase through the adapter, and the adapter's own mapping can be configured without leaving SimHub.
 * **0-5V Handbrake Scaler** — Incorporating an op-amp scaling stage (MCP6001 with ~1.52 gain) for native 0-5V analog voltage swing.
 * **Mode Switching on Shifter 1** — Software toggle between H-pattern and sequential modes on a single physical RJ12 port.
-* ~~**Cheaper MCU Port**~~ — **Done:** the [STM32H743 build](firmware-stm32/README.md) is a cheaper, easier-to-source alternative to the Teensy at full feature parity. (An RP2040 or ESP32-S3 port would go cheaper still; the ESP32 attempt is shelved on the `esp32` branch.)
 * **Built-in USB Hub** — Designing a USB hub circuit directly onto the project's custom PCB to ensure maximum stability and compatibility.
 
 ---

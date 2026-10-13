@@ -346,7 +346,7 @@ namespace Fanadapter.SimHub
                 return;
             }
 
-            // Legacy acked path (Teensy-era or pre-protocol-6 STM32 firmware).
+            // Legacy acked path (pre-protocol-6 STM32 firmware).
             bool keepAlive = DateTime.UtcNow - _lastKeepAlive >= KeepAlive;
 
             int? t = Read(pm, settings.Throttle, 0, keepAlive);

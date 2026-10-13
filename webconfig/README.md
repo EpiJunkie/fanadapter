@@ -1,8 +1,8 @@
 # fanadapter webconfig
 
-The browser-based configuration interface for the [fanadapter firmware](../firmware/). Built with Vite, React 19, TypeScript, Tailwind, and shadcn/ui.
+The browser-based configuration interface for the [fanadapter firmware](../firmware-stm32/README.md). Built with Vite, React 19, TypeScript, Tailwind, and shadcn/ui.
 
-The webapp communicates with the Teensy 4.1 over WebSerial using a line-based JSON protocol. No native helper application or local daemon is required.
+The webapp communicates with the STM32 adapter over WebSerial using a line-based JSON protocol. No native helper application or local daemon is required.
 
 ---
 
@@ -10,7 +10,9 @@ The webapp communicates with the Teensy 4.1 over WebSerial using a line-based JS
 
 When this repository is pushed to `main`, a GitHub Actions workflow automatically builds and publishes the production build to GitHub Pages:
 
-- **Canonical URL:** `https://<username>.github.io/fanadapter/`
+- **Canonical URL:** [gugic.github.io/fanadapter](https://gugic.github.io/fanadapter/)
+
+For a fork, enable Pages in **Settings → Pages → Build and deployment → Source: GitHub Actions**, then run `.github/workflows/pages.yml` or push app/firmware changes to `main`. The deploy also publishes the firmware manifest and binary used by both clients.
 
 > [!NOTE]
 > **Browser Compatibility:** WebSerial is currently only supported in desktop Chromium-based browsers (Google Chrome, Microsoft Edge, Brave, Opera). It will not work on mobile browsers or on desktop Firefox/Safari.
@@ -40,7 +42,18 @@ npm run build
 
 # 4. Run ESLint rules check
 npm run lint
+
+# 5. Run the CI dependency audit
+npm run audit
 ```
+
+The audit fails on high and critical advisories. `audit-ci.jsonc` scopes one exception to
+[GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) through Tailwind 3:
+its `braces` glob parser has no patched release and only processes this repo's fixed content
+globs in `tailwind.config.js`. It is absent from the static browser bundle. Remove the exception
+when an upstream patch or a Tailwind migration removes that dependency; keep content patterns
+under repository control. `npm audit` shows the full unfiltered report; other high/critical
+advisories still fail CI.
 
 When running `npm run dev`, Vite will serve the application at `http://localhost:5173/fanadapter/`. Open this URL in Chrome, Edge, or Brave, click **Connect**, and choose the adapter's USB serial (CDC) device from the browser permission pop-up.
 
@@ -96,7 +109,7 @@ To keep the web configurator aligned with the microcontroller's operation, three
 
 ### 2. FIFO Serial Request/Response Queue
 
-Because multiple UI modules can request details from the Teensy simultaneously, `SerialClient` (`webconfig/src/lib/serial.ts`) implements a FIFO queue over WebSerial:
+Because multiple UI modules can request details from the adapter simultaneously, `SerialClient` (`webconfig/src/lib/serial.ts`) implements a FIFO queue over WebSerial:
 
 - Commands (non-event JSON strings) are pushed to the queue and executed sequentially. When a JSON reply is returned, it is matched with the oldest pending promise.
 - Event packages (`{"event":"..."}`) are intercepted, bypassed, and fanned out to active UI subscribers.
@@ -115,7 +128,7 @@ DfuSe protocol, and the app reconnects through the **persisted WebSerial grant**
 new version. The only manual step that can exist is Chromium's device picker on the very first
 update per machine (`requestDevice()` needs a fresh user gesture, so it lives on its own button);
 every later update is hands-free. Saved mappings live in a different flash bank than the code and
-survive. STM32-only — a Teensy adapter flashes with the PJRC loader instead. An expandable
+survive. An expandable
 "local .bin" path covers dev builds (drop one in `webconfig/public/firmware/` to test the deployed
 flow locally — that dir is gitignored). On Windows the DFU device must have the WinUSB driver
 bound (STM32CubeProgrammer's installer or one Zadig run does it).
@@ -124,14 +137,14 @@ bound (STM32CubeProgrammer's installer or one Zadig run does it).
 
 ### 3. Cross-File Code Invariants
 
-The web app shares four strict boundaries with the Teensy 4.1 C++ code. If a change is made to one, its twin file must be updated in the same commit:
+The web app shares four strict boundaries with the STM32 C code in `firmware-stm32/src/`. If a change is made to one, its firmware and SimHub counterparts must be updated in the same commit:
 
-| Webconfig Component    | Firmware Code               | Matching Requirement                                               |
-| ---------------------- | --------------------------- | ------------------------------------------------------------------ |
-| `src/lib/types.ts`     | `mapping.h`                 | Must mirror exact property naming, field types, and channel lists. |
-| `src/lib/scaleAxis.ts` | `mapping.cpp` (`scaleAxis`) | Must replicate identical threshold, deadzone, and math operations. |
-| `src/lib/crc32.ts`     | `mapping.cpp` (CRC-32)      | Same ISO-HDLC CRC polynomial.                                      |
-| `src/lib/serial.ts`    | `protocol.cpp`              | JSON commands, channel keys, and async events must match.          |
+| Webconfig Component    | Firmware Code                  | Matching Requirement                                               |
+| ---------------------- | ------------------------------ | ------------------------------------------------------------------ |
+| `src/lib/types.ts`     | `src/mapping.h`                | Must mirror exact property naming, field types, and channel lists. |
+| `src/lib/scaleAxis.ts` | `src/mapping.c` (`scale_axis`) | Must replicate identical threshold, deadzone, and math operations. |
+| `src/lib/crc32.ts`     | `src/mapping.c` (CRC-32)       | Same ISO-HDLC CRC polynomial.                                      |
+| `src/lib/serial.ts`    | `src/protocol.c`               | JSON commands, channel keys, and async events must match.          |
 
 > [!IMPORTANT]
 > **Backward Compatibility:** `types.ts` is designed defensively to handle both the v2 schema (channels mapped as array slots) and the legacy v1 schema (single bindings) so the interface continues rendering when connected to older firmware versions. Keep this fallback structure intact.
@@ -143,9 +156,9 @@ The web app shares four strict boundaries with the Teensy 4.1 C++ code. If a cha
 ### Configurator refuses to connect
 
 - Ensure you are running Chrome, Edge, or Brave. Safari and Firefox are incompatible.
-- Ensure the Teensy's serial port is not occupied by another utility, such as a serial monitor, `arduino-cli upload`, or another open WebSerial browser tab.
+- Ensure the adapter's serial port is not occupied by another utility, such as a serial monitor, SimHub, or another open WebSerial browser tab.
 
 ### The preview bars move in the UI, but the wheelbase does not react
 
-- Verify that you clicked **Save to EEPROM** after completing mappings. Mappings in React are active temporarily on the Teensy's RAM but will revert or fail to handshake unless committed.
+- Check the live output values and the pedal handshake state. Mapping edits apply immediately in adapter RAM; **Save to adapter** stores them in flash so they survive a restart. See the [calibration reference](../firmware-stm32/PROTOCOL.md#calibration).
 - Verify that your hardware cables match the pinouts described in the [Hardware & Schematics Reference](../schematics/README.md).

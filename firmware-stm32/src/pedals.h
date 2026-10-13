@@ -1,6 +1,5 @@
-// CSL Elite V2 pedal-port UART emulator on USART2 (PA2 = TX, PA3 = RX). C port of the Teensy
-// firmware/pedals.{h,cpp} (which ran on Serial3). This is the sink that makes the pedal/handbrake
-// channel values ELECTRICALLY reach the Fanatec wheelbase: the H-pattern gears go out the DAC
+// CSL Elite V2 pedal-port UART emulator on USART2 (PA2 = TX, PA3 = RX).
+// This sink makes pedal/handbrake values ELECTRICALLY reach the Fanatec wheelbase: gears use the DAC
 // (outputs.c) and sequential shifts out the open-drain pins, but throttle/brake/clutch/handbrake
 // only reach the wheelbase through this 100 Hz UART stream.
 //

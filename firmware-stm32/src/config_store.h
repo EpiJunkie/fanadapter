@@ -1,4 +1,4 @@
-// Persistent config storage — the STM32H743 internal-flash replacement for the Teensy's EEPROM.
+// Persistent config storage in STM32H743 internal flash (bank 2).
 //
 // One dedicated 128 KB flash sector holds the serialized Config blob. Load is a plain memcpy from
 // the memory-mapped sector; save erases the sector and reprograms it in 256-bit flashwords. See

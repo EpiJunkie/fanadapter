@@ -216,14 +216,13 @@ static uint32_t extract_bits(const uint8_t *p, uint16_t off, uint8_t n) {
   return v;
 }
 
-// Decode an axis field to its NATIVE logical value (matches the Teensy device_pool, which stores the
-// raw HID value verbatim: `m_axes[i] = (uint16_t)value`). Keeping native resolution means the live
-// display shows the device's true range (a 10-bit handbrake reads 0..1023, a 12-bit pedal 0..4095)
+// Decode an axis field to its NATIVE logical value, preserving the raw HID value. The live display
+// shows the device's true range (a 10-bit handbrake reads 0..1023, a 12-bit pedal 0..4095)
 // in clean steps of 1, instead of being upscaled to 16 bits (which produced the confusing 16/64-count
 // jumps). The mapping layer's scaleAxis maps [rawMin,rawMax] — also native units, learned by the
 // Listen calibration — to 0..65535 at eval time, so the real physical travel still spans full output.
-// Signed fields are sign-extended from bit_size then cast to uint16 (negatives wrap, exactly like the
-// Teensy cast); almost all wheel/pedal axes are unsigned, so that's the common path.
+// Signed fields are sign-extended from bit_size then cast to uint16 (negatives wrap); almost all
+// wheel/pedal axes are unsigned, so that is the common path.
 static uint16_t decode_axis(uint32_t raw, const hid_field_t *f) {
   if (f->logical_min < 0 && f->bit_size > 0u && f->bit_size < 32u) {
     uint32_t signbit = 1u << (f->bit_size - 1u);

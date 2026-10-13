@@ -44,7 +44,7 @@ namespace Fanadapter.SimHub
 
         /// <summary>
         /// Whether the connected firmware implements the direct-output commands.
-        /// False on a Teensy, which answers unknown_cmd to all four.
+        /// Check before enabling PC drive features for unrecognized firmware.
         /// </summary>
         public bool SupportsDirectOutput => Version != null && Version.SupportsDirectOutput;
 

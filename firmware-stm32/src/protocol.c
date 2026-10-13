@@ -2,7 +2,7 @@
 //
 // M2 scope adds the config command set on top of M1's device/live machinery: get_config (streamed),
 // set_binding, set_gear_dac, set_pulse_ms, set_gear_mode, save_config, reset_config. Command/event
-// shapes match firmware/protocol.cpp and webconfig/src/lib/{serial.ts,types.ts} exactly.
+// shapes match webconfig/src/lib/{serial.ts,types.ts} and Fanadapter.Core/Protocol.cs.
 #include "protocol.h"
 
 #include <stdio.h>
@@ -73,8 +73,7 @@ static uint8_t     gear_mode_from_name(const char *s) {
   return (s && !strcmp(s, "latch")) ? GEAR_MODE_LATCH : GEAR_MODE_HOLD;
 }
 
-// Apply an optional uint16 binding field: only overwrite when the key is present (mirrors the
-// Teensy's readBindingFrom, which skips absent fields so partial set_binding edits are safe).
+// Apply an optional uint16 binding field only when present, so partial set_binding edits are safe.
 static void apply_u16(const json_kv *kv, int n, const char *key, uint16_t *dst) {
   long v;
   if (json_get_int(kv, n, key, &v)) *dst = (uint16_t)v;
@@ -399,8 +398,7 @@ static void cmd_reboot(void) {
 
 // Reboot into the ROM bootloader (USB DFU on the USB-C) via the token + reset + early-branch path
 // in main.c — the CDC port disappears and a DFU device (0483:df11) appears in its place. Used by
-// webconfig's firmware flasher. STM32-only by nature; the Teensy answers unknown_cmd, same as the
-// direct-output commands. The ok is flushed first — it is the client's cue to start watching for
+// the browser and SimHub firmware flashers. The ok is flushed first — the client's cue to watch for
 // the DFU device.
 extern void request_bootloader_reboot(void);
 static void cmd_dfu(void) {
@@ -426,8 +424,7 @@ static void cmd_pedals_status(void) {
 // are, since a device with nothing to say NAKs; the tell is `age_ms` growing on a device the user
 // is actively moving). `usb_kick` aborts + re-arms every claimed pipe: if inputs resume, the wedge
 // was host-side (a dwc2 channel stuck busy); if not, the device itself stopped talking. Both
-// STM32-only; the Teensy answers unknown_cmd. Streamed in chunks on the intact console path, like
-// get_config.
+// Commands reply in chunks on the intact console path, like get_config.
 // Raw dwc2 host-controller registers on OTG_HS, read directly for the freeze discriminator —
 // no TinyUSB internals needed. HCCHAR carries the device address + endpoint each channel is bound
 // to, so a frozen slot (matched by "da") can be looked up in the channel dump:

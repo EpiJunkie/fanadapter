@@ -1,25 +1,10 @@
 # fanadapter — STM32H743 build & wiring guide
 
-The **STM32H743 build** of fanadapter — **this is the actively developed build; build this one.**
-The original Teensy 4.1 sketch in [`firmware/`](../firmware/README.md) is archived and gets no new
-features. Same WebSerial JSON protocol, byte-identical `Config` schema, same
-[`webconfig`](../webconfig/README.md) UI, so everything in the [main README](../README.md) and the
-[hardware reference](../schematics/README.md) applies here too — only the microcontroller and its
-wiring differ.
+Firmware for the **STM32H743** (WeAct MiniSTM32H743VITX), written in **C** with **PlatformIO + STM32Cube HAL + TinyUSB**. USB-host HID mapping, PC/SimHub direct output, DFU updates and USB diagnostics are hardware-validated end to end on a real wheelbase, including full driving sessions.
 
-Written in **C** on **PlatformIO + STM32Cube HAL + TinyUSB** (not Arduino). Full feature parity
-with the Teensy build plus everything added since the port (PC/SimHub direct output, one-click DFU
-flashing, USB diagnostics), hardware-validated end to end on a real wheelbase including full
-driving sessions.
+The board has a two-channel DAC for the H-pattern outputs, 2 MB of flash for firmware and saved configuration, and two USB controllers for simultaneous PC and hub connections. Gear outputs drive the shifter port directly. The first flash requires BOOT0/RST; subsequent updates are hands-free through webconfig or SimHub.
 
-**Why this board?** It's cheaper and easier to source than a Teensy, and it has a real DAC — so
-the H-pattern gear outputs drive the shifter port directly and the **RC filter stage disappears**
-from the build. Also 2 MB of flash and a second USB controller, so config storage and a native
-console cost you nothing extra.
-
-**Trade-offs, honestly:** the toolchain is fussier than Arduino, the first flash needs a manual
-BOOT0/RST dance (every flash after that is hands-free — see §4), and you hand-wire a USB breakout
-to the host header rather than soldering one on.
+See the [main README](../README.md), [RJ12 hardware reference](../schematics/README.md), and [protocol and calibration reference](PROTOCOL.md).
 
 ---
 
@@ -28,13 +13,12 @@ to the host header rather than soldering one on.
 | Item | Notes |
 |---|---|
 | **WeAct MiniSTM32H743VITX** core board | Must be the **STM32H743VIT6**. ⚠️ See the warning below. |
-| Powered USB 2.0 hub | Self-powered. Same hub caveats as the Teensy build — see the [main README](../README.md#usb-hubs-important). |
+| Powered USB 2.0 hub | Self-powered. See the [main README](../README.md#usb-hubs-important). |
 | USB-C cable (**data**, not charge-only) | PC → board. Carries console, webconfig, DFU *and* board power. |
 | USB breakout / sacrificial USB-A cable | Hub → the board's PB14/PB15 header. Needs D+, D−, GND **and VBUS**. |
-| RJ12 cables + jacks, hookup wire | Wheelbase side. Identical to the Teensy build — see [`schematics/`](../schematics/README.md). |
+| RJ12 cables + jacks, hookup wire | Wheelbase side. See [`schematics/`](../schematics/README.md). |
 
-You do **not** need: an RC filter on the gear outputs (the STM32 has a real DAC), a USB host
-header, an ST-Link, or CubeProgrammer.
+You do **not** need: an RC filter on the gear outputs (the STM32 has a real DAC), an ST-Link, or CubeProgrammer.
 
 ### ⚠️ Check the chip before you buy — and before you debug
 
@@ -80,18 +64,17 @@ hub — **you never have to unplug the wheels to re-flash.**
 
 ### Wheelbase outputs
 
-Identical in function to the Teensy build; only the pin numbers change. Port pinouts, RJ12
-wiring and the voltage tables are in [`schematics/README.md`](../schematics/README.md).
+Port pinouts, RJ12 wiring and the voltage tables are in [`schematics/README.md`](../schematics/README.md).
 
-| Function | STM32 pin | Peripheral | Teensy equivalent |
-|---|---|---|---|
-| H-pattern gear X | **PA4** | DAC1 ch1 | Pin 4 (PWM + RC) |
-| H-pattern gear Y | **PA5** | DAC1 ch2 | Pin 5 (PWM + RC) |
-| Sequential up | **PC6** | GPIO open-drain | Pin 6 |
-| Sequential down | **PC7** | GPIO open-drain | Pin 7 |
-| Handbrake PWM (fallback) | **PC8** | TIM3_CH3, ~15.6 kHz | Pin 8 |
-| Pedal port UART TX | **PA2** | USART2_TX | Pin 14 |
-| Pedal port UART RX | **PA3** | USART2_RX | Pin 15 |
+| Function | STM32 pin | Peripheral |
+|---|---|---|
+| H-pattern gear X | **PA4** | DAC1 ch1 |
+| H-pattern gear Y | **PA5** | DAC1 ch2 |
+| Sequential up | **PC6** | GPIO open-drain |
+| Sequential down | **PC7** | GPIO open-drain |
+| Handbrake PWM (fallback) | **PC8** | TIM3_CH3, ~15.6 kHz |
+| Pedal port UART TX | **PA2** | USART2_TX |
+| Pedal port UART RX | **PA3** | USART2_RX |
 
 **The gear outputs drive the shifter port directly — do not add an RC filter.** These are real
 DAC outputs, not filtered PWM. A capacitor on a DAC output buffer can oscillate.
@@ -141,10 +124,9 @@ Then: **powered hub → the breakout**, and your shifters / handbrake / pedals �
 
 ### Wheelbase side
 
-Unchanged from the Teensy build apart from the pin numbers in the table above — same RJ12
-pinouts, same protocols, same pre-flight multimeter checks. Follow
-[`schematics/README.md`](../schematics/README.md), substituting STM32 pins for Teensy pins, and
-**skip the RC filter step** for the gear outputs.
+Follow the RJ12 pinouts, assembly instructions and pre-flight multimeter checks in
+[`schematics/README.md`](../schematics/README.md). Wire PA4/PA5 directly to the gear signals;
+only the optional handbrake PWM fallback on PC8 needs an RC filter.
 
 The pedal port's GND pins 1/2/3 all tie to common ground.
 
@@ -222,36 +204,17 @@ flasher. Disconnect webconfig before flashing or opening a terminal.
    claim exactly one slot; `list_devices` in webconfig should show *your* device count, no
    phantoms.
 4. **Live input moves in webconfig** → HID decode is up. Now bind and calibrate exactly as in the
-   [firmware reference](../firmware/README.md#calibration).
+   [firmware reference](PROTOCOL.md#calibration).
 5. **Pedals enumerate on the base as "ClubSport Pedals V3"** → the pedal UART is up. This is the
    last and fussiest link.
 
 ---
 
-## 6. JSON commands — STM32-only additions
+## 6. JSON commands
 
-The core protocol (`version`, `list_devices`, `get_config`, `set_binding`, `save_config`, the
-`live` / `outputs` events, …) is shared with the Teensy and documented in its
-[JSON API reference](../firmware/README.md#json-api-reference). This build reports **`protocol` 6**
-(the Teensy is 5) and answers these additional commands, which the Teensy rejects with
-`unknown_cmd`:
+The complete [JSON API reference](PROTOCOL.md#json-api-reference) covers protocol **6**: configuration, live telemetry, output tests, PC direct output (including no-reply `stream_axes`), DFU entry and USB diagnostics. It also documents the configuration schema and calibration procedure.
 
-| Request | Response / effect |
-|---|---|
-| `{"cmd":"set_gear","channel":"gear_3"}` | Direct output: force the H-pattern gear, overriding the USB-device mapping. Sticky until `release_outputs`. Channels `gear_R`, `gear_1`..`gear_7`, `gear_N`. |
-| `{"cmd":"set_outputs","throttle":40000,"brake":0,...}` | Direct output: set any subset of the four pedal axes (0..65535). Acked. Absent channels keep their current override. |
-| `{"cmd":"stream_axes","throttle":40000,...}` | **No reply.** The pedal hot path (protocol ≥ 6): identical effect to `set_outputs`' axis half, but answers nothing, so a client streams it at rate without a round-trip and it never touches FIFO reply matching. |
-| `{"cmd":"pulse_shift","direction":"up"\|"down"}` | Direct output: one sequential shift pulse. |
-| `{"cmd":"release_outputs"}` | Drops all direct-output overrides; the adapter's own USB-device mapping takes the wheelbase back. |
-| `{"cmd":"pedals_status"}` | `{"state":"STREAMING_115K",...}` — pedal-port link state + last-sent axis values. |
-| `{"cmd":"dfu"}` | Acks, then reboots into the ROM bootloader for a hands-free reflash (§4). The CDC port disappears and a DFU device takes its place. |
-| `{"cmd":"usb_status"}` | USB-host diagnostics: per claimed slot `{mounted,busy,reports,age_ms,idle_rearms,da}`, plus a raw dwc2 host-channel dump and request-queue counters. See the input-freeze note in Troubleshooting. |
-| `{"cmd":"usb_kick"}` | Aborts + re-arms every claimed HID pipe; returns the aborted-slot bitmask. Measured NOT to revive a wedged pipe — a diagnostic, not a fix. |
-| `{"cmd":"usb_stall","ms":2000}` | Skips USB-host servicing for `ms` while everything else runs — the freeze reproducer. Diagnostic only. |
-
-The direct-output set (`set_gear` / `set_outputs` / `stream_axes` / `pulse_shift` /
-`release_outputs`) is what the SimHub plugin drives for PC-attached controllers; overrides are
-**sticky with no firmware-side timeout**, so a client that sets them must release on exit.
+Direct-output overrides are **sticky with no firmware-side timeout**, so clients must send `release_outputs` when stopping or disconnecting.
 
 ---
 
@@ -283,6 +246,16 @@ A marginal jumper — especially **ground**, or TX (PA2 → pedal pin 5) — CRC
 frames; the base rejects them and falls back to analog sensing. This has been a re-seated wire
 every time, never a code change. The `[pedals]` console trace is the diagnostic: if it reaches
 `STREAMING` and stays there, the drop is base-side, i.e. electrical.
+
+**Pedals appear as ClubSport Pedals V3, but values stay at 0%.**
+Check live inputs, channel bindings and output values in webconfig or SimHub, then query
+`pedals_status` to confirm `STREAMING_115K`. Verify pedal RJ12 pins 1, 2 and 3 all connect to
+GND, PA2 (TX) goes to pin 5, and PA3 (RX) goes to pin 4. `reset_pedals` re-arms the handshake.
+
+**Sequential shifts don't register.**
+Check PC6 → Shifter 2 pin 4 and PC7 → pin 5, with common ground on pin 1. The signal pins
+should idle near 3.3 V from the wheelbase's pull-ups and briefly pull low on a shift. Keep the
+GPIOs in open-drain mode. Adjust `pulseMs` in the Outputs tab if shifts are missing or double-fire.
 
 **Everything worked, then the wheelbase was power-cycled.**
 Handled automatically — the firmware detects the resulting UART error burst and re-arms the
@@ -321,19 +294,19 @@ low is expected (DAC output-buffer clamp) — the base normalizes it during shif
 | `usb_input.{c,h}` | 8-slot HID device pool (the `InputSource` implementation) |
 | `hid_parse.{c,h}` | Generic HID report-descriptor walker + report decode |
 | `input_source.{c,h}` | `InputSource` vtable — the abstraction the mapping layer binds against |
-| `mapping.{c,h}` | `Config` schema, evaluators, channel updaters (mirrors the Teensy `mapping.cpp`) |
+| `mapping.{c,h}` | `Config` schema, evaluators, channel updaters |
 | `config_store.{c,h}` | Config persistence in internal flash (bank 2) |
 | `outputs.{c,h}` | DAC H-pattern + neutral-transit FSM, sequential pulse FSM, handbrake PWM |
 | `pedals.{c,h}` | CSL Elite V2 pedal-port UART emulator (USART2) |
 | `protocol.{c,h}` | Line-based JSON command dispatcher + async events |
-| `json_min.{c,h}` | Zero-alloc JSON reader (the ArduinoJson replacement) |
+| `json_min.{c,h}` | Zero-alloc JSON reader |
 | `usb_descriptors.c` | CDC device descriptors |
 
 Main-loop dispatch order matters — `pedals_update()` runs **last**, and long work added ahead of
 it will slip the 100 Hz pedal cadence.
 
 The `Config` struct, `scaleAxis` math, CRC-32 and the JSON command shapes are **shared contracts
-with webconfig**. Change one side, change the other — see the cross-file invariants table in
+with webconfig and the SimHub plugin**. Change a contract in all three consumers — see the cross-file invariants table in
 [`AGENTS.md`](../AGENTS.md).
 
 ---
