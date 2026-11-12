@@ -79,10 +79,13 @@ saved under `test-results/` on failure. Port 4173 must be free for browser tests
 Individual commands remain available: `npm run format:check`, `npm run lint`, `npm run typecheck`,
 `npm test`, `npm run audit`, and `npm run test:watch`.
 
+TypeScript 6 is intentional: the typed ESLint stack needs its compiler API. Review compiler and
+lint compatibility together before upgrading to TypeScript 7.
+
 The audit fails on high and critical advisories with no exceptions. Tailwind 4 removed the old
 `braces` dependency and its scoped allowlist. `npm audit` shows the complete report, including
-moderate advisories; see [the dependency review](DEPENDENCY_REVIEW.md) for the current findings,
-upstream compatibility decisions and manual hardware checklist.
+moderate advisories. The November 2026 upgrade's dependency review, compatibility decisions and
+manual validation record are in [PR #65](https://github.com/Gugic/fanadapter/pull/65).
 
 When running `npm run dev`, Vite will serve the application at `http://localhost:5173/fanadapter/`. Open this URL in Chrome, Edge, or Brave, click **Connect**, and choose the adapter's USB serial (CDC) device from the browser permission pop-up.
 
