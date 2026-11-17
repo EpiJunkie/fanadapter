@@ -1,0 +1,1010 @@
+{
+  "records": [
+    {
+      "id": "heartbeat-pe3",
+      "gpio": "PE3",
+      "function": "GPIO heartbeat / fatal-error indication",
+      "mode": "GPIO_MODE_OUTPUT_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW",
+      "condition": "Normal application boot after the early ROM-token check; active even before clock/peripheral initialization. Error_Handler uses the same pins.",
+      "description": "intended user LED; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 33,
+          "line_end": 45,
+          "symbol": "HEARTBEAT_PINS"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 262,
+          "line_end": 275,
+          "symbol": "led_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 693,
+          "line_end": 699,
+          "symbol": "main startup"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 732,
+          "line_end": 749,
+          "symbol": "main heartbeat and Error_Handler"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "heartbeat-pb7",
+      "gpio": "PB7",
+      "function": "GPIO heartbeat / fatal-error indication",
+      "mode": "GPIO_MODE_OUTPUT_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW",
+      "condition": "Normal application boot after the early ROM-token check; active even before clock/peripheral initialization. Error_Handler uses the same pins.",
+      "description": "additional bring-up heartbeat; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 33,
+          "line_end": 45,
+          "symbol": "HEARTBEAT_PINS"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 262,
+          "line_end": 275,
+          "symbol": "led_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 693,
+          "line_end": 699,
+          "symbol": "main startup"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 732,
+          "line_end": 749,
+          "symbol": "main heartbeat and Error_Handler"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "heartbeat-pb0",
+      "gpio": "PB0",
+      "function": "GPIO heartbeat / fatal-error indication",
+      "mode": "GPIO_MODE_OUTPUT_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW",
+      "condition": "Normal application boot after the early ROM-token check; active even before clock/peripheral initialization. Error_Handler uses the same pins.",
+      "description": "additional bring-up heartbeat; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 33,
+          "line_end": 45,
+          "symbol": "HEARTBEAT_PINS"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 262,
+          "line_end": 275,
+          "symbol": "led_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 693,
+          "line_end": 699,
+          "symbol": "main startup"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 732,
+          "line_end": 749,
+          "symbol": "main heartbeat and Error_Handler"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "heartbeat-pb1",
+      "gpio": "PB1",
+      "function": "GPIO heartbeat / fatal-error indication",
+      "mode": "GPIO_MODE_OUTPUT_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW",
+      "condition": "Normal application boot after the early ROM-token check; active even before clock/peripheral initialization. Error_Handler uses the same pins.",
+      "description": "additional bring-up heartbeat; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 33,
+          "line_end": 45,
+          "symbol": "HEARTBEAT_PINS"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 262,
+          "line_end": 275,
+          "symbol": "led_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 693,
+          "line_end": 699,
+          "symbol": "main startup"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 732,
+          "line_end": 749,
+          "symbol": "main heartbeat and Error_Handler"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "heartbeat-pe1",
+      "gpio": "PE1",
+      "function": "GPIO heartbeat / fatal-error indication",
+      "mode": "GPIO_MODE_OUTPUT_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW",
+      "condition": "Normal application boot after the early ROM-token check; active even before clock/peripheral initialization. Error_Handler uses the same pins.",
+      "description": "additional bring-up heartbeat; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 33,
+          "line_end": 45,
+          "symbol": "HEARTBEAT_PINS"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 262,
+          "line_end": 275,
+          "symbol": "led_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 693,
+          "line_end": 699,
+          "symbol": "main startup"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 732,
+          "line_end": 749,
+          "symbol": "main heartbeat and Error_Handler"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "heartbeat-pd13",
+      "gpio": "PD13",
+      "function": "GPIO heartbeat / fatal-error indication",
+      "mode": "GPIO_MODE_OUTPUT_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW",
+      "condition": "Normal application boot after the early ROM-token check; active even before clock/peripheral initialization. Error_Handler uses the same pins.",
+      "description": "additional bring-up heartbeat; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 33,
+          "line_end": 45,
+          "symbol": "HEARTBEAT_PINS"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 262,
+          "line_end": 275,
+          "symbol": "led_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 693,
+          "line_end": 699,
+          "symbol": "main startup"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 732,
+          "line_end": 749,
+          "symbol": "main heartbeat and Error_Handler"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "usb-device-dm",
+      "gpio": "PA11",
+      "function": "USB_OTG_FS_DM",
+      "mode": "GPIO_AF10_OTG2_FS; GPIO_MODE_AF_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_VERY_HIGH",
+      "condition": "Unconditional usb_hw_init on normal application boot; role configured explicitly in TinyUSB.",
+      "description": "USB2_OTG_FS/rhport0 on onboard USB-C is CDC device; hardware VBUS-sense GPIO is not enabled. Follow active role macros and init calls, not the stale reversed comments beside main.c:709-710 or include/tusb_config.h:47/63.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 24,
+          "line_end": 31,
+          "symbol": "OTGFS_RHPORT / OTGHS_RHPORT / DEVICE_RHPORT / HOST_RHPORT"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 171,
+          "line_end": 190,
+          "symbol": "usb_hw_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 707,
+          "line_end": 710,
+          "symbol": "tusb_rhport_init"
+        },
+        {
+          "path": "firmware-stm32/include/tusb_config.h",
+          "line_start": 25,
+          "line_end": 37,
+          "symbol": "CFG_TUH_RHPORT / CFG_TUSB_RHPORTn_MODE"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "usb-device-dp",
+      "gpio": "PA12",
+      "function": "USB_OTG_FS_DP",
+      "mode": "GPIO_AF10_OTG2_FS; GPIO_MODE_AF_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_VERY_HIGH",
+      "condition": "Unconditional usb_hw_init on normal application boot; role configured explicitly in TinyUSB.",
+      "description": "USB2_OTG_FS/rhport0 on onboard USB-C is CDC device; hardware VBUS-sense GPIO is not enabled. Follow active role macros and init calls, not the stale reversed comments beside main.c:709-710 or include/tusb_config.h:47/63.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 24,
+          "line_end": 31,
+          "symbol": "OTGFS_RHPORT / OTGHS_RHPORT / DEVICE_RHPORT / HOST_RHPORT"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 171,
+          "line_end": 190,
+          "symbol": "usb_hw_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 707,
+          "line_end": 710,
+          "symbol": "tusb_rhport_init"
+        },
+        {
+          "path": "firmware-stm32/include/tusb_config.h",
+          "line_start": 25,
+          "line_end": 37,
+          "symbol": "CFG_TUH_RHPORT / CFG_TUSB_RHPORTn_MODE"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "usb-host-dm",
+      "gpio": "PB14",
+      "function": "USB_OTG_HS_DM",
+      "mode": "GPIO_AF12_OTG1_FS; GPIO_MODE_AF_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_VERY_HIGH",
+      "condition": "Unconditional usb_hw_init on normal application boot; role configured explicitly in TinyUSB.",
+      "description": "USB1_OTG_HS/rhport1 uses its embedded full-speed PHY as host; no ULPI pins or firmware-controlled VBUS power-switch GPIO are assigned. Follow active role macros and init calls, not the stale reversed comments beside main.c:709-710 or include/tusb_config.h:47/63.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 24,
+          "line_end": 31,
+          "symbol": "OTGFS_RHPORT / OTGHS_RHPORT / DEVICE_RHPORT / HOST_RHPORT"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 171,
+          "line_end": 190,
+          "symbol": "usb_hw_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 707,
+          "line_end": 710,
+          "symbol": "tusb_rhport_init"
+        },
+        {
+          "path": "firmware-stm32/include/tusb_config.h",
+          "line_start": 25,
+          "line_end": 37,
+          "symbol": "CFG_TUH_RHPORT / CFG_TUSB_RHPORTn_MODE"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "usb-host-dp",
+      "gpio": "PB15",
+      "function": "USB_OTG_HS_DP",
+      "mode": "GPIO_AF12_OTG1_FS; GPIO_MODE_AF_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_VERY_HIGH",
+      "condition": "Unconditional usb_hw_init on normal application boot; role configured explicitly in TinyUSB.",
+      "description": "USB1_OTG_HS/rhport1 uses its embedded full-speed PHY as host; no ULPI pins or firmware-controlled VBUS power-switch GPIO are assigned. Follow active role macros and init calls, not the stale reversed comments beside main.c:709-710 or include/tusb_config.h:47/63.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 24,
+          "line_end": 31,
+          "symbol": "OTGFS_RHPORT / OTGHS_RHPORT / DEVICE_RHPORT / HOST_RHPORT"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 171,
+          "line_end": 190,
+          "symbol": "usb_hw_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 707,
+          "line_end": 710,
+          "symbol": "tusb_rhport_init"
+        },
+        {
+          "path": "firmware-stm32/include/tusb_config.h",
+          "line_start": 25,
+          "line_end": 37,
+          "symbol": "CFG_TUH_RHPORT / CFG_TUSB_RHPORTn_MODE"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "console-tx",
+      "gpio": "PA9",
+      "function": "USART1_TX",
+      "mode": "GPIO_AF7_USART1; GPIO_MODE_AF_PP; GPIO_PULLUP; GPIO_SPEED_FREQ_HIGH",
+      "condition": "console_init runs on every normal application boot; UART remains active with or without USB enumeration.",
+      "description": "115200 baud, 8 data bits plus even parity, one stop bit; no hardware flow control. TX mirrors console data; RX remains polled through the interrupt ring. tud_mounted changes backpressure/drop policy only: these pins are not reconfigured to inputs on USB mount.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 215,
+          "line_end": 259,
+          "symbol": "console_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 292,
+          "line_end": 326,
+          "symbol": "console_emit"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 629,
+          "line_end": 647,
+          "symbol": "console_cli_poll"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 693,
+          "line_end": 704,
+          "symbol": "main startup"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "console-rx",
+      "gpio": "PA10",
+      "function": "USART1_RX",
+      "mode": "GPIO_AF7_USART1; GPIO_MODE_AF_PP; GPIO_PULLUP; GPIO_SPEED_FREQ_HIGH",
+      "condition": "console_init runs on every normal application boot; UART remains active with or without USB enumeration.",
+      "description": "115200 baud, 8 data bits plus even parity, one stop bit; no hardware flow control. TX mirrors console data; RX remains polled through the interrupt ring. tud_mounted changes backpressure/drop policy only: these pins are not reconfigured to inputs on USB mount.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 215,
+          "line_end": 259,
+          "symbol": "console_init"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 292,
+          "line_end": 326,
+          "symbol": "console_emit"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 629,
+          "line_end": 647,
+          "symbol": "console_cli_poll"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 693,
+          "line_end": 704,
+          "symbol": "main startup"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "gear-x",
+      "gpio": "PA4",
+      "function": "DAC1_OUT1",
+      "mode": "GPIO_MODE_ANALOG; GPIO_NOPULL; DAC_CHANNEL_1 with external output buffer enabled",
+      "condition": "Pin analog mode always configured by outputs_init; failed HAL_DAC_Init or channel configuration returns non-fatally before normal DAC startup.",
+      "description": "H-pattern X / column uses stored 12-bit gearOut calibration. DAC has software-loaded values, no trigger, output buffer enabled; normal initialization starts channels and writes neutral. Normal mappings, direct gear override and test_gear all use this same sink.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 69,
+          "line_end": 84,
+          "symbol": "write_gear_dac / outputs_init"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 124,
+          "line_end": 148,
+          "symbol": "outputs_init DAC setup"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 151,
+          "line_end": 183,
+          "symbol": "outputs_request_gear / outputs_tick"
+        },
+        {
+          "path": "firmware-stm32/src/mapping.c",
+          "line_start": 245,
+          "line_end": 285,
+          "symbol": "update_shifter"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "gear-y",
+      "gpio": "PA5",
+      "function": "DAC1_OUT2",
+      "mode": "GPIO_MODE_ANALOG; GPIO_NOPULL; DAC_CHANNEL_2 with external output buffer enabled",
+      "condition": "Pin analog mode always configured by outputs_init; failed HAL_DAC_Init or channel configuration returns non-fatally before normal DAC startup.",
+      "description": "H-pattern Y / row uses stored 12-bit gearOut calibration. DAC has software-loaded values, no trigger, output buffer enabled; normal initialization starts channels and writes neutral. Normal mappings, direct gear override and test_gear all use this same sink.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 69,
+          "line_end": 84,
+          "symbol": "write_gear_dac / outputs_init"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 124,
+          "line_end": 148,
+          "symbol": "outputs_init DAC setup"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 151,
+          "line_end": 183,
+          "symbol": "outputs_request_gear / outputs_tick"
+        },
+        {
+          "path": "firmware-stm32/src/mapping.c",
+          "line_start": 245,
+          "line_end": 285,
+          "symbol": "update_shifter"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "sequential-up",
+      "gpio": "PC6",
+      "function": "GPIO sequential up",
+      "mode": "GPIO_MODE_OUTPUT_OD; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW",
+      "condition": "Always configured before the DAC initialization in outputs_init; direct commands, mapped rising edges and test_pulse all use this output.",
+      "description": "Idle output is written SET (open-drain released; external wheelbase pull-up supplies HIGH). A shift pulls LOW then releases after the pulse deadline, default 50 ms if zero duration supplied. Pin setup and idle release precede DAC failure paths.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 30,
+          "line_end": 45,
+          "symbol": "SEQ_UP / SEQ_DOWN definitions"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 57,
+          "line_end": 66,
+          "symbol": "pulse_start / pulse_update"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 86,
+          "line_end": 94,
+          "symbol": "outputs_init sequential setup"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 188,
+          "line_end": 192,
+          "symbol": "outputs_pulse_shift"
+        },
+        {
+          "path": "firmware-stm32/src/mapping.c",
+          "line_start": 317,
+          "line_end": 327,
+          "symbol": "update_sequential"
+        },
+        {
+          "path": "firmware-stm32/src/mapping.c",
+          "line_start": 355,
+          "line_end": 371,
+          "symbol": "mapping_test_pulse / mapping_pulse_shift"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "sequential-down",
+      "gpio": "PC7",
+      "function": "GPIO sequential down",
+      "mode": "GPIO_MODE_OUTPUT_OD; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW",
+      "condition": "Always configured before the DAC initialization in outputs_init; direct commands, mapped rising edges and test_pulse all use this output.",
+      "description": "Idle output is written SET (open-drain released; external wheelbase pull-up supplies HIGH). A shift pulls LOW then releases after the pulse deadline, default 50 ms if zero duration supplied. Pin setup and idle release precede DAC failure paths.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 30,
+          "line_end": 45,
+          "symbol": "SEQ_UP / SEQ_DOWN definitions"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 57,
+          "line_end": 66,
+          "symbol": "pulse_start / pulse_update"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 86,
+          "line_end": 94,
+          "symbol": "outputs_init sequential setup"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 188,
+          "line_end": 192,
+          "symbol": "outputs_pulse_shift"
+        },
+        {
+          "path": "firmware-stm32/src/mapping.c",
+          "line_start": 317,
+          "line_end": 327,
+          "symbol": "update_sequential"
+        },
+        {
+          "path": "firmware-stm32/src/mapping.c",
+          "line_start": 355,
+          "line_end": 371,
+          "symbol": "mapping_test_pulse / mapping_pulse_shift"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "handbrake-pwm",
+      "gpio": "PC8",
+      "function": "TIM3_CH3 handbrake PWM fallback",
+      "mode": "GPIO_AF2_TIM3; GPIO_MODE_AF_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW; PWM1 active-high",
+      "condition": "GPIO alternate function is always selected during outputs_init. PWM duty updates require successful HAL_TIM_PWM_Init, ConfigChannel and Start (s_hb_pwm_ok); failure is non-fatal.",
+      "description": "TIM3 channel 3 uses PSC=0, ARR=4095 and the 64 MHz timer clock (15.625 kHz nominal). Starts at 0% duty; the 16-bit handbrake value is shifted right four bits. update_axes writes both this fallback and the USART2 pedal stream; there is no runtime setting that disables the PC8 assignment just because dedicated handbrake wiring is unused.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 47,
+          "line_end": 55,
+          "symbol": "HB_PWM definitions"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 96,
+          "line_end": 122,
+          "symbol": "outputs_init PWM setup"
+        },
+        {
+          "path": "firmware-stm32/src/outputs.c",
+          "line_start": 194,
+          "line_end": 197,
+          "symbol": "outputs_set_handbrake_pwm"
+        },
+        {
+          "path": "firmware-stm32/src/mapping.c",
+          "line_start": 288,
+          "line_end": 315,
+          "symbol": "axis_out / update_axes"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 131,
+          "line_end": 150,
+          "symbol": "SystemClock_Config"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "pedals-tx",
+      "gpio": "PA2",
+      "function": "USART2_TX",
+      "mode": "GPIO_AF7_USART2; GPIO_MODE_AF_PP; GPIO_PULLUP; GPIO_SPEED_FREQ_HIGH",
+      "condition": "pedals_init runs on normal boot. Baud-change and reset_pedals paths reinitialize USART2 but leave the pin AF and clock setup in place.",
+      "description": "8N1 pedal-port emulator: starts at 250000 baud for handshake and changes to 115200; no hardware flow control. TX carries mapped/direct/test throttle, brake, clutch and handbrake in the pedal stream; RX handles wheelbase handshake. GPIO mode is not changed during the warmup, handshake, streaming or error-recovery states.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/pedals.c",
+          "line_start": 102,
+          "line_end": 132,
+          "symbol": "uart_apply_init / uart_set_baud / uart_tx"
+        },
+        {
+          "path": "firmware-stm32/src/pedals.c",
+          "line_start": 170,
+          "line_end": 203,
+          "symbol": "uart_gpio_init / pedals_init / pedals_force_reset"
+        },
+        {
+          "path": "firmware-stm32/src/mapping.c",
+          "line_start": 300,
+          "line_end": 315,
+          "symbol": "update_axes"
+        },
+        {
+          "path": "firmware-stm32/src/pedals.c",
+          "line_start": 228,
+          "line_end": 256,
+          "symbol": "pedals_update handshake baud transition"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "pedals-rx",
+      "gpio": "PA3",
+      "function": "USART2_RX",
+      "mode": "GPIO_AF7_USART2; GPIO_MODE_AF_PP; GPIO_PULLUP; GPIO_SPEED_FREQ_HIGH",
+      "condition": "pedals_init runs on normal boot. Baud-change and reset_pedals paths reinitialize USART2 but leave the pin AF and clock setup in place.",
+      "description": "8N1 pedal-port emulator: starts at 250000 baud for handshake and changes to 115200; no hardware flow control. TX carries mapped/direct/test throttle, brake, clutch and handbrake in the pedal stream; RX handles wheelbase handshake. GPIO mode is not changed during the warmup, handshake, streaming or error-recovery states.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/pedals.c",
+          "line_start": 102,
+          "line_end": 132,
+          "symbol": "uart_apply_init / uart_set_baud / uart_tx"
+        },
+        {
+          "path": "firmware-stm32/src/pedals.c",
+          "line_start": 170,
+          "line_end": 203,
+          "symbol": "uart_gpio_init / pedals_init / pedals_force_reset"
+        },
+        {
+          "path": "firmware-stm32/src/mapping.c",
+          "line_start": 300,
+          "line_end": 315,
+          "symbol": "update_axes"
+        },
+        {
+          "path": "firmware-stm32/src/pedals.c",
+          "line_start": 228,
+          "line_end": 256,
+          "symbol": "pedals_update handshake baud transition"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "hse-in",
+      "gpio": "PH0",
+      "function": "RCC_OSC_IN (25 MHz HSE crystal)",
+      "mode": "RCC_HSE_ON oscillator function; no application HAL_GPIO_Init call for this pin",
+      "condition": "SystemClock_Config enables the external HSE on normal application startup; used for PLL3 USB clock while SYSCLK remains HSI.",
+      "description": "The GPIO-name association PH0/PH1 must also be joined to the MCU/package and board sources. Firmware evidence enables a 25 MHz crystal oscillator, not HSE bypass; PLL3Q supplies 48 MHz USB. LSE is not enabled in this configuration.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 105,
+          "line_end": 110,
+          "symbol": "clock design comment"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 131,
+          "line_end": 162,
+          "symbol": "SystemClock_Config HSE / PLL3"
+        },
+        {
+          "path": "firmware-stm32/platformio.ini",
+          "line_start": 49,
+          "line_end": 53,
+          "symbol": "build_flags HSE_VALUE"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    },
+    {
+      "id": "hse-out",
+      "gpio": "PH1",
+      "function": "RCC_OSC_OUT (25 MHz HSE crystal)",
+      "mode": "RCC_HSE_ON oscillator function; no application HAL_GPIO_Init call for this pin",
+      "condition": "SystemClock_Config enables the external HSE on normal application startup; used for PLL3 USB clock while SYSCLK remains HSI.",
+      "description": "The GPIO-name association PH0/PH1 must also be joined to the MCU/package and board sources. Firmware evidence enables a 25 MHz crystal oscillator, not HSE bypass; PLL3Q supplies 48 MHz USB. LSE is not enabled in this configuration.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 105,
+          "line_end": 110,
+          "symbol": "clock design comment"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 131,
+          "line_end": 162,
+          "symbol": "SystemClock_Config HSE / PLL3"
+        },
+        {
+          "path": "firmware-stm32/platformio.ini",
+          "line_start": 49,
+          "line_end": 53,
+          "symbol": "build_flags HSE_VALUE"
+        }
+      ],
+      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+    }
+  ],
+  "non_gpio_roles": [
+    {
+      "id": "core-supply",
+      "function": "Internal LDO / VCORE supply",
+      "condition": "Normal SystemClock_Config startup",
+      "description": "HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY), VOS1, and a bounded VOSRDY wait configure the internal regulator; these are power-system roles rather than user GPIO assignments. Board VCAP/power/ground connections belong in the physical wiring model.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 116,
+          "line_end": 128,
+          "symbol": "SystemClock_Config supply/VOS"
+        }
+      ]
+    },
+    {
+      "id": "usb-supply-detector",
+      "function": "VDD33USB voltage detector",
+      "condition": "Normal SystemClock_Config startup",
+      "description": "HAL_PWREx_EnableUSBVoltageDetector enables the USB transceiver supply-rail detector. This is not assignment of PA9 to USB VBUS sensing, and is not a programmable external USB 5 V switch.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 164,
+          "line_end": 165,
+          "symbol": "HAL_PWREx_EnableUSBVoltageDetector"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 177,
+          "line_end": 184,
+          "symbol": "USB pins without hardware VBUS sensing"
+        }
+      ]
+    },
+    {
+      "id": "reset-and-rom-entry",
+      "function": "SYSRESETREQ and system-memory bootloader handoff",
+      "condition": "reboot / dfu commands; DTCM token checked before all application peripheral initialization",
+      "description": "NVIC_SystemReset requests an internal system reset; dfu first disconnects TinyUSB, writes a DTCM token and resets. A token then branches to ROM at the first statement of main. The application does not drive NRST or BOOT0 via GPIO. ROM code has its own pin configuration, outside this source audit. Software DFU-entry reliability remains separately unresolved.",
+      "sources": [
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 529,
+          "line_end": 567,
+          "symbol": "check_bootloader_request / request_bootloader_reboot"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 583,
+          "line_end": 590,
+          "symbol": "console command reset paths"
+        },
+        {
+          "path": "firmware-stm32/src/main.c",
+          "line_start": 693,
+          "line_end": 699,
+          "symbol": "main early ROM check"
+        },
+        {
+          "path": "firmware-stm32/src/protocol.c",
+          "line_start": 390,
+          "line_end": 406,
+          "symbol": "cmd_reboot / cmd_dfu"
+        }
+      ]
+    }
+  ],
+  "unconfigured_features": [
+    {
+      "function": "PC13 user button",
+      "state": "No PC13 configuration or reads in the application source; board attachment is not a firmware input assignment."
+    },
+    {
+      "function": "microSD / SDMMC1",
+      "state": "No SDMMC initialization, reads or writes in application. PC8 is actively used for TIM3_CH3, so a board SD D0 connection is still a shared connection, not proof of an observed malfunction."
+    },
+    {
+      "function": "QSPI flash / LCD SPI",
+      "state": "No application QSPI or SPI peripheral initialization. Diagnostic GPIO outputs can still overlap their board wiring; do not label them free just because QSPI/SPI is unused."
+    },
+    {
+      "function": "LSE / RTC crystal",
+      "state": "Only HSE and HSI are requested in SystemClock_Config. No LSE or RTC initialization found."
+    },
+    {
+      "function": "SWD/JTAG debug pins",
+      "state": "No explicit application remux/deinitialization found. Distinguish hardware/reset-default debug capability and external debugger use from application-assigned GPIO."
+    },
+    {
+      "function": "USB VBUS switch / overcurrent / ID / ULPI",
+      "state": "No application GPIO assignment to an external VBUS switch, overcurrent input, USB ID input or ULPI bus. USB roles are forced by the configuration. External 5 V host wiring remains a physical design requirement, not software-regulated power."
+    },
+    {
+      "function": "ADC / external analog inputs / I2C / CAN / Ethernet / FMC",
+      "state": "No application initialization or assignments found. Native HID axes are decoded from USB reports rather than sampled from these MCU peripherals."
+    }
+  ],
+  "coverage": {
+    "baseline_commit": "8c48cfe422bae50b96b04b9c8de813d434e0bd54",
+    "method": "Read all targeted pin initialization/driving paths and searched every tracked firmware src/include file plus platformio.ini and the TinyUSB patch script for GPIO/HAL peripheral/clock/reset operations, direct register access and compile-time branches. Reconciled source definitions with call order and error/diagnostic paths. This is a static source audit, not a build or bench test.",
+    "explicit_gpio_count": 19,
+    "oscillator_gpio_count": 2,
+    "explicit_gpio_names": [
+      "PA10",
+      "PA11",
+      "PA12",
+      "PA2",
+      "PA3",
+      "PA4",
+      "PA5",
+      "PA9",
+      "PB0",
+      "PB1",
+      "PB14",
+      "PB15",
+      "PB7",
+      "PC6",
+      "PC7",
+      "PC8",
+      "PD13",
+      "PE1",
+      "PE3"
+    ],
+    "audited_files": [
+      {
+        "path": "firmware-stm32/apply_tinyusb_patches.py",
+        "sha256": "da0d9c8c656e715eef3697b8295e13ab22a1bdb9a1d7d4011ea1719be7da4334"
+      },
+      {
+        "path": "firmware-stm32/include/tusb_config.h",
+        "sha256": "bebe81bc2ef1c08ef227a0f6c62f25fd06c5264d716cc3443f3df8b36bd32baa"
+      },
+      {
+        "path": "firmware-stm32/platformio.ini",
+        "sha256": "b2077440adc28cb30b2900548e00189818c3e14602ba7741d89ff94e8b513064"
+      },
+      {
+        "path": "firmware-stm32/src/config_store.c",
+        "sha256": "1317e706706fb8b00b26e94ada117a93066f8fc5d8ae9ca472f1ccba586c0e25"
+      },
+      {
+        "path": "firmware-stm32/src/config_store.h",
+        "sha256": "9dd36b89135438f35b96deb0fc039c6522449fe22bc2cc734a0d77f2763925ab"
+      },
+      {
+        "path": "firmware-stm32/src/firmware_info.h",
+        "sha256": "b1a09151e883d686da42f4b5b9c9c2aa8e31372c0ebc21cd8bcfd739087048a3"
+      },
+      {
+        "path": "firmware-stm32/src/hid_parse.c",
+        "sha256": "56a8cb0c87fd9d9c5a690bde3eb5534b516cf866fea49c5d1898cb9742de00f1"
+      },
+      {
+        "path": "firmware-stm32/src/hid_parse.h",
+        "sha256": "9496d93b8ab90899b2e0fa2b77922af3ca9e182302ce9deb666fe5890d6d356b"
+      },
+      {
+        "path": "firmware-stm32/src/input_source.c",
+        "sha256": "dc536fe7dcf5dc381df022f4a0adf0fcc48cd4292aa821fd2356c6107bac7368"
+      },
+      {
+        "path": "firmware-stm32/src/input_source.h",
+        "sha256": "61f20467f083ad5776d716244f3c5c8d52d7f861caa9e96aa14d8903b02da6b9"
+      },
+      {
+        "path": "firmware-stm32/src/json_min.c",
+        "sha256": "aa19be5b093544df2be58e3c719fa3fb1356bee87f53a0a2d48fc4e8a3740fa7"
+      },
+      {
+        "path": "firmware-stm32/src/json_min.h",
+        "sha256": "a5468a19e7b4a1a11418457b90a3c30e83583dbb74f71271f1f7661e22e242b9"
+      },
+      {
+        "path": "firmware-stm32/src/main.c",
+        "sha256": "dfa0272c8f7251a369bbb938ded4606be8c4ebb5e497653ba5f35dfaca2cd8eb"
+      },
+      {
+        "path": "firmware-stm32/src/mapping.c",
+        "sha256": "a63d6a96d083dfb07d97305f7bee2f608bc7d9590b4cbc2e7c9c6594496ca740"
+      },
+      {
+        "path": "firmware-stm32/src/mapping.h",
+        "sha256": "18da1b75de8fd4c7f4d61b92b62a22cb98bb93d149b95e148a886b4f0a0f8631"
+      },
+      {
+        "path": "firmware-stm32/src/outputs.c",
+        "sha256": "aa6ef416ea29db104b64f568394f2a324358bfecfa20cb11ee69b2209a1e9b02"
+      },
+      {
+        "path": "firmware-stm32/src/outputs.h",
+        "sha256": "a2b69a234ea63071420e28c09ac6258fcf4273117e9642f582589fcf64cf60c7"
+      },
+      {
+        "path": "firmware-stm32/src/pedals.c",
+        "sha256": "f9be8c0c50808c63ba5ef9df4bff506618ca77b5c33a670189955705b9808815"
+      },
+      {
+        "path": "firmware-stm32/src/pedals.h",
+        "sha256": "3fd8866334ca054f316e45b68586d25b6cf3ee44653cff9aacb291e377490166"
+      },
+      {
+        "path": "firmware-stm32/src/protocol.c",
+        "sha256": "69e169fcd190b1e3e4bf0cea172e49c3d003039b6790a2e46a7fc6c56af19210"
+      },
+      {
+        "path": "firmware-stm32/src/protocol.h",
+        "sha256": "e077d86e380a408604baddf7511b75f2f403cfe2e79759d2122e3c296ec0f224"
+      },
+      {
+        "path": "firmware-stm32/src/usb_descriptors.c",
+        "sha256": "a878af2a38a795f749b9056ac2044e3077bc98be6ec5fc9b0ca1fa99734c9a11"
+      },
+      {
+        "path": "firmware-stm32/src/usb_input.c",
+        "sha256": "6bf9dee0f68390f2c2e69274c760ae9cecde446dab74e79175f8bc59faa87c94"
+      },
+      {
+        "path": "firmware-stm32/src/usb_input.h",
+        "sha256": "3cf37fa00f32cfa0975f64ef1870b9a42b126fa796f6405186edf6a96931cdc7"
+      }
+    ],
+    "additional_context": [
+      "AGENTS.md",
+      "firmware-stm32/PORT-STATUS.md",
+      "firmware-stm32/README.md"
+    ],
+    "diagnostic_and_conditional_coverage": [
+      "Heartbeat and fatal Error_Handler use the same six GPIO outputs; early clock failures may prevent later peripheral setup.",
+      "outputs_init configures DAC analog pins, sequential pins and PC8 even when later DAC/PWM initialization fails non-fatally.",
+      "Handbrake mappings, direct overrides and test_axis all feed both PC8 PWM and the USART2 pedal stream; PWM driver checks s_hb_pwm_ok.",
+      "USART2 handshake/warmup/baud/reset/error paths retain PA2/PA3 AF configuration.",
+      "tud_mounted changes console buffering; PA9/PA10 remain configured as USART1.",
+      "usb_status reads controller registers; usb_kick and usb_stall affect host processing without assigning additional GPIO.",
+      "USE_FULL_ASSERT only adds an empty assert_failed; no conditional pin assignment.",
+      "DFU early ROM branch skips all app GPIO initialization; ROM internals are not app source assignments."
+    ],
+    "exclusions": [
+      "STM32Cube framework/HAL weak MSP implementations were not exhaustively vendor-source-audited; no project MSP override exists. Relevant GPIO mux configuration is explicit in application source.",
+      "PlatformIO platform/framework versions are unpinned in this baseline; software startup/framework defaults are not promoted to fixed board assignments.",
+      "firmware-stm32/tools/esp32s3_uart_bridge is firmware for an optional external ESP32-S3, not the STM32 image. Host flash scripts do not define runtime STM32 GPIO assignments.",
+      "MCU/package capability tables and WeAct wiring are supplied by separate source audits."
+    ],
+    "findings": [
+      "Nineteen explicit GPIO assignments plus two HSE oscillator contacts; port-clock enables do not reserve every contact on that GPIO port.",
+      "PA9/PA10 never switch to GPIO inputs on USB mount at this baseline; console remains a mirror/command source.",
+      "Actual USB roles contradict stale comments at main.c709-710 and tusb_config.h47/63; macros and configured functions are authoritative.",
+      "The bring-up heartbeat touches five pins in addition to PE3. Shared onboard nets, especially PD13/QSPI IO3 and PC8/microSD D0, must be recorded as source/drawing overlaps; no electrical malfunction is established here."
+    ]
+  },
+  "profile_id": "breadboard-v1",
+  "profile_name": "Current Fanadapter breadboard wiring",
+  "repository": "https://github.com/Gugic/fanadapter"
+}

@@ -1,0 +1,57 @@
+{
+  "validated_on": "2026-11-17",
+  "method": "Installed native STM32CubeMX quiet CLI: config load followed by config saveas for each final reference. No interactive GUI inspection.",
+  "cubemx_version": "6.18.1",
+  "bundle_version": "6.18",
+  "database_version": "DB.6.0.181",
+  "mcu_cpn": "STM32H743VIT6",
+  "mcu_database_name": "STM32H743VITx",
+  "package": "LQFP100",
+  "selected_firmware_package": "STM32Cube FW_H7 V1.13.0",
+  "firmware_package_note": "Selected project metadata only. No firmware package was installed for this audit and no code was generated.",
+  "physical_gpio_annotation_count": 82,
+  "annotation_mode": "GPIO_Analog placeholders solely to retain physical-net labels, not operating configuration.",
+  "command_results": [
+    "config load stock: OK",
+    "config saveas staged stock: OK",
+    "config load WeAct: OK",
+    "config saveas staged WeAct: OK"
+  ],
+  "references": [
+    {
+      "file": "STM32H743VIT6.stock.ioc",
+      "sha256": "ad8fd37ad902f4161ce4ae81b0236330389815c7f276c8ce97a4a2980d15aee5",
+      "reopened_sha256": "ad8fd37ad902f4161ce4ae81b0236330389815c7f276c8ce97a4a2980d15aee5",
+      "byte_identical_after_reopen": true,
+      "parsed_configuration_identical_after_reopen": true,
+      "selected_physical_gpio_count": 0,
+      "label_count": 0
+    },
+    {
+      "file": "STM32H743VIT6.weact-v1.2.ioc",
+      "sha256": "0d5dd630cae843f22924630ac94dcee847f87f7040fe71d63b50e42f7ff03771",
+      "reopened_sha256": "0d5dd630cae843f22924630ac94dcee847f87f7040fe71d63b50e42f7ff03771",
+      "byte_identical_after_reopen": true,
+      "parsed_configuration_identical_after_reopen": true,
+      "selected_physical_gpio_count": 82,
+      "label_count": 82
+    }
+  ],
+  "capability_sources": [
+    {
+      "relative_path": "db/mcu/STM32H743VITx.xml",
+      "sha256": "a88766a0a7719af36489d3706c9a4c23929ea054ff10a039ab5a7b349bf8f495"
+    },
+    {
+      "relative_path": "db/mcu/IP/GPIO-STM32H747_gpio_v1_0_Modes.xml",
+      "sha256": "2d48f8bda3fd444f375576e4d6b1544028b3959fbc68697b090d727672e88884"
+    }
+  ],
+  "limits": [
+    "No graphical pinout review or board interaction was performed.",
+    "Initial load by orderable part suffix6 returned KO; actual creation used the accepted STM32H743VITx database name and resulting CPN is STM32H743VIT6.",
+    "CubeMX can exit0 after KO, so command responses, file existence, reference identity, and roundtrip entries were checked.",
+    "The labels summarize physical drawings; full shared-net, bridge-state, power/reset and per-contact evidence belongs to maintained audit JSON.",
+    "Background catalog/advertising warnings from CubeMX do not establish pin or electrical validation."
+  ]
+}

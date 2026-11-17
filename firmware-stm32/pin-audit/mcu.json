@@ -1,0 +1,6011 @@
+{
+  "mcu": "STM32H743VIT6",
+  "reference_name": "STM32H743VITx",
+  "package": "LQFP100",
+  "cubemx_version": "6.18.1",
+  "database_schema_version": "V3.0",
+  "cubemx_database_version": "DB.6.0.181",
+  "gpio_ip_version": "STM32H747_gpio_v1_0",
+  "sources": [
+    {
+      "relative_path": "db/mcu/STM32H743VITx.xml",
+      "sha256": "a88766a0a7719af36489d3706c9a4c23929ea054ff10a039ab5a7b349bf8f495"
+    },
+    {
+      "relative_path": "db/mcu/IP/GPIO-STM32H747_gpio_v1_0_Modes.xml",
+      "sha256": "2d48f8bda3fd444f375576e4d6b1544028b3959fbc68697b090d727672e88884"
+    }
+  ],
+  "capabilities_scope": "All package pins and all signals listed for this part by installed ST CubeMX database. AF names resolved against its selected GPIO modes file. This is capability, not board wiring or firmware configuration. Pin electrical limits and analog-switch restrictions require the ST datasheet/reference manual.",
+  "pins": [
+    {
+      "package_pin": 1,
+      "package_name": "PE2",
+      "gpio": "PE2",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DEBUG_TRACECLK",
+          "alternate_functions": [
+            "GPIO_AF0_TRACE"
+          ]
+        },
+        {
+          "name": "ETH_TXD3",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "FMC_A23",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "QUADSPI_BK1_IO2",
+          "alternate_functions": [
+            "GPIO_AF9_QUADSPI"
+          ]
+        },
+        {
+          "name": "SAI1_CK1",
+          "alternate_functions": [
+            "GPIO_AF2_SAI1"
+          ]
+        },
+        {
+          "name": "SAI1_MCLK_A",
+          "alternate_functions": [
+            "GPIO_AF6_SAI1"
+          ]
+        },
+        {
+          "name": "SAI4_CK1",
+          "alternate_functions": [
+            "GPIO_AF10_SAI4"
+          ]
+        },
+        {
+          "name": "SAI4_MCLK_A",
+          "alternate_functions": [
+            "GPIO_AF8_SAI4"
+          ]
+        },
+        {
+          "name": "SPI4_SCK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI4"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 2,
+      "package_name": "PE3",
+      "gpio": "PE3",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DEBUG_TRACED0",
+          "alternate_functions": [
+            "GPIO_AF0_TRACE"
+          ]
+        },
+        {
+          "name": "FMC_A19",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "SAI1_SD_B",
+          "alternate_functions": [
+            "GPIO_AF6_SAI1"
+          ]
+        },
+        {
+          "name": "SAI4_SD_B",
+          "alternate_functions": [
+            "GPIO_AF8_SAI4"
+          ]
+        },
+        {
+          "name": "TIM15_BKIN",
+          "alternate_functions": [
+            "GPIO_AF4_TIM15"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 3,
+      "package_name": "PE4",
+      "gpio": "PE4",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D4",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DEBUG_TRACED1",
+          "alternate_functions": [
+            "GPIO_AF0_TRACE"
+          ]
+        },
+        {
+          "name": "DFSDM1_DATIN3",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_A20",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "LTDC_B0",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SAI1_D2",
+          "alternate_functions": [
+            "GPIO_AF2_SAI1"
+          ]
+        },
+        {
+          "name": "SAI1_FS_A",
+          "alternate_functions": [
+            "GPIO_AF6_SAI1"
+          ]
+        },
+        {
+          "name": "SAI4_D2",
+          "alternate_functions": [
+            "GPIO_AF10_SAI4"
+          ]
+        },
+        {
+          "name": "SAI4_FS_A",
+          "alternate_functions": [
+            "GPIO_AF8_SAI4"
+          ]
+        },
+        {
+          "name": "SPI4_NSS",
+          "alternate_functions": [
+            "GPIO_AF5_SPI4"
+          ]
+        },
+        {
+          "name": "TIM15_CH1N",
+          "alternate_functions": [
+            "GPIO_AF4_TIM15"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 4,
+      "package_name": "PE5",
+      "gpio": "PE5",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D6",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DEBUG_TRACED2",
+          "alternate_functions": [
+            "GPIO_AF0_TRACE"
+          ]
+        },
+        {
+          "name": "DFSDM1_CKIN3",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_A21",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "LTDC_G0",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SAI1_CK2",
+          "alternate_functions": [
+            "GPIO_AF2_SAI1"
+          ]
+        },
+        {
+          "name": "SAI1_SCK_A",
+          "alternate_functions": [
+            "GPIO_AF6_SAI1"
+          ]
+        },
+        {
+          "name": "SAI4_CK2",
+          "alternate_functions": [
+            "GPIO_AF10_SAI4"
+          ]
+        },
+        {
+          "name": "SAI4_SCK_A",
+          "alternate_functions": [
+            "GPIO_AF8_SAI4"
+          ]
+        },
+        {
+          "name": "SPI4_MISO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI4"
+          ]
+        },
+        {
+          "name": "TIM15_CH1",
+          "alternate_functions": [
+            "GPIO_AF4_TIM15"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 5,
+      "package_name": "PE6",
+      "gpio": "PE6",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D7",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DEBUG_TRACED3",
+          "alternate_functions": [
+            "GPIO_AF0_TRACE"
+          ]
+        },
+        {
+          "name": "FMC_A22",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "LTDC_G1",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SAI1_D1",
+          "alternate_functions": [
+            "GPIO_AF2_SAI1"
+          ]
+        },
+        {
+          "name": "SAI1_SD_A",
+          "alternate_functions": [
+            "GPIO_AF6_SAI1"
+          ]
+        },
+        {
+          "name": "SAI2_MCLK_B",
+          "alternate_functions": [
+            "GPIO_AF10_SAI2"
+          ]
+        },
+        {
+          "name": "SAI4_D1",
+          "alternate_functions": [
+            "GPIO_AF9_SAI4"
+          ]
+        },
+        {
+          "name": "SAI4_SD_A",
+          "alternate_functions": [
+            "GPIO_AF8_SAI4"
+          ]
+        },
+        {
+          "name": "SPI4_MOSI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI4"
+          ]
+        },
+        {
+          "name": "TIM15_CH2",
+          "alternate_functions": [
+            "GPIO_AF4_TIM15"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN2",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN2_COMP1",
+          "alternate_functions": [
+            "GPIO_AF11_COMP1"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN2_COMP2",
+          "alternate_functions": [
+            "GPIO_AF11_COMP1"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 6,
+      "package_name": "VBAT",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 7,
+      "package_name": "PC13",
+      "gpio": "PC13",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "PWR_WKUP4",
+          "alternate_functions": []
+        },
+        {
+          "name": "RTC_OUT_ALARM",
+          "alternate_functions": []
+        },
+        {
+          "name": "RTC_OUT_CALIB",
+          "alternate_functions": []
+        },
+        {
+          "name": "RTC_TAMP1",
+          "alternate_functions": []
+        },
+        {
+          "name": "RTC_TS",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "Diagnostic": "",
+          "Expression": "!(RTC_OUT_CALIB & (WakeUp_Outputed | AlarmA_Outputed | AlarmB_Outputed))"
+        }
+      ]
+    },
+    {
+      "package_pin": 8,
+      "package_name": "PC14-OSC32_IN (OSC32_IN)",
+      "gpio": "PC14",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "RCC_OSC32_IN",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 9,
+      "package_name": "PC15-OSC32_OUT (OSC32_OUT)",
+      "gpio": "PC15",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "RCC_OSC32_OUT",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 10,
+      "package_name": "VSS",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 11,
+      "package_name": "VDD",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 12,
+      "package_name": "PH0-OSC_IN (PH0)",
+      "gpio": "PH0",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "RCC_OSC_IN",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 13,
+      "package_name": "PH1-OSC_OUT (PH1)",
+      "gpio": "PH1",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "RCC_OSC_OUT",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 14,
+      "package_name": "NRST",
+      "gpio": null,
+      "type": "Reset",
+      "functions": []
+    },
+    {
+      "package_pin": 15,
+      "package_name": "PC0",
+      "gpio": "PC0",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INP10",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP10",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_INP10",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_CKIN0",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "DFSDM1_DATIN4",
+          "alternate_functions": [
+            "GPIO_AF6_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_SDNWE",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "LTDC_R5",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SAI2_FS_B",
+          "alternate_functions": [
+            "GPIO_AF8_SAI2"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_STP",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 16,
+      "package_name": "PC1",
+      "gpio": "PC1",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INN10",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC1_INP11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INN10",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_INN10",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_INP11",
+          "alternate_functions": []
+        },
+        {
+          "name": "DEBUG_TRACED0",
+          "alternate_functions": [
+            "GPIO_AF0_TRACE"
+          ]
+        },
+        {
+          "name": "DFSDM1_CKIN4",
+          "alternate_functions": [
+            "GPIO_AF4_DFSDM1"
+          ]
+        },
+        {
+          "name": "DFSDM1_DATIN0",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_MDC",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "I2S2_SDO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "MDIOS_MDC",
+          "alternate_functions": [
+            "GPIO_AF12_MDIOS"
+          ]
+        },
+        {
+          "name": "PWR_WKUP6",
+          "alternate_functions": []
+        },
+        {
+          "name": "RTC_TAMP3",
+          "alternate_functions": []
+        },
+        {
+          "name": "SAI1_D1",
+          "alternate_functions": [
+            "GPIO_AF2_SAI1"
+          ]
+        },
+        {
+          "name": "SAI1_SD_A",
+          "alternate_functions": [
+            "GPIO_AF6_SAI1"
+          ]
+        },
+        {
+          "name": "SAI4_D1",
+          "alternate_functions": [
+            "GPIO_AF10_SAI4"
+          ]
+        },
+        {
+          "name": "SAI4_SD_A",
+          "alternate_functions": [
+            "GPIO_AF8_SAI4"
+          ]
+        },
+        {
+          "name": "SDMMC2_CK",
+          "alternate_functions": [
+            "GPIO_AF9_SDIO2"
+          ]
+        },
+        {
+          "name": "SPI2_MOSI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 17,
+      "package_name": "PC2_C",
+      "gpio": "PC2",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC3_INN1",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_INP0",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_CKIN1",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "DFSDM1_CKOUT",
+          "alternate_functions": [
+            "GPIO_AF6_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_TXD2",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "FMC_SDNE0",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "I2S2_SDI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "PWR_CSTOP",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI2_MISO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_DIR",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ],
+      "configuration_parameters": [
+        {
+          "name": "SYSCFG_AnalogSwitch",
+          "values": [
+            "SYSCFG_SWITCH_PC2"
+          ]
+        },
+        {
+          "name": "SYSCFG_SwitchState",
+          "values": [
+            "SYSCFG_SWITCH_PC2_OPEN"
+          ]
+        }
+      ],
+      "note": "Package exposes the _C pad; GPIO connection is through the internal SYSCFG analog switch. Preserve the package identity when reviewing analog and digital use."
+    },
+    {
+      "package_pin": 18,
+      "package_name": "PC3_C",
+      "gpio": "PC3",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC3_INP1",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_DATIN1",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_TX_CLK",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "FMC_SDCKE0",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "I2S2_SDO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "PWR_CSLEEP",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI2_MOSI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_NXT",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ],
+      "configuration_parameters": [
+        {
+          "name": "SYSCFG_AnalogSwitch",
+          "values": [
+            "SYSCFG_SWITCH_PC3"
+          ]
+        },
+        {
+          "name": "SYSCFG_SwitchState",
+          "values": [
+            "SYSCFG_SWITCH_PC3_OPEN"
+          ]
+        }
+      ],
+      "note": "Package exposes the _C pad; GPIO connection is through the internal SYSCFG analog switch. Preserve the package identity when reviewing analog and digital use."
+    },
+    {
+      "package_pin": 19,
+      "package_name": "VSSA",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 20,
+      "package_name": "VREF+",
+      "gpio": null,
+      "type": "MonoIO",
+      "functions": [
+        {
+          "name": "VREFBUF_OUT",
+          "alternate_functions": []
+        }
+      ]
+    },
+    {
+      "package_pin": 21,
+      "package_name": "VDDA",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 22,
+      "package_name": "PA0",
+      "gpio": "PA0",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INP16",
+          "alternate_functions": []
+        },
+        {
+          "name": "ETH_CRS",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "PWR_WKUP1",
+          "alternate_functions": []
+        },
+        {
+          "name": "SAI2_SD_B",
+          "alternate_functions": [
+            "GPIO_AF10_SAI2"
+          ]
+        },
+        {
+          "name": "SDMMC2_CMD",
+          "alternate_functions": [
+            "GPIO_AF9_SDIO2"
+          ]
+        },
+        {
+          "name": "TIM15_BKIN",
+          "alternate_functions": [
+            "GPIO_AF4_TIM15"
+          ]
+        },
+        {
+          "name": "TIM2_CH1",
+          "alternate_functions": [
+            "GPIO_AF1_TIM2"
+          ]
+        },
+        {
+          "name": "TIM2_ETR",
+          "alternate_functions": [
+            "GPIO_AF1_TIM2"
+          ]
+        },
+        {
+          "name": "TIM5_CH1",
+          "alternate_functions": [
+            "GPIO_AF2_TIM5"
+          ]
+        },
+        {
+          "name": "TIM8_ETR",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "UART4_TX",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "USART2_CTS",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "USART2_NSS",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "Diagnostic": "ETR and CH1 on the same GPIO for TIM2",
+          "Expression": "(!(TIM2_CH1 & (PA15_S_TIM2_ETR|PA5_S_TIM2_ETR)) & !(TIM2_ETR & (PA15_S_TIM2_CH1|PA5_S_TIM2_CH1)))"
+        }
+      ]
+    },
+    {
+      "package_pin": 23,
+      "package_name": "PA1",
+      "gpio": "PA1",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INN16",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC1_INP17",
+          "alternate_functions": []
+        },
+        {
+          "name": "ETH_REF_CLK",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "ETH_RX_CLK",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "LPTIM3_OUT",
+          "alternate_functions": [
+            "GPIO_AF3_LPTIM3"
+          ]
+        },
+        {
+          "name": "LTDC_R2",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "QUADSPI_BK1_IO3",
+          "alternate_functions": [
+            "GPIO_AF9_QUADSPI"
+          ]
+        },
+        {
+          "name": "SAI2_MCLK_B",
+          "alternate_functions": [
+            "GPIO_AF10_SAI2"
+          ]
+        },
+        {
+          "name": "TIM15_CH1N",
+          "alternate_functions": [
+            "GPIO_AF4_TIM15"
+          ]
+        },
+        {
+          "name": "TIM2_CH2",
+          "alternate_functions": [
+            "GPIO_AF1_TIM2"
+          ]
+        },
+        {
+          "name": "TIM5_CH2",
+          "alternate_functions": [
+            "GPIO_AF2_TIM5"
+          ]
+        },
+        {
+          "name": "UART4_RX",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "USART2_DE",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "USART2_RTS",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 24,
+      "package_name": "PA2",
+      "gpio": "PA2",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INP14",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP14",
+          "alternate_functions": []
+        },
+        {
+          "name": "ETH_MDIO",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "LPTIM4_OUT",
+          "alternate_functions": [
+            "GPIO_AF3_LPTIM4"
+          ]
+        },
+        {
+          "name": "LTDC_R1",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "MDIOS_MDIO",
+          "alternate_functions": [
+            "GPIO_AF12_MDIOS"
+          ]
+        },
+        {
+          "name": "PWR_WKUP2",
+          "alternate_functions": []
+        },
+        {
+          "name": "SAI2_SCK_B",
+          "alternate_functions": [
+            "GPIO_AF8_SAI2"
+          ]
+        },
+        {
+          "name": "TIM15_CH1",
+          "alternate_functions": [
+            "GPIO_AF4_TIM15"
+          ]
+        },
+        {
+          "name": "TIM2_CH3",
+          "alternate_functions": [
+            "GPIO_AF1_TIM2"
+          ]
+        },
+        {
+          "name": "TIM5_CH3",
+          "alternate_functions": [
+            "GPIO_AF2_TIM5"
+          ]
+        },
+        {
+          "name": "USART2_TX",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 25,
+      "package_name": "PA3",
+      "gpio": "PA3",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INP15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ETH_COL",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "LPTIM5_OUT",
+          "alternate_functions": [
+            "GPIO_AF3_LPTIM5"
+          ]
+        },
+        {
+          "name": "LTDC_B2",
+          "alternate_functions": [
+            "GPIO_AF9_LTDC"
+          ]
+        },
+        {
+          "name": "LTDC_B5",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "TIM15_CH2",
+          "alternate_functions": [
+            "GPIO_AF4_TIM15"
+          ]
+        },
+        {
+          "name": "TIM2_CH4",
+          "alternate_functions": [
+            "GPIO_AF1_TIM2"
+          ]
+        },
+        {
+          "name": "TIM5_CH4",
+          "alternate_functions": [
+            "GPIO_AF2_TIM5"
+          ]
+        },
+        {
+          "name": "USART2_RX",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_D0",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 26,
+      "package_name": "VSS",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 27,
+      "package_name": "VDD",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 28,
+      "package_name": "PA4",
+      "gpio": "PA4",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INP18",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP18",
+          "alternate_functions": []
+        },
+        {
+          "name": "DAC1_OUT1",
+          "alternate_functions": []
+        },
+        {
+          "name": "DCMI_HSYNC",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "I2S1_WS",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "I2S3_WS",
+          "alternate_functions": [
+            "GPIO_AF6_SPI3"
+          ]
+        },
+        {
+          "name": "LTDC_VSYNC",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SPI1_NSS",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "SPI3_NSS",
+          "alternate_functions": [
+            "GPIO_AF6_SPI3"
+          ]
+        },
+        {
+          "name": "SPI6_NSS",
+          "alternate_functions": [
+            "GPIO_AF8_SPI6"
+          ]
+        },
+        {
+          "name": "TIM5_ETR",
+          "alternate_functions": [
+            "GPIO_AF2_TIM5"
+          ]
+        },
+        {
+          "name": "USART2_CK",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_SOF",
+          "alternate_functions": [
+            "GPIO_AF12_OTG2_FS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 29,
+      "package_name": "PA5",
+      "gpio": "PA5",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INN18",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC1_INP19",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INN18",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP19",
+          "alternate_functions": []
+        },
+        {
+          "name": "DAC1_OUT2",
+          "alternate_functions": []
+        },
+        {
+          "name": "I2S1_CK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "LTDC_R4",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "PWR_NDSTOP2",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI1_SCK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "SPI6_SCK",
+          "alternate_functions": [
+            "GPIO_AF8_SPI6"
+          ]
+        },
+        {
+          "name": "TIM2_CH1",
+          "alternate_functions": [
+            "GPIO_AF1_TIM2"
+          ]
+        },
+        {
+          "name": "TIM2_ETR",
+          "alternate_functions": [
+            "GPIO_AF1_TIM2"
+          ]
+        },
+        {
+          "name": "TIM8_CH1N",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_CK",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "Diagnostic": "ETR and CH1 on the same GPIO for TIM2",
+          "Expression": "(!(TIM2_CH1 & (PA15_S_TIM2_ETR|PA0_S_TIM2_ETR)) & !(TIM2_ETR & (PA15_S_TIM2_CH1|PA0_S_TIM2_CH1)))"
+        }
+      ]
+    },
+    {
+      "package_pin": 30,
+      "package_name": "PA6",
+      "gpio": "PA6",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INP3",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP3",
+          "alternate_functions": []
+        },
+        {
+          "name": "DCMI_PIXCLK",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "I2S1_SDI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "LTDC_G2",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "MDIOS_MDC",
+          "alternate_functions": [
+            "GPIO_AF11_MDIOS"
+          ]
+        },
+        {
+          "name": "SPI1_MISO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "SPI6_MISO",
+          "alternate_functions": [
+            "GPIO_AF8_SPI6"
+          ]
+        },
+        {
+          "name": "TIM13_CH1",
+          "alternate_functions": [
+            "GPIO_AF9_TIM13"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN_COMP1",
+          "alternate_functions": [
+            "GPIO_AF12_COMP1"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN_COMP2",
+          "alternate_functions": [
+            "GPIO_AF12_COMP1"
+          ]
+        },
+        {
+          "name": "TIM3_CH1",
+          "alternate_functions": [
+            "GPIO_AF2_TIM3"
+          ]
+        },
+        {
+          "name": "TIM8_BKIN",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "TIM8_BKIN_COMP1",
+          "alternate_functions": [
+            "GPIO_AF10_COMP1"
+          ]
+        },
+        {
+          "name": "TIM8_BKIN_COMP2",
+          "alternate_functions": [
+            "GPIO_AF10_COMP1"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 31,
+      "package_name": "PA7",
+      "gpio": "PA7",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INN3",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC1_INP7",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INN3",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP7",
+          "alternate_functions": []
+        },
+        {
+          "name": "ETH_CRS_DV",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "ETH_RX_DV",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "FMC_SDNWE",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "I2S1_SDO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "OPAMP1_VINM",
+          "alternate_functions": []
+        },
+        {
+          "name": "OPAMP1_VINM1",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI1_MOSI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "SPI6_MOSI",
+          "alternate_functions": [
+            "GPIO_AF8_SPI6"
+          ]
+        },
+        {
+          "name": "TIM14_CH1",
+          "alternate_functions": [
+            "GPIO_AF9_TIM14"
+          ]
+        },
+        {
+          "name": "TIM1_CH1N",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "TIM3_CH2",
+          "alternate_functions": [
+            "GPIO_AF2_TIM3"
+          ]
+        },
+        {
+          "name": "TIM8_CH1N",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "Diagnostic": "",
+          "Expression": "!((OPAMP1_PGA_INV_IO0|OPAMP1_PGA_INV_IO0_BIAS)&OPAMP1_VINM)"
+        }
+      ]
+    },
+    {
+      "package_pin": 32,
+      "package_name": "PC4",
+      "gpio": "PC4",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INP4",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP4",
+          "alternate_functions": []
+        },
+        {
+          "name": "COMP1_INM",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_CKIN2",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_RXD0",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "FMC_SDNE0",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "I2S1_MCK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "OPAMP1_VOUT",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPDIFRX1_IN2",
+          "alternate_functions": [
+            "GPIO_AF9_SPDIF"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 33,
+      "package_name": "PC5",
+      "gpio": "PC5",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INN4",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC1_INP8",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INN4",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP8",
+          "alternate_functions": []
+        },
+        {
+          "name": "COMP1_OUT",
+          "alternate_functions": [
+            "GPIO_AF13_COMP1"
+          ]
+        },
+        {
+          "name": "DFSDM1_DATIN2",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_RXD1",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "FMC_SDCKE0",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "OPAMP1_VINM",
+          "alternate_functions": []
+        },
+        {
+          "name": "OPAMP1_VINM0",
+          "alternate_functions": []
+        },
+        {
+          "name": "SAI1_D3",
+          "alternate_functions": [
+            "GPIO_AF2_SAI1"
+          ]
+        },
+        {
+          "name": "SAI4_D3",
+          "alternate_functions": [
+            "GPIO_AF10_SAI4"
+          ]
+        },
+        {
+          "name": "SPDIFRX1_IN3",
+          "alternate_functions": [
+            "GPIO_AF9_SPDIF"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 34,
+      "package_name": "PB0",
+      "gpio": "PB0",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INN5",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC1_INP9",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INN5",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP9",
+          "alternate_functions": []
+        },
+        {
+          "name": "COMP1_INP",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_CKOUT",
+          "alternate_functions": [
+            "GPIO_AF6_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_RXD2",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "LTDC_G1",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "LTDC_R3",
+          "alternate_functions": [
+            "GPIO_AF9_LTDC"
+          ]
+        },
+        {
+          "name": "OPAMP1_VINP",
+          "alternate_functions": []
+        },
+        {
+          "name": "TIM1_CH2N",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "TIM3_CH3",
+          "alternate_functions": [
+            "GPIO_AF2_TIM3"
+          ]
+        },
+        {
+          "name": "TIM8_CH2N",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "UART4_CTS",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_D1",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 35,
+      "package_name": "PB1",
+      "gpio": "PB1",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_INP5",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_INP5",
+          "alternate_functions": []
+        },
+        {
+          "name": "COMP1_INM",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_DATIN1",
+          "alternate_functions": [
+            "GPIO_AF6_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_RXD3",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "LTDC_G0",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "LTDC_R6",
+          "alternate_functions": [
+            "GPIO_AF9_LTDC"
+          ]
+        },
+        {
+          "name": "TIM1_CH3N",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "TIM3_CH4",
+          "alternate_functions": [
+            "GPIO_AF2_TIM3"
+          ]
+        },
+        {
+          "name": "TIM8_CH3N",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_D2",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 36,
+      "package_name": "PB2",
+      "gpio": "PB2",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "COMP1_INP",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_CKIN1",
+          "alternate_functions": [
+            "GPIO_AF4_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_TX_ER",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "I2S3_SDO",
+          "alternate_functions": [
+            "GPIO_AF7_SPI3"
+          ]
+        },
+        {
+          "name": "QUADSPI_CLK",
+          "alternate_functions": [
+            "GPIO_AF9_QUADSPI"
+          ]
+        },
+        {
+          "name": "RTC_OUT_ALARM",
+          "alternate_functions": [
+            "GPIO_AF0_RTC_50Hz"
+          ]
+        },
+        {
+          "name": "RTC_OUT_CALIB",
+          "alternate_functions": [
+            "GPIO_AF0_RTC_50Hz"
+          ]
+        },
+        {
+          "name": "SAI1_D1",
+          "alternate_functions": [
+            "GPIO_AF2_SAI1"
+          ]
+        },
+        {
+          "name": "SAI1_SD_A",
+          "alternate_functions": [
+            "GPIO_AF6_SAI1"
+          ]
+        },
+        {
+          "name": "SAI4_D1",
+          "alternate_functions": [
+            "GPIO_AF10_SAI4"
+          ]
+        },
+        {
+          "name": "SAI4_SD_A",
+          "alternate_functions": [
+            "GPIO_AF8_SAI4"
+          ]
+        },
+        {
+          "name": "SPI3_MOSI",
+          "alternate_functions": [
+            "GPIO_AF7_SPI3"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "Diagnostic": "",
+          "Expression": "!(RTC_OUT_ALARM & CALIBRATION)"
+        }
+      ]
+    },
+    {
+      "package_pin": 37,
+      "package_name": "PE7",
+      "gpio": "PE7",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "COMP2_INM",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_DATIN2",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_D4",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA4",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "OPAMP2_VOUT",
+          "alternate_functions": []
+        },
+        {
+          "name": "QUADSPI_BK2_IO0",
+          "alternate_functions": [
+            "GPIO_AF10_QUADSPI"
+          ]
+        },
+        {
+          "name": "TIM1_ETR",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "UART7_RX",
+          "alternate_functions": [
+            "GPIO_AF7_UART7"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 38,
+      "package_name": "PE8",
+      "gpio": "PE8",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "COMP2_OUT",
+          "alternate_functions": [
+            "GPIO_AF13_COMP2"
+          ]
+        },
+        {
+          "name": "DFSDM1_CKIN2",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_D5",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA5",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "OPAMP2_VINM",
+          "alternate_functions": []
+        },
+        {
+          "name": "OPAMP2_VINM0",
+          "alternate_functions": []
+        },
+        {
+          "name": "QUADSPI_BK2_IO1",
+          "alternate_functions": [
+            "GPIO_AF10_QUADSPI"
+          ]
+        },
+        {
+          "name": "TIM1_CH1N",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "UART7_TX",
+          "alternate_functions": [
+            "GPIO_AF7_UART7"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 39,
+      "package_name": "PE9",
+      "gpio": "PE9",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "COMP2_INP",
+          "alternate_functions": []
+        },
+        {
+          "name": "DAC1_EXTI9",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_CKOUT",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_D6",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA6",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "OPAMP2_VINP",
+          "alternate_functions": []
+        },
+        {
+          "name": "QUADSPI_BK2_IO2",
+          "alternate_functions": [
+            "GPIO_AF10_QUADSPI"
+          ]
+        },
+        {
+          "name": "TIM1_CH1",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "UART7_DE",
+          "alternate_functions": [
+            "GPIO_AF7_UART7"
+          ]
+        },
+        {
+          "name": "UART7_RTS",
+          "alternate_functions": [
+            "GPIO_AF7_UART7"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 40,
+      "package_name": "PE10",
+      "gpio": "PE10",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "COMP2_INM",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_DATIN4",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_D7",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA7",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "QUADSPI_BK2_IO3",
+          "alternate_functions": [
+            "GPIO_AF10_QUADSPI"
+          ]
+        },
+        {
+          "name": "TIM1_CH2N",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "UART7_CTS",
+          "alternate_functions": [
+            "GPIO_AF7_UART7"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 41,
+      "package_name": "PE11",
+      "gpio": "PE11",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "COMP2_INP",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_CKIN4",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_D8",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA8",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "LTDC_G3",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SAI2_SD_B",
+          "alternate_functions": [
+            "GPIO_AF10_SAI2"
+          ]
+        },
+        {
+          "name": "SPI4_NSS",
+          "alternate_functions": [
+            "GPIO_AF5_SPI4"
+          ]
+        },
+        {
+          "name": "TIM1_CH2",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 42,
+      "package_name": "PE12",
+      "gpio": "PE12",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "COMP1_OUT",
+          "alternate_functions": [
+            "GPIO_AF13_COMP1"
+          ]
+        },
+        {
+          "name": "DFSDM1_DATIN5",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_D9",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA9",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "LTDC_B4",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SAI2_SCK_B",
+          "alternate_functions": [
+            "GPIO_AF10_SAI2"
+          ]
+        },
+        {
+          "name": "SPI4_SCK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI4"
+          ]
+        },
+        {
+          "name": "TIM1_CH3N",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 43,
+      "package_name": "PE13",
+      "gpio": "PE13",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "COMP2_OUT",
+          "alternate_functions": [
+            "GPIO_AF13_COMP2"
+          ]
+        },
+        {
+          "name": "DFSDM1_CKIN5",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_D10",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA10",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "LTDC_DE",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SAI2_FS_B",
+          "alternate_functions": [
+            "GPIO_AF10_SAI2"
+          ]
+        },
+        {
+          "name": "SPI4_MISO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI4"
+          ]
+        },
+        {
+          "name": "TIM1_CH3",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 44,
+      "package_name": "PE14",
+      "gpio": "PE14",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "FMC_D11",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA11",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "LTDC_CLK",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SAI2_MCLK_B",
+          "alternate_functions": [
+            "GPIO_AF10_SAI2"
+          ]
+        },
+        {
+          "name": "SPI4_MOSI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI4"
+          ]
+        },
+        {
+          "name": "TIM1_CH4",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 45,
+      "package_name": "PE15",
+      "gpio": "PE15",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "FMC_D12",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA12",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "LTDC_R7",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN_COMP1",
+          "alternate_functions": [
+            "GPIO_AF13_COMP1"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN_COMP2",
+          "alternate_functions": [
+            "GPIO_AF13_COMP1"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 46,
+      "package_name": "PB10",
+      "gpio": "PB10",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DFSDM1_DATIN7",
+          "alternate_functions": [
+            "GPIO_AF6_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_RX_ER",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "HRTIM_SCOUT",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2C2_SCL",
+          "alternate_functions": [
+            "GPIO_AF4_I2C2"
+          ]
+        },
+        {
+          "name": "I2S2_CK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "LPTIM2_IN1",
+          "alternate_functions": [
+            "GPIO_AF3_LPTIM2"
+          ]
+        },
+        {
+          "name": "LTDC_G4",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "QUADSPI_BK1_NCS",
+          "alternate_functions": [
+            "GPIO_AF9_QUADSPI"
+          ]
+        },
+        {
+          "name": "SPI2_SCK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "TIM2_CH3",
+          "alternate_functions": [
+            "GPIO_AF1_TIM2"
+          ]
+        },
+        {
+          "name": "USART3_TX",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_D3",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 47,
+      "package_name": "PB11",
+      "gpio": "PB11",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_CKIN7",
+          "alternate_functions": [
+            "GPIO_AF6_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_TX_EN",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "HRTIM_SCIN",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2C2_SDA",
+          "alternate_functions": [
+            "GPIO_AF4_I2C2"
+          ]
+        },
+        {
+          "name": "LPTIM2_ETR",
+          "alternate_functions": [
+            "GPIO_AF3_LPTIM2"
+          ]
+        },
+        {
+          "name": "LTDC_G5",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "TIM2_CH4",
+          "alternate_functions": [
+            "GPIO_AF1_TIM2"
+          ]
+        },
+        {
+          "name": "USART3_RX",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_D4",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 48,
+      "package_name": "VCAP",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 49,
+      "package_name": "VSS",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 50,
+      "package_name": "VDD",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 51,
+      "package_name": "PB12",
+      "gpio": "PB12",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DFSDM1_DATIN1",
+          "alternate_functions": [
+            "GPIO_AF6_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_TXD0",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "FDCAN2_RX",
+          "alternate_functions": [
+            "GPIO_AF9_FDCAN2"
+          ]
+        },
+        {
+          "name": "I2C2_SMBA",
+          "alternate_functions": [
+            "GPIO_AF4_I2C2"
+          ]
+        },
+        {
+          "name": "I2S2_WS",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "SPI2_NSS",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN_COMP1",
+          "alternate_functions": [
+            "GPIO_AF13_COMP1"
+          ]
+        },
+        {
+          "name": "TIM1_BKIN_COMP2",
+          "alternate_functions": [
+            "GPIO_AF13_COMP1"
+          ]
+        },
+        {
+          "name": "UART5_RX",
+          "alternate_functions": [
+            "GPIO_AF14_UART5"
+          ]
+        },
+        {
+          "name": "USART3_CK",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ID",
+          "alternate_functions": [
+            "GPIO_AF12_OTG2_FS"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_D5",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 52,
+      "package_name": "PB13",
+      "gpio": "PB13",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DFSDM1_CKIN1",
+          "alternate_functions": [
+            "GPIO_AF6_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_TXD1",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "FDCAN2_TX",
+          "alternate_functions": [
+            "GPIO_AF9_FDCAN2"
+          ]
+        },
+        {
+          "name": "I2S2_CK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "LPTIM2_OUT",
+          "alternate_functions": [
+            "GPIO_AF3_LPTIM2"
+          ]
+        },
+        {
+          "name": "SPI2_SCK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "TIM1_CH1N",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "UART5_TX",
+          "alternate_functions": [
+            "GPIO_AF14_UART5"
+          ]
+        },
+        {
+          "name": "USART3_CTS",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "USART3_NSS",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_D6",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_VBUS",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 53,
+      "package_name": "PB14",
+      "gpio": "PB14",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DFSDM1_DATIN2",
+          "alternate_functions": [
+            "GPIO_AF6_DFSDM1"
+          ]
+        },
+        {
+          "name": "I2S2_SDI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "SDMMC2_D0",
+          "alternate_functions": [
+            "GPIO_AF9_SDIO2"
+          ]
+        },
+        {
+          "name": "SPI2_MISO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "TIM12_CH1",
+          "alternate_functions": [
+            "GPIO_AF2_TIM12"
+          ]
+        },
+        {
+          "name": "TIM1_CH2N",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "TIM8_CH2N",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "UART4_DE",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "UART4_RTS",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "USART1_TX",
+          "alternate_functions": [
+            "GPIO_AF4_USART1"
+          ]
+        },
+        {
+          "name": "USART3_DE",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "USART3_RTS",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_DM",
+          "alternate_functions": [
+            "GPIO_AF12_OTG2_FS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 54,
+      "package_name": "PB15",
+      "gpio": "PB15",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_CKIN2",
+          "alternate_functions": [
+            "GPIO_AF6_DFSDM1"
+          ]
+        },
+        {
+          "name": "I2S2_SDO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "RTC_REFIN",
+          "alternate_functions": [
+            "GPIO_AF0_RTC_50Hz"
+          ]
+        },
+        {
+          "name": "SDMMC2_D1",
+          "alternate_functions": [
+            "GPIO_AF9_SDIO2"
+          ]
+        },
+        {
+          "name": "SPI2_MOSI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "TIM12_CH2",
+          "alternate_functions": [
+            "GPIO_AF2_TIM12"
+          ]
+        },
+        {
+          "name": "TIM1_CH3N",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "TIM8_CH3N",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "UART4_CTS",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "USART1_RX",
+          "alternate_functions": [
+            "GPIO_AF4_USART1"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_DP",
+          "alternate_functions": [
+            "GPIO_AF12_OTG2_FS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 55,
+      "package_name": "PD8",
+      "gpio": "PD8",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DFSDM1_CKIN3",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_D13",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA13",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "SAI3_SCK_B",
+          "alternate_functions": [
+            "GPIO_AF6_SAI3"
+          ]
+        },
+        {
+          "name": "SPDIFRX1_IN1",
+          "alternate_functions": [
+            "GPIO_AF9_SPDIF"
+          ]
+        },
+        {
+          "name": "USART3_TX",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 56,
+      "package_name": "PD9",
+      "gpio": "PD9",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DAC1_EXTI9",
+          "alternate_functions": []
+        },
+        {
+          "name": "DFSDM1_DATIN3",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_D14",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA14",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "SAI3_SD_B",
+          "alternate_functions": [
+            "GPIO_AF6_SAI3"
+          ]
+        },
+        {
+          "name": "USART3_RX",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 57,
+      "package_name": "PD10",
+      "gpio": "PD10",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DFSDM1_CKOUT",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_D15",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA15",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "LTDC_B3",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SAI3_FS_B",
+          "alternate_functions": [
+            "GPIO_AF6_SAI3"
+          ]
+        },
+        {
+          "name": "USART3_CK",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 58,
+      "package_name": "PD11",
+      "gpio": "PD11",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "FMC_A16",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_CLE",
+          "alternate_functions": []
+        },
+        {
+          "name": "I2C4_SMBA",
+          "alternate_functions": [
+            "GPIO_AF4_I2C4"
+          ]
+        },
+        {
+          "name": "LPTIM2_IN2",
+          "alternate_functions": [
+            "GPIO_AF3_LPTIM2"
+          ]
+        },
+        {
+          "name": "QUADSPI_BK1_IO0",
+          "alternate_functions": [
+            "GPIO_AF9_QUADSPI"
+          ]
+        },
+        {
+          "name": "SAI2_SD_A",
+          "alternate_functions": [
+            "GPIO_AF10_SAI2"
+          ]
+        },
+        {
+          "name": "USART3_CTS",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "USART3_NSS",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 59,
+      "package_name": "PD12",
+      "gpio": "PD12",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "FMC_A17",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_ALE",
+          "alternate_functions": []
+        },
+        {
+          "name": "I2C4_SCL",
+          "alternate_functions": [
+            "GPIO_AF4_I2C4"
+          ]
+        },
+        {
+          "name": "LPTIM1_IN1",
+          "alternate_functions": [
+            "GPIO_AF1_LPTIM1"
+          ]
+        },
+        {
+          "name": "LPTIM2_IN1",
+          "alternate_functions": [
+            "GPIO_AF3_LPTIM2"
+          ]
+        },
+        {
+          "name": "QUADSPI_BK1_IO1",
+          "alternate_functions": [
+            "GPIO_AF9_QUADSPI"
+          ]
+        },
+        {
+          "name": "SAI2_FS_A",
+          "alternate_functions": [
+            "GPIO_AF10_SAI2"
+          ]
+        },
+        {
+          "name": "TIM4_CH1",
+          "alternate_functions": [
+            "GPIO_AF2_TIM4"
+          ]
+        },
+        {
+          "name": "USART3_DE",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "USART3_RTS",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 60,
+      "package_name": "PD13",
+      "gpio": "PD13",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "FMC_A18",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "I2C4_SDA",
+          "alternate_functions": [
+            "GPIO_AF4_I2C4"
+          ]
+        },
+        {
+          "name": "LPTIM1_OUT",
+          "alternate_functions": [
+            "GPIO_AF1_LPTIM1"
+          ]
+        },
+        {
+          "name": "QUADSPI_BK1_IO3",
+          "alternate_functions": [
+            "GPIO_AF9_QUADSPI"
+          ]
+        },
+        {
+          "name": "SAI2_SCK_A",
+          "alternate_functions": [
+            "GPIO_AF10_SAI2"
+          ]
+        },
+        {
+          "name": "TIM4_CH2",
+          "alternate_functions": [
+            "GPIO_AF2_TIM4"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 61,
+      "package_name": "PD14",
+      "gpio": "PD14",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "FMC_D0",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA0",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "SAI3_MCLK_B",
+          "alternate_functions": [
+            "GPIO_AF6_SAI3"
+          ]
+        },
+        {
+          "name": "TIM4_CH3",
+          "alternate_functions": [
+            "GPIO_AF2_TIM4"
+          ]
+        },
+        {
+          "name": "UART8_CTS",
+          "alternate_functions": [
+            "GPIO_AF8_UART8"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 62,
+      "package_name": "PD15",
+      "gpio": "PD15",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "FMC_D1",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA1",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "SAI3_MCLK_A",
+          "alternate_functions": [
+            "GPIO_AF6_SAI3"
+          ]
+        },
+        {
+          "name": "TIM4_CH4",
+          "alternate_functions": [
+            "GPIO_AF2_TIM4"
+          ]
+        },
+        {
+          "name": "UART8_DE",
+          "alternate_functions": [
+            "GPIO_AF8_UART8"
+          ]
+        },
+        {
+          "name": "UART8_RTS",
+          "alternate_functions": [
+            "GPIO_AF8_UART8"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 63,
+      "package_name": "PC6",
+      "gpio": "PC6",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D0",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DFSDM1_CKIN3",
+          "alternate_functions": [
+            "GPIO_AF4_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_NWAIT",
+          "alternate_functions": [
+            "GPIO_AF9_FMC"
+          ]
+        },
+        {
+          "name": "HRTIM_CHA1",
+          "alternate_functions": [
+            "GPIO_AF1_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2S2_MCK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "LTDC_HSYNC",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SDMMC1_D0DIR",
+          "alternate_functions": [
+            "GPIO_AF8_SDIO1"
+          ]
+        },
+        {
+          "name": "SDMMC1_D6",
+          "alternate_functions": [
+            "GPIO_AF12_SDIO1"
+          ]
+        },
+        {
+          "name": "SDMMC2_D6",
+          "alternate_functions": [
+            "GPIO_AF10_SDIO2"
+          ]
+        },
+        {
+          "name": "SWPMI1_IO",
+          "alternate_functions": []
+        },
+        {
+          "name": "TIM3_CH1",
+          "alternate_functions": [
+            "GPIO_AF2_TIM3"
+          ]
+        },
+        {
+          "name": "TIM8_CH1",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "USART6_TX",
+          "alternate_functions": [
+            "GPIO_AF7_USART6"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 64,
+      "package_name": "PC7",
+      "gpio": "PC7",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D1",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DEBUG_TRGIO",
+          "alternate_functions": [
+            "GPIO_AF0_TRACE"
+          ]
+        },
+        {
+          "name": "DFSDM1_DATIN3",
+          "alternate_functions": [
+            "GPIO_AF4_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_NE1",
+          "alternate_functions": [
+            "GPIO_AF9_FMC"
+          ]
+        },
+        {
+          "name": "HRTIM_CHA2",
+          "alternate_functions": [
+            "GPIO_AF1_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2S3_MCK",
+          "alternate_functions": [
+            "GPIO_AF6_SPI3"
+          ]
+        },
+        {
+          "name": "LTDC_G6",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SDMMC1_D123DIR",
+          "alternate_functions": [
+            "GPIO_AF8_SDIO1"
+          ]
+        },
+        {
+          "name": "SDMMC1_D7",
+          "alternate_functions": [
+            "GPIO_AF12_SDIO1"
+          ]
+        },
+        {
+          "name": "SDMMC2_D7",
+          "alternate_functions": [
+            "GPIO_AF10_SDIO2"
+          ]
+        },
+        {
+          "name": "SWPMI1_TX",
+          "alternate_functions": [
+            "GPIO_AF11_SWP"
+          ]
+        },
+        {
+          "name": "TIM3_CH2",
+          "alternate_functions": [
+            "GPIO_AF2_TIM3"
+          ]
+        },
+        {
+          "name": "TIM8_CH2",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "USART6_RX",
+          "alternate_functions": [
+            "GPIO_AF7_USART6"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 65,
+      "package_name": "PC8",
+      "gpio": "PC8",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D2",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DEBUG_TRACED1",
+          "alternate_functions": [
+            "GPIO_AF0_TRACE"
+          ]
+        },
+        {
+          "name": "FMC_NCE",
+          "alternate_functions": [
+            "GPIO_AF9_FMC"
+          ]
+        },
+        {
+          "name": "FMC_NE2",
+          "alternate_functions": [
+            "GPIO_AF9_FMC"
+          ]
+        },
+        {
+          "name": "HRTIM_CHB1",
+          "alternate_functions": [
+            "GPIO_AF1_HRTIM1"
+          ]
+        },
+        {
+          "name": "SDMMC1_D0",
+          "alternate_functions": [
+            "GPIO_AF12_SDIO1"
+          ]
+        },
+        {
+          "name": "SWPMI1_RX",
+          "alternate_functions": [
+            "GPIO_AF11_SWP"
+          ]
+        },
+        {
+          "name": "TIM3_CH3",
+          "alternate_functions": [
+            "GPIO_AF2_TIM3"
+          ]
+        },
+        {
+          "name": "TIM8_CH3",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "UART5_DE",
+          "alternate_functions": [
+            "GPIO_AF8_UART5"
+          ]
+        },
+        {
+          "name": "UART5_RTS",
+          "alternate_functions": [
+            "GPIO_AF8_UART5"
+          ]
+        },
+        {
+          "name": "USART6_CK",
+          "alternate_functions": [
+            "GPIO_AF7_USART6"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "Diagnostic": "Conflict : FMC_NE2 and FMC_NCE cannot be used together",
+          "Expression": "!(  (PG9_FMC_NE2|PC8_FMC_NE2) & FMC_NCE   ) & !( (PG9_FMC_NCE|PC8_FMC_NCE) & FMC_NE2)"
+        }
+      ]
+    },
+    {
+      "package_pin": 66,
+      "package_name": "PC9",
+      "gpio": "PC9",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DAC1_EXTI9",
+          "alternate_functions": []
+        },
+        {
+          "name": "DCMI_D3",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "I2C3_SDA",
+          "alternate_functions": [
+            "GPIO_AF4_I2C3"
+          ]
+        },
+        {
+          "name": "I2S_CKIN",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "LTDC_B2",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "LTDC_G3",
+          "alternate_functions": [
+            "GPIO_AF10_LTDC"
+          ]
+        },
+        {
+          "name": "QUADSPI_BK1_IO0",
+          "alternate_functions": [
+            "GPIO_AF9_QUADSPI"
+          ]
+        },
+        {
+          "name": "RCC_MCO_2",
+          "alternate_functions": [
+            "GPIO_AF0_MCO"
+          ]
+        },
+        {
+          "name": "SDMMC1_D1",
+          "alternate_functions": [
+            "GPIO_AF12_SDIO1"
+          ]
+        },
+        {
+          "name": "SWPMI1_SUSPEND",
+          "alternate_functions": [
+            "GPIO_AF11_SWP"
+          ]
+        },
+        {
+          "name": "TIM3_CH4",
+          "alternate_functions": [
+            "GPIO_AF2_TIM3"
+          ]
+        },
+        {
+          "name": "TIM8_CH4",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "UART5_CTS",
+          "alternate_functions": [
+            "GPIO_AF8_UART5"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 67,
+      "package_name": "PA8",
+      "gpio": "PA8",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "HRTIM_CHB2",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2C3_SCL",
+          "alternate_functions": [
+            "GPIO_AF4_I2C3"
+          ]
+        },
+        {
+          "name": "LTDC_B3",
+          "alternate_functions": [
+            "GPIO_AF13_LTDC"
+          ]
+        },
+        {
+          "name": "LTDC_R6",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "RCC_MCO_1",
+          "alternate_functions": [
+            "GPIO_AF0_MCO"
+          ]
+        },
+        {
+          "name": "TIM1_CH1",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "TIM8_BKIN2",
+          "alternate_functions": [
+            "GPIO_AF3_TIM8"
+          ]
+        },
+        {
+          "name": "TIM8_BKIN2_COMP1",
+          "alternate_functions": [
+            "GPIO_AF12_COMP1"
+          ]
+        },
+        {
+          "name": "TIM8_BKIN2_COMP2",
+          "alternate_functions": [
+            "GPIO_AF12_COMP1"
+          ]
+        },
+        {
+          "name": "UART7_RX",
+          "alternate_functions": [
+            "GPIO_AF11_UART7"
+          ]
+        },
+        {
+          "name": "USART1_CK",
+          "alternate_functions": [
+            "GPIO_AF7_USART1"
+          ]
+        },
+        {
+          "name": "USB_OTG_FS_SOF",
+          "alternate_functions": [
+            "GPIO_AF10_OTG1_FS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 68,
+      "package_name": "PA9",
+      "gpio": "PA9",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DAC1_EXTI9",
+          "alternate_functions": []
+        },
+        {
+          "name": "DCMI_D0",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "ETH_TX_ER",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "HRTIM_CHC1",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2C3_SMBA",
+          "alternate_functions": [
+            "GPIO_AF4_I2C3"
+          ]
+        },
+        {
+          "name": "I2S2_CK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "LPUART1_TX",
+          "alternate_functions": [
+            "GPIO_AF3_LPUART"
+          ]
+        },
+        {
+          "name": "LTDC_R5",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SPI2_SCK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "TIM1_CH2",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "USART1_TX",
+          "alternate_functions": [
+            "GPIO_AF7_USART1"
+          ]
+        },
+        {
+          "name": "USB_OTG_FS_VBUS",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 69,
+      "package_name": "PA10",
+      "gpio": "PA10",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D1",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "HRTIM_CHC2",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "LPUART1_RX",
+          "alternate_functions": [
+            "GPIO_AF3_LPUART"
+          ]
+        },
+        {
+          "name": "LTDC_B1",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "LTDC_B4",
+          "alternate_functions": [
+            "GPIO_AF12_LTDC"
+          ]
+        },
+        {
+          "name": "MDIOS_MDIO",
+          "alternate_functions": [
+            "GPIO_AF11_MDIOS"
+          ]
+        },
+        {
+          "name": "TIM1_CH3",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "USART1_RX",
+          "alternate_functions": [
+            "GPIO_AF7_USART1"
+          ]
+        },
+        {
+          "name": "USB_OTG_FS_ID",
+          "alternate_functions": [
+            "GPIO_AF10_OTG1_FS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 70,
+      "package_name": "PA11",
+      "gpio": "PA11",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "FDCAN1_RX",
+          "alternate_functions": [
+            "GPIO_AF9_FDCAN1"
+          ]
+        },
+        {
+          "name": "HRTIM_CHD1",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2S2_WS",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "LPUART1_CTS",
+          "alternate_functions": [
+            "GPIO_AF3_LPUART"
+          ]
+        },
+        {
+          "name": "LTDC_R4",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SPI2_NSS",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "TIM1_CH4",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "UART4_RX",
+          "alternate_functions": [
+            "GPIO_AF6_UART4"
+          ]
+        },
+        {
+          "name": "USART1_CTS",
+          "alternate_functions": [
+            "GPIO_AF7_USART1"
+          ]
+        },
+        {
+          "name": "USART1_NSS",
+          "alternate_functions": [
+            "GPIO_AF7_USART1"
+          ]
+        },
+        {
+          "name": "USB_OTG_FS_DM",
+          "alternate_functions": [
+            "GPIO_AF10_OTG1_FS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 71,
+      "package_name": "PA12",
+      "gpio": "PA12",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "FDCAN1_TX",
+          "alternate_functions": [
+            "GPIO_AF9_FDCAN1"
+          ]
+        },
+        {
+          "name": "HRTIM_CHD2",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2S2_CK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "LPUART1_DE",
+          "alternate_functions": [
+            "GPIO_AF3_LPUART"
+          ]
+        },
+        {
+          "name": "LPUART1_RTS",
+          "alternate_functions": [
+            "GPIO_AF3_LPUART"
+          ]
+        },
+        {
+          "name": "LTDC_R5",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SAI2_FS_B",
+          "alternate_functions": [
+            "GPIO_AF8_SAI2"
+          ]
+        },
+        {
+          "name": "SPI2_SCK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "TIM1_ETR",
+          "alternate_functions": [
+            "GPIO_AF1_TIM1"
+          ]
+        },
+        {
+          "name": "UART4_TX",
+          "alternate_functions": [
+            "GPIO_AF6_UART4"
+          ]
+        },
+        {
+          "name": "USART1_DE",
+          "alternate_functions": [
+            "GPIO_AF7_USART1"
+          ]
+        },
+        {
+          "name": "USART1_RTS",
+          "alternate_functions": [
+            "GPIO_AF7_USART1"
+          ]
+        },
+        {
+          "name": "USB_OTG_FS_DP",
+          "alternate_functions": [
+            "GPIO_AF10_OTG1_FS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 72,
+      "package_name": "PA13 (JTMS/SWDIO)",
+      "gpio": "PA13",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DEBUG_JTMS-SWDIO",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 73,
+      "package_name": "VCAP",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 74,
+      "package_name": "VSS",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 75,
+      "package_name": "VDD",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 76,
+      "package_name": "PA14 (JTCK/SWCLK)",
+      "gpio": "PA14",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DEBUG_JTCK-SWCLK",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 77,
+      "package_name": "PA15 (JTDI)",
+      "gpio": "PA15",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_EXTI15",
+          "alternate_functions": []
+        },
+        {
+          "name": "CEC",
+          "alternate_functions": []
+        },
+        {
+          "name": "DEBUG_JTDI",
+          "alternate_functions": []
+        },
+        {
+          "name": "HRTIM_FLT1",
+          "alternate_functions": []
+        },
+        {
+          "name": "I2S1_WS",
+          "alternate_functions": []
+        },
+        {
+          "name": "I2S3_WS",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI1_NSS",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI3_NSS",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI6_NSS",
+          "alternate_functions": []
+        },
+        {
+          "name": "TIM2_CH1",
+          "alternate_functions": []
+        },
+        {
+          "name": "TIM2_ETR",
+          "alternate_functions": []
+        },
+        {
+          "name": "UART4_DE",
+          "alternate_functions": []
+        },
+        {
+          "name": "UART4_RTS",
+          "alternate_functions": []
+        },
+        {
+          "name": "UART7_TX",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "Diagnostic": "ETR and CH1 on the same GPIO for TIM2",
+          "Expression": "(!(TIM2_CH1 & (PA5_S_TIM2_ETR|PA0_S_TIM2_ETR)) & !(TIM2_ETR & (PA5_S_TIM2_CH1|PA0_S_TIM2_CH1)))"
+        }
+      ]
+    },
+    {
+      "package_pin": 78,
+      "package_name": "PC10",
+      "gpio": "PC10",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D8",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DFSDM1_CKIN5",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "HRTIM_EEV1",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2S3_CK",
+          "alternate_functions": [
+            "GPIO_AF6_SPI3"
+          ]
+        },
+        {
+          "name": "LTDC_R2",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "QUADSPI_BK1_IO1",
+          "alternate_functions": [
+            "GPIO_AF9_QUADSPI"
+          ]
+        },
+        {
+          "name": "SDMMC1_D2",
+          "alternate_functions": [
+            "GPIO_AF12_SDIO1"
+          ]
+        },
+        {
+          "name": "SPI3_SCK",
+          "alternate_functions": [
+            "GPIO_AF6_SPI3"
+          ]
+        },
+        {
+          "name": "UART4_TX",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "USART3_TX",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 79,
+      "package_name": "PC11",
+      "gpio": "PC11",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "ADC1_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC2_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "ADC3_EXTI11",
+          "alternate_functions": []
+        },
+        {
+          "name": "DCMI_D4",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DFSDM1_DATIN5",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "HRTIM_FLT2",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2S3_SDI",
+          "alternate_functions": [
+            "GPIO_AF6_SPI3"
+          ]
+        },
+        {
+          "name": "QUADSPI_BK2_NCS",
+          "alternate_functions": [
+            "GPIO_AF9_QUADSPI"
+          ]
+        },
+        {
+          "name": "SDMMC1_D3",
+          "alternate_functions": [
+            "GPIO_AF12_SDIO1"
+          ]
+        },
+        {
+          "name": "SPI3_MISO",
+          "alternate_functions": [
+            "GPIO_AF6_SPI3"
+          ]
+        },
+        {
+          "name": "UART4_RX",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "USART3_RX",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 80,
+      "package_name": "PC12",
+      "gpio": "PC12",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D9",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DEBUG_TRACED3",
+          "alternate_functions": [
+            "GPIO_AF0_TRACE"
+          ]
+        },
+        {
+          "name": "HRTIM_EEV2",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2S3_SDO",
+          "alternate_functions": [
+            "GPIO_AF6_SPI3"
+          ]
+        },
+        {
+          "name": "SDMMC1_CK",
+          "alternate_functions": [
+            "GPIO_AF12_SDIO1"
+          ]
+        },
+        {
+          "name": "SPI3_MOSI",
+          "alternate_functions": [
+            "GPIO_AF6_SPI3"
+          ]
+        },
+        {
+          "name": "UART5_TX",
+          "alternate_functions": [
+            "GPIO_AF8_UART5"
+          ]
+        },
+        {
+          "name": "USART3_CK",
+          "alternate_functions": [
+            "GPIO_AF7_USART3"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 81,
+      "package_name": "PD0",
+      "gpio": "PD0",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DFSDM1_CKIN6",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FDCAN1_RX",
+          "alternate_functions": [
+            "GPIO_AF9_FDCAN1"
+          ]
+        },
+        {
+          "name": "FMC_D2",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA2",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "SAI3_SCK_A",
+          "alternate_functions": [
+            "GPIO_AF6_SAI3"
+          ]
+        },
+        {
+          "name": "UART4_RX",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 82,
+      "package_name": "PD1",
+      "gpio": "PD1",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DFSDM1_DATIN6",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FDCAN1_TX",
+          "alternate_functions": [
+            "GPIO_AF9_FDCAN1"
+          ]
+        },
+        {
+          "name": "FMC_D3",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "FMC_DA3",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "SAI3_SD_A",
+          "alternate_functions": [
+            "GPIO_AF6_SAI3"
+          ]
+        },
+        {
+          "name": "UART4_TX",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 83,
+      "package_name": "PD2",
+      "gpio": "PD2",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D11",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DEBUG_TRACED2",
+          "alternate_functions": [
+            "GPIO_AF0_TRACE"
+          ]
+        },
+        {
+          "name": "SDMMC1_CMD",
+          "alternate_functions": [
+            "GPIO_AF12_SDIO1"
+          ]
+        },
+        {
+          "name": "TIM3_ETR",
+          "alternate_functions": [
+            "GPIO_AF2_TIM3"
+          ]
+        },
+        {
+          "name": "UART5_RX",
+          "alternate_functions": [
+            "GPIO_AF8_UART5"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 84,
+      "package_name": "PD3",
+      "gpio": "PD3",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D5",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DFSDM1_CKOUT",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_CLK",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "I2S2_CK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "LTDC_G7",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SPI2_SCK",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "USART2_CTS",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "USART2_NSS",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 85,
+      "package_name": "PD4",
+      "gpio": "PD4",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "FMC_NOE",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "HRTIM_FLT3",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "SAI3_FS_A",
+          "alternate_functions": [
+            "GPIO_AF6_SAI3"
+          ]
+        },
+        {
+          "name": "USART2_DE",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "USART2_RTS",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 86,
+      "package_name": "PD5",
+      "gpio": "PD5",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "FMC_NWE",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "HRTIM_EEV3",
+          "alternate_functions": [
+            "GPIO_AF2_HRTIM1"
+          ]
+        },
+        {
+          "name": "USART2_TX",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 87,
+      "package_name": "PD6",
+      "gpio": "PD6",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D10",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DFSDM1_CKIN4",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "DFSDM1_DATIN1",
+          "alternate_functions": [
+            "GPIO_AF4_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_NWAIT",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "I2S3_SDO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI3"
+          ]
+        },
+        {
+          "name": "LTDC_B2",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SAI1_D1",
+          "alternate_functions": [
+            "GPIO_AF2_SAI1"
+          ]
+        },
+        {
+          "name": "SAI1_SD_A",
+          "alternate_functions": [
+            "GPIO_AF6_SAI1"
+          ]
+        },
+        {
+          "name": "SAI4_D1",
+          "alternate_functions": [
+            "GPIO_AF10_SAI4"
+          ]
+        },
+        {
+          "name": "SAI4_SD_A",
+          "alternate_functions": [
+            "GPIO_AF8_SAI4"
+          ]
+        },
+        {
+          "name": "SDMMC2_CK",
+          "alternate_functions": [
+            "GPIO_AF11_SDIO2"
+          ]
+        },
+        {
+          "name": "SPI3_MOSI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI3"
+          ]
+        },
+        {
+          "name": "USART2_RX",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 88,
+      "package_name": "PD7",
+      "gpio": "PD7",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DFSDM1_CKIN1",
+          "alternate_functions": [
+            "GPIO_AF6_DFSDM1"
+          ]
+        },
+        {
+          "name": "DFSDM1_DATIN4",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_NE1",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "I2S1_SDO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "SDMMC2_CMD",
+          "alternate_functions": [
+            "GPIO_AF11_SDIO2"
+          ]
+        },
+        {
+          "name": "SPDIFRX1_IN0",
+          "alternate_functions": [
+            "GPIO_AF9_SPDIF"
+          ]
+        },
+        {
+          "name": "SPI1_MOSI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "USART2_CK",
+          "alternate_functions": [
+            "GPIO_AF7_USART2"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 89,
+      "package_name": "PB3 (JTDO/TRACESWO)",
+      "gpio": "PB3",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "CRS_SYNC",
+          "alternate_functions": []
+        },
+        {
+          "name": "DEBUG_JTDO-SWO",
+          "alternate_functions": []
+        },
+        {
+          "name": "HRTIM_FLT4",
+          "alternate_functions": []
+        },
+        {
+          "name": "I2S1_CK",
+          "alternate_functions": []
+        },
+        {
+          "name": "I2S3_CK",
+          "alternate_functions": []
+        },
+        {
+          "name": "SDMMC2_D2",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI1_SCK",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI3_SCK",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI6_SCK",
+          "alternate_functions": []
+        },
+        {
+          "name": "TIM2_CH2",
+          "alternate_functions": []
+        },
+        {
+          "name": "UART7_RX",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 90,
+      "package_name": "PB4 (NJTRST)",
+      "gpio": "PB4",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DEBUG_JTRST",
+          "alternate_functions": []
+        },
+        {
+          "name": "HRTIM_EEV6",
+          "alternate_functions": []
+        },
+        {
+          "name": "I2S1_SDI",
+          "alternate_functions": []
+        },
+        {
+          "name": "I2S2_WS",
+          "alternate_functions": []
+        },
+        {
+          "name": "I2S3_SDI",
+          "alternate_functions": []
+        },
+        {
+          "name": "SDMMC2_D3",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI1_MISO",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI2_NSS",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI3_MISO",
+          "alternate_functions": []
+        },
+        {
+          "name": "SPI6_MISO",
+          "alternate_functions": []
+        },
+        {
+          "name": "TIM16_BKIN",
+          "alternate_functions": []
+        },
+        {
+          "name": "TIM3_CH1",
+          "alternate_functions": []
+        },
+        {
+          "name": "UART7_TX",
+          "alternate_functions": []
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 91,
+      "package_name": "PB5",
+      "gpio": "PB5",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D10",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "ETH_PPS_OUT",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "FDCAN2_RX",
+          "alternate_functions": [
+            "GPIO_AF9_FDCAN2"
+          ]
+        },
+        {
+          "name": "FMC_SDCKE1",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "HRTIM_EEV7",
+          "alternate_functions": [
+            "GPIO_AF3_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2C1_SMBA",
+          "alternate_functions": [
+            "GPIO_AF4_I2C1"
+          ]
+        },
+        {
+          "name": "I2C4_SMBA",
+          "alternate_functions": [
+            "GPIO_AF6_I2C4"
+          ]
+        },
+        {
+          "name": "I2S1_SDO",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "I2S3_SDO",
+          "alternate_functions": [
+            "GPIO_AF7_SPI3"
+          ]
+        },
+        {
+          "name": "SPI1_MOSI",
+          "alternate_functions": [
+            "GPIO_AF5_SPI1"
+          ]
+        },
+        {
+          "name": "SPI3_MOSI",
+          "alternate_functions": [
+            "GPIO_AF7_SPI3"
+          ]
+        },
+        {
+          "name": "SPI6_MOSI",
+          "alternate_functions": [
+            "GPIO_AF8_SPI6"
+          ]
+        },
+        {
+          "name": "TIM17_BKIN",
+          "alternate_functions": [
+            "GPIO_AF1_TIM17"
+          ]
+        },
+        {
+          "name": "TIM3_CH2",
+          "alternate_functions": [
+            "GPIO_AF2_TIM3"
+          ]
+        },
+        {
+          "name": "UART5_RX",
+          "alternate_functions": [
+            "GPIO_AF14_UART5"
+          ]
+        },
+        {
+          "name": "USB_OTG_HS_ULPI_D7",
+          "alternate_functions": [
+            "GPIO_AF10_OTG2_HS"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 92,
+      "package_name": "PB6",
+      "gpio": "PB6",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "CEC",
+          "alternate_functions": [
+            "GPIO_AF5_CEC"
+          ]
+        },
+        {
+          "name": "DCMI_D5",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DFSDM1_DATIN5",
+          "alternate_functions": [
+            "GPIO_AF11_DFSDM1"
+          ]
+        },
+        {
+          "name": "FDCAN2_TX",
+          "alternate_functions": [
+            "GPIO_AF9_FDCAN2"
+          ]
+        },
+        {
+          "name": "FMC_SDNE1",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "HRTIM_EEV8",
+          "alternate_functions": [
+            "GPIO_AF3_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2C1_SCL",
+          "alternate_functions": [
+            "GPIO_AF4_I2C1"
+          ]
+        },
+        {
+          "name": "I2C4_SCL",
+          "alternate_functions": [
+            "GPIO_AF6_I2C4"
+          ]
+        },
+        {
+          "name": "LPUART1_TX",
+          "alternate_functions": [
+            "GPIO_AF8_LPUART"
+          ]
+        },
+        {
+          "name": "QUADSPI_BK1_NCS",
+          "alternate_functions": [
+            "GPIO_AF10_QUADSPI"
+          ]
+        },
+        {
+          "name": "TIM16_CH1N",
+          "alternate_functions": [
+            "GPIO_AF1_TIM16"
+          ]
+        },
+        {
+          "name": "TIM4_CH1",
+          "alternate_functions": [
+            "GPIO_AF2_TIM4"
+          ]
+        },
+        {
+          "name": "UART5_TX",
+          "alternate_functions": [
+            "GPIO_AF14_UART5"
+          ]
+        },
+        {
+          "name": "USART1_TX",
+          "alternate_functions": [
+            "GPIO_AF7_USART1"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 93,
+      "package_name": "PB7",
+      "gpio": "PB7",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_VSYNC",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DFSDM1_CKIN5",
+          "alternate_functions": [
+            "GPIO_AF11_DFSDM1"
+          ]
+        },
+        {
+          "name": "FMC_NL",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "HRTIM_EEV9",
+          "alternate_functions": [
+            "GPIO_AF3_HRTIM1"
+          ]
+        },
+        {
+          "name": "I2C1_SDA",
+          "alternate_functions": [
+            "GPIO_AF4_I2C1"
+          ]
+        },
+        {
+          "name": "I2C4_SDA",
+          "alternate_functions": [
+            "GPIO_AF6_I2C4"
+          ]
+        },
+        {
+          "name": "LPUART1_RX",
+          "alternate_functions": [
+            "GPIO_AF8_LPUART"
+          ]
+        },
+        {
+          "name": "PWR_PVD_IN",
+          "alternate_functions": []
+        },
+        {
+          "name": "TIM17_CH1N",
+          "alternate_functions": [
+            "GPIO_AF1_TIM17"
+          ]
+        },
+        {
+          "name": "TIM4_CH2",
+          "alternate_functions": [
+            "GPIO_AF2_TIM4"
+          ]
+        },
+        {
+          "name": "USART1_RX",
+          "alternate_functions": [
+            "GPIO_AF7_USART1"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 94,
+      "package_name": "BOOT0",
+      "gpio": null,
+      "type": "Boot",
+      "functions": []
+    },
+    {
+      "package_pin": 95,
+      "package_name": "PB8",
+      "gpio": "PB8",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D6",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DFSDM1_CKIN7",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "ETH_TXD3",
+          "alternate_functions": [
+            "GPIO_AF11_ETH"
+          ]
+        },
+        {
+          "name": "FDCAN1_RX",
+          "alternate_functions": [
+            "GPIO_AF9_FDCAN1"
+          ]
+        },
+        {
+          "name": "I2C1_SCL",
+          "alternate_functions": [
+            "GPIO_AF4_I2C1"
+          ]
+        },
+        {
+          "name": "I2C4_SCL",
+          "alternate_functions": [
+            "GPIO_AF6_I2C4"
+          ]
+        },
+        {
+          "name": "LTDC_B6",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SDMMC1_CKIN",
+          "alternate_functions": [
+            "GPIO_AF7_SDIO1"
+          ]
+        },
+        {
+          "name": "SDMMC1_D4",
+          "alternate_functions": [
+            "GPIO_AF12_SDIO1"
+          ]
+        },
+        {
+          "name": "SDMMC2_D4",
+          "alternate_functions": [
+            "GPIO_AF10_SDIO2"
+          ]
+        },
+        {
+          "name": "TIM16_CH1",
+          "alternate_functions": [
+            "GPIO_AF1_TIM16"
+          ]
+        },
+        {
+          "name": "TIM4_CH3",
+          "alternate_functions": [
+            "GPIO_AF2_TIM4"
+          ]
+        },
+        {
+          "name": "UART4_RX",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 96,
+      "package_name": "PB9",
+      "gpio": "PB9",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DAC1_EXTI9",
+          "alternate_functions": []
+        },
+        {
+          "name": "DCMI_D7",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "DFSDM1_DATIN7",
+          "alternate_functions": [
+            "GPIO_AF3_DFSDM1"
+          ]
+        },
+        {
+          "name": "FDCAN1_TX",
+          "alternate_functions": [
+            "GPIO_AF9_FDCAN1"
+          ]
+        },
+        {
+          "name": "I2C1_SDA",
+          "alternate_functions": [
+            "GPIO_AF4_I2C1"
+          ]
+        },
+        {
+          "name": "I2C4_SDA",
+          "alternate_functions": [
+            "GPIO_AF6_I2C4"
+          ]
+        },
+        {
+          "name": "I2C4_SMBA",
+          "alternate_functions": [
+            "GPIO_AF11_I2C4"
+          ]
+        },
+        {
+          "name": "I2S2_WS",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "LTDC_B7",
+          "alternate_functions": [
+            "GPIO_AF14_LTDC"
+          ]
+        },
+        {
+          "name": "SDMMC1_CDIR",
+          "alternate_functions": [
+            "GPIO_AF7_SDIO1"
+          ]
+        },
+        {
+          "name": "SDMMC1_D5",
+          "alternate_functions": [
+            "GPIO_AF12_SDIO1"
+          ]
+        },
+        {
+          "name": "SDMMC2_D5",
+          "alternate_functions": [
+            "GPIO_AF10_SDIO2"
+          ]
+        },
+        {
+          "name": "SPI2_NSS",
+          "alternate_functions": [
+            "GPIO_AF5_SPI2"
+          ]
+        },
+        {
+          "name": "TIM17_CH1",
+          "alternate_functions": [
+            "GPIO_AF1_TIM17"
+          ]
+        },
+        {
+          "name": "TIM4_CH4",
+          "alternate_functions": [
+            "GPIO_AF2_TIM4"
+          ]
+        },
+        {
+          "name": "UART4_TX",
+          "alternate_functions": [
+            "GPIO_AF8_UART4"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 97,
+      "package_name": "PE0",
+      "gpio": "PE0",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D2",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "FMC_NBL0",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "HRTIM_SCIN",
+          "alternate_functions": [
+            "GPIO_AF3_HRTIM1"
+          ]
+        },
+        {
+          "name": "LPTIM1_ETR",
+          "alternate_functions": [
+            "GPIO_AF1_LPTIM1"
+          ]
+        },
+        {
+          "name": "LPTIM2_ETR",
+          "alternate_functions": [
+            "GPIO_AF4_LPTIM2"
+          ]
+        },
+        {
+          "name": "SAI2_MCLK_A",
+          "alternate_functions": [
+            "GPIO_AF10_SAI2"
+          ]
+        },
+        {
+          "name": "TIM4_ETR",
+          "alternate_functions": [
+            "GPIO_AF2_TIM4"
+          ]
+        },
+        {
+          "name": "UART8_RX",
+          "alternate_functions": [
+            "GPIO_AF8_UART8"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 98,
+      "package_name": "PE1",
+      "gpio": "PE1",
+      "type": "I/O",
+      "functions": [
+        {
+          "name": "DCMI_D3",
+          "alternate_functions": [
+            "GPIO_AF13_DCMI"
+          ]
+        },
+        {
+          "name": "FMC_NBL1",
+          "alternate_functions": [
+            "GPIO_AF12_FMC"
+          ]
+        },
+        {
+          "name": "HRTIM_SCOUT",
+          "alternate_functions": [
+            "GPIO_AF3_HRTIM1"
+          ]
+        },
+        {
+          "name": "LPTIM1_IN2",
+          "alternate_functions": [
+            "GPIO_AF1_LPTIM1"
+          ]
+        },
+        {
+          "name": "UART8_TX",
+          "alternate_functions": [
+            "GPIO_AF8_UART8"
+          ]
+        },
+        {
+          "name": "GPIO",
+          "alternate_functions": [],
+          "attributes": {
+            "IOModes": "Input,Output,Analog,EVENTOUT,EXTI"
+          }
+        }
+      ]
+    },
+    {
+      "package_pin": 99,
+      "package_name": "VSS",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    },
+    {
+      "package_pin": 100,
+      "package_name": "VDD",
+      "gpio": null,
+      "type": "Power",
+      "functions": []
+    }
+  ],
+  "selected_firmware_package": "STM32Cube FW_H7 V1.13.0",
+  "firmware_package_use": "Metadata default selected by CubeMX. No firmware package was installed or code generated for these references.",
+  "documentation": [
+    {
+      "id": "st-ds12110",
+      "title": "ST DS12110 Rev 11, January 2026; section 4 pinout/description/alternate functions, LQFP100 column",
+      "url": "https://www.st.com/resource/en/datasheet/stm32h743vi.pdf"
+    },
+    {
+      "id": "st-rm0433",
+      "title": "ST RM0433, GPIO/SYSCFG analog switches, RCC, DAC, TIM, USART and USB chapters",
+      "url": "https://www.st.com/resource/en/reference_manual/dm00314099-stm32h742-stm32h743-753-and-stm32h750-value-line-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf"
+    }
+  ]
+}

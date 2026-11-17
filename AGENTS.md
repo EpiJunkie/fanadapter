@@ -77,6 +77,19 @@ tuh_task() → tud_task() → console_cli_poll() → usb_input_task(now)
 - `protocol.{c,h}` + `json_min.{c,h}` — line-based JSON dispatcher and telemetry over USB CDC / USART1. Inputs emit on change up to ~30 Hz; outputs stream ~30 Hz. `FW_VER` in `firmware_info.h` supplies protocol, USB labels, boot banner and the release manifest.
 - `usb_descriptors.c` — native CDC identity VID 1209 / PID FA00. `main.c` owns clocks, hardware init, console TX policies and CLI (`dfu`, `reboot`, `?`).
 
+### STM32 / WeAct pin audit
+
+`firmware-stm32/pin-audit/*.json` separates STM32H743VIT6 capabilities, WeAct V1.2
+physical wiring and the source-pinned `breadboard-v1` firmware profile. Generate
+`firmware-stm32/PIN-AUDIT.md` with `python3 firmware-stm32/pin-audit/generate.py`;
+`--check` validates references, contact coverage, source hashes and regeneration.
+Do not hand-edit the generated table or infer that an unconfigured pin is unwired.
+The two `firmware-stm32/cubemx/` references document MCU/board evidence, not a firmware
+build. Pin reassignments require reviewing/updating this audit with implementation
+and wiring docs. PC8 shares microSD D0; diagnostic PD13 shares QSPI IO3, and camera
+nets overlap several current outputs. These are drawing/source findings, not bench
+proof of malfunction; V0 routing remains pending.
+
 ### Channel model
 
 There are **15 binding channel keys**: the following 14 active outputs, plus `gear_N` (neutral): 8 gears (`gear_R`, `gear_1`..`gear_7`), 2 sequential (`shift_up`, `shift_down`), `handbrake`, `throttle`, `brake`, `clutch`. Each carries up to `MAX_BINDINGS_PER_CHANNEL = 4` `InputBinding` slots. Buttons OR together across slots; axes MAX together. Cross-type aware: an axis can drive a button channel (post-scale threshold), a button can drive an axis channel (emits 0 / 65535). Empty slots have `type: INPUT_NONE`.

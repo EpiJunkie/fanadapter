@@ -1,0 +1,4125 @@
+{
+  "vendor_revision": "ff1e3d67589293ed734df6b17e751b4668077f90",
+  "sources": {
+    "weact-schematic-v1.2": {
+      "url": "https://github.com/WeActStudio/MiniSTM32H7xx/blob/ff1e3d67589293ed734df6b17e751b4668077f90/Hardware/STM32H7xx%20SchDoc%20V12.pdf",
+      "revision": "V1.2",
+      "date": "2023-07-18",
+      "pages": 6,
+      "sha256": "cd0c19625e3d9e56b59368affb5ba8d89aeb5ab63c5320e6220500fc0b6502f2"
+    },
+    "weact-board-v1.2": {
+      "url": "https://github.com/WeActStudio/MiniSTM32H7xx/blob/ff1e3d67589293ed734df6b17e751b4668077f90/Hardware/STM32H7xx_BoardShape%20Board%20Shape%20%E5%A4%96%E5%BD%A2%20V12.pdf",
+      "revision": "V1.2",
+      "pages": 3,
+      "sha256": "222eb3b6b193e9a1deb30acb06c254adc029a6bcf43aaa79a03d0db99fa6a7fb"
+    }
+  },
+  "headers": [
+    {
+      "id": "P1",
+      "pin_count": 44,
+      "layout": "22x2 through-hole",
+      "orientation": "Front/component view, USB-C at bottom: right header; pin1 at top outer/right; odd pins outer, even pins inner."
+    },
+    {
+      "id": "P2",
+      "pin_count": 44,
+      "layout": "22x2 through-hole",
+      "orientation": "Front/component view, USB-C at bottom: left header; pin1 at top inner/right; odd pins inner, even pins outer."
+    },
+    {
+      "id": "P3",
+      "pin_count": 4,
+      "layout": "1x4 through-hole SWD",
+      "orientation": "Front/component view, USB-C at bottom: top-right SWD header; pin1=3V3 at right, pin4=GND at left. Rear view is mirrored."
+    }
+  ],
+  "contacts": [
+    {
+      "header": "P1",
+      "pin": 1,
+      "silkscreen": "G",
+      "gpio": null,
+      "net": "GND",
+      "kind": "ground",
+      "mcu_package_pins": [
+        10,
+        19,
+        26,
+        49,
+        74,
+        99
+      ],
+      "onboard_connections": [
+        {
+          "net": "GND",
+          "target": "Board power/reset network",
+          "description": "Common GND: MCU VSS and VSSA, connector grounds and board power returns.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power / SYSTEM RST"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 2,
+      "silkscreen": "5V",
+      "gpio": null,
+      "net": "5V",
+      "kind": "power",
+      "mcu_package_pins": [],
+      "onboard_connections": [
+        {
+          "net": "5V",
+          "target": "Board power/reset network",
+          "description": "5V board rail; buck-regulator input. USB VBUS reaches it through Schottky D10; SB6 bypasses that diode when closed. Not a direct MCU power pin.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 2,
+              "block": "POWER"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 3,
+      "silkscreen": "E1",
+      "gpio": "PE1",
+      "net": "PE1",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        98
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 4,
+      "silkscreen": "E0",
+      "gpio": "PE0",
+      "net": "PE0",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        97
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 5,
+      "silkscreen": "B9",
+      "gpio": "PB9",
+      "net": "PB9",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        96
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 6,
+      "silkscreen": "B8",
+      "gpio": "PB8",
+      "net": "PB8",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        95
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 7,
+      "silkscreen": "B7",
+      "gpio": "PB7",
+      "net": "PB7",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        93
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 8,
+      "silkscreen": "B6",
+      "gpio": "PB6",
+      "net": "PB6",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        92
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 9,
+      "silkscreen": "B5",
+      "gpio": "PB5",
+      "net": "PB5",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        91
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 10,
+      "silkscreen": "B4",
+      "gpio": "PB4",
+      "net": "PB4",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        90
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 11,
+      "silkscreen": "B3",
+      "gpio": "PB3",
+      "net": "PB3",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        89
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 12,
+      "silkscreen": "D7",
+      "gpio": "PD7",
+      "net": "PD7",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        88
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 13,
+      "silkscreen": "D6",
+      "gpio": "PD6",
+      "net": "PD6",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        87
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 14,
+      "silkscreen": "D5",
+      "gpio": "PD5",
+      "net": "PD5",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        86
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 15,
+      "silkscreen": "D4",
+      "gpio": "PD4",
+      "net": "PD4",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        85
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 16,
+      "silkscreen": "D3",
+      "gpio": "PD3",
+      "net": "PD3",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        84
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 17,
+      "silkscreen": "D2",
+      "gpio": "PD2",
+      "net": "PD2",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        83
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 18,
+      "silkscreen": "D1",
+      "gpio": "PD1",
+      "net": "PD1",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        82
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 19,
+      "silkscreen": "D0",
+      "gpio": "PD0",
+      "net": "PD0",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        81
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 20,
+      "silkscreen": "C12",
+      "gpio": "PC12",
+      "net": "PC12",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        80
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 21,
+      "silkscreen": "C11",
+      "gpio": "PC11",
+      "net": "PC11",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        79
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 22,
+      "silkscreen": "C10",
+      "gpio": "PC10",
+      "net": "PC10",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        78
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 23,
+      "silkscreen": "A15",
+      "gpio": "PA15",
+      "net": "PA15",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        77
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 24,
+      "silkscreen": "A12",
+      "gpio": "PA12",
+      "net": "PA12",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        71
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 25,
+      "silkscreen": "A11",
+      "gpio": "PA11",
+      "net": "PA11",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        70
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 26,
+      "silkscreen": "A10",
+      "gpio": "PA10",
+      "net": "PA10",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        69
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 27,
+      "silkscreen": "A9",
+      "gpio": "PA9",
+      "net": "PA9",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        68
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 28,
+      "silkscreen": "A8",
+      "gpio": "PA8",
+      "net": "PA8",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        67
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 29,
+      "silkscreen": "C9",
+      "gpio": "PC9",
+      "net": "PC9",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        66
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 30,
+      "silkscreen": "C8",
+      "gpio": "PC8",
+      "net": "PC8",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        65
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 31,
+      "silkscreen": "C7",
+      "gpio": "PC7",
+      "net": "PC7",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        64
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 32,
+      "silkscreen": "C6",
+      "gpio": "PC6",
+      "net": "PC6",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        63
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 33,
+      "silkscreen": "D15",
+      "gpio": "PD15",
+      "net": "PD15",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        62
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 34,
+      "silkscreen": "D14",
+      "gpio": "PD14",
+      "net": "PD14",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        61
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 35,
+      "silkscreen": "D13",
+      "gpio": "PD13",
+      "net": "PD13",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        60
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 36,
+      "silkscreen": "D12",
+      "gpio": "PD12",
+      "net": "PD12",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        59
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 37,
+      "silkscreen": "D11",
+      "gpio": "PD11",
+      "net": "PD11",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        58
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 38,
+      "silkscreen": "D10",
+      "gpio": "PD10",
+      "net": "PD10",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        57
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 39,
+      "silkscreen": "D9",
+      "gpio": "PD9",
+      "net": "PD9",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        56
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 40,
+      "silkscreen": "D8",
+      "gpio": "PD8",
+      "net": "PD8",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        55
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 41,
+      "silkscreen": "B15",
+      "gpio": "PB15",
+      "net": "PB15",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        54
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 42,
+      "silkscreen": "B14",
+      "gpio": "PB14",
+      "net": "PB14",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        53
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 43,
+      "silkscreen": "B13",
+      "gpio": "PB13",
+      "net": "PB13",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        52
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P1",
+      "pin": 44,
+      "silkscreen": "B12",
+      "gpio": "PB12",
+      "net": "PB12",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        51
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P1"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P1 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P1"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 1,
+      "silkscreen": "G",
+      "gpio": null,
+      "net": "GND",
+      "kind": "ground",
+      "mcu_package_pins": [
+        10,
+        19,
+        26,
+        49,
+        74,
+        99
+      ],
+      "onboard_connections": [
+        {
+          "net": "GND",
+          "target": "Board power/reset network",
+          "description": "Common GND: MCU VSS and VSSA, connector grounds and board power returns.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power / SYSTEM RST"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 2,
+      "silkscreen": "3V3",
+      "gpio": null,
+      "net": "3V3",
+      "kind": "power",
+      "mcu_package_pins": [
+        11,
+        27,
+        50,
+        75,
+        100
+      ],
+      "onboard_connections": [
+        {
+          "net": "3V3",
+          "target": "Board power/reset network",
+          "description": "Regulated 3V3 / VDD-MCU rail to MCU VDD; analog supply via FB1; VBAT diode-OR via D4.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power / SYSTEM RST"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 3,
+      "silkscreen": "E2",
+      "gpio": "PE2",
+      "net": "PE2",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        1
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 4,
+      "silkscreen": "E3",
+      "gpio": "PE3",
+      "net": "PE3",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        2
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 5,
+      "silkscreen": "E4",
+      "gpio": "PE4",
+      "net": "PE4",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        3
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 6,
+      "silkscreen": "E5",
+      "gpio": "PE5",
+      "net": "PE5",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        4
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 7,
+      "silkscreen": "E6",
+      "gpio": "PE6",
+      "net": "PE6",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        5
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 8,
+      "silkscreen": "VB",
+      "gpio": null,
+      "net": "VBAT_Pin",
+      "kind": "power",
+      "mcu_package_pins": [
+        6
+      ],
+      "onboard_connections": [
+        {
+          "net": "VBAT_Pin",
+          "target": "Board power/reset network",
+          "description": "External battery contact feeds MCU VBAT through D4 BAT54C diode OR; VDD-MCU is the other source. Not a direct wire to package pin6.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power / SYSTEM RST"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 9,
+      "silkscreen": "C13",
+      "gpio": "PC13",
+      "net": "PC13",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        7
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 10,
+      "silkscreen": "NR",
+      "gpio": null,
+      "net": "NRST",
+      "kind": "reset",
+      "mcu_package_pins": [
+        14
+      ],
+      "onboard_connections": [
+        {
+          "net": "NRST",
+          "target": "Board power/reset network",
+          "description": "MCU NRST; reset button SW3 and C4. U9 MAX809 reset via R4; SYS_RESET via R1 330 ohm feeds camera and TFT reset.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power / SYSTEM RST"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 11,
+      "silkscreen": "C0",
+      "gpio": "PC0",
+      "net": "PC0",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        15
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 12,
+      "silkscreen": "C1",
+      "gpio": "PC1",
+      "net": "PC1",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        16
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 13,
+      "silkscreen": "C2",
+      "gpio": "PC2",
+      "net": "PC2",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        17
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ],
+      "package_pin_name": "PC2_C",
+      "notes": "WeAct net and silk omit _C; package17/18 are PC2_C/PC3_C. Preserve analog-switch distinction in capabilities."
+    },
+    {
+      "header": "P2",
+      "pin": 14,
+      "silkscreen": "C3",
+      "gpio": "PC3",
+      "net": "PC3",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        18
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ],
+      "package_pin_name": "PC3_C",
+      "notes": "WeAct net and silk omit _C; package17/18 are PC2_C/PC3_C. Preserve analog-switch distinction in capabilities."
+    },
+    {
+      "header": "P2",
+      "pin": 15,
+      "silkscreen": "GND",
+      "gpio": null,
+      "net": "GND",
+      "kind": "ground",
+      "mcu_package_pins": [
+        10,
+        19,
+        26,
+        49,
+        74,
+        99
+      ],
+      "onboard_connections": [
+        {
+          "net": "GND",
+          "target": "Board power/reset network",
+          "description": "Common GND: MCU VSS and VSSA, connector grounds and board power returns.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power / SYSTEM RST"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 16,
+      "silkscreen": "V+",
+      "gpio": null,
+      "net": "VREF+",
+      "kind": "analog_reference",
+      "mcu_package_pins": [
+        20
+      ],
+      "onboard_connections": [
+        {
+          "net": "VREF+",
+          "target": "Board power/reset network",
+          "description": "MCU VREF+; R9 0 ohm links it to the filtered VDDA rail (FB1 from VDD-MCU). Rear legend describes VREF+ -> 3V3. Actual R9 population unverified.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power / SYSTEM RST"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 17,
+      "silkscreen": "A0",
+      "gpio": "PA0",
+      "net": "PA0",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        22
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 18,
+      "silkscreen": "A1",
+      "gpio": "PA1",
+      "net": "PA1",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        23
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 19,
+      "silkscreen": "A2",
+      "gpio": "PA2",
+      "net": "PA2",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        24
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 20,
+      "silkscreen": "A3",
+      "gpio": "PA3",
+      "net": "PA3",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        25
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 21,
+      "silkscreen": "A4",
+      "gpio": "PA4",
+      "net": "PA4",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        28
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 22,
+      "silkscreen": "A5",
+      "gpio": "PA5",
+      "net": "PA5",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        29
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 23,
+      "silkscreen": "A6",
+      "gpio": "PA6",
+      "net": "PA6",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        30
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 24,
+      "silkscreen": "A7",
+      "gpio": "PA7",
+      "net": "PA7",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        31
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 25,
+      "silkscreen": "C4",
+      "gpio": "PC4",
+      "net": "PC4",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        32
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 26,
+      "silkscreen": "C5",
+      "gpio": "PC5",
+      "net": "PC5",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        33
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 27,
+      "silkscreen": "B0",
+      "gpio": "PB0",
+      "net": "PB0",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        34
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 28,
+      "silkscreen": "B1",
+      "gpio": "PB1",
+      "net": "PB1",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        35
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 29,
+      "silkscreen": "B2",
+      "gpio": "PB2",
+      "net": "PB2",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        36
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 30,
+      "silkscreen": "E7",
+      "gpio": "PE7",
+      "net": "PE7",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        37
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 31,
+      "silkscreen": "E8",
+      "gpio": "PE8",
+      "net": "PE8",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        38
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 32,
+      "silkscreen": "E9",
+      "gpio": "PE9",
+      "net": "PE9",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        39
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 33,
+      "silkscreen": "E10",
+      "gpio": "PE10",
+      "net": "PE10",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        40
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 34,
+      "silkscreen": "E11",
+      "gpio": "PE11",
+      "net": "PE11",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        41
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 35,
+      "silkscreen": "E12",
+      "gpio": "PE12",
+      "net": "PE12",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        42
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 36,
+      "silkscreen": "E13",
+      "gpio": "PE13",
+      "net": "PE13",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        43
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 37,
+      "silkscreen": "E14",
+      "gpio": "PE14",
+      "net": "PE14",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        44
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 38,
+      "silkscreen": "E15",
+      "gpio": "PE15",
+      "net": "PE15",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        45
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 39,
+      "silkscreen": "B10",
+      "gpio": "PB10",
+      "net": "PB10",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        46
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 40,
+      "silkscreen": "B11",
+      "gpio": "PB11",
+      "net": "PB11",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        47
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 41,
+      "silkscreen": "3V3",
+      "gpio": null,
+      "net": "3V3",
+      "kind": "power",
+      "mcu_package_pins": [
+        11,
+        27,
+        50,
+        75,
+        100
+      ],
+      "onboard_connections": [
+        {
+          "net": "3V3",
+          "target": "Board power/reset network",
+          "description": "Regulated 3V3 / VDD-MCU rail to MCU VDD; analog supply via FB1; VBAT diode-OR via D4.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power / SYSTEM RST"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 42,
+      "silkscreen": "5V",
+      "gpio": null,
+      "net": "5V",
+      "kind": "power",
+      "mcu_package_pins": [],
+      "onboard_connections": [
+        {
+          "net": "5V",
+          "target": "Board power/reset network",
+          "description": "5V board rail; buck-regulator input. USB VBUS reaches it through Schottky D10; SB6 bypasses that diode when closed. Not a direct MCU power pin.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 2,
+              "block": "POWER"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 43,
+      "silkscreen": "GND",
+      "gpio": null,
+      "net": "GND",
+      "kind": "ground",
+      "mcu_package_pins": [
+        10,
+        19,
+        26,
+        49,
+        74,
+        99
+      ],
+      "onboard_connections": [
+        {
+          "net": "GND",
+          "target": "Board power/reset network",
+          "description": "Common GND: MCU VSS and VSSA, connector grounds and board power returns.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power / SYSTEM RST"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P2",
+      "pin": 44,
+      "silkscreen": "GND",
+      "gpio": null,
+      "net": "GND",
+      "kind": "ground",
+      "mcu_package_pins": [
+        10,
+        19,
+        26,
+        49,
+        74,
+        99
+      ],
+      "onboard_connections": [
+        {
+          "net": "GND",
+          "target": "Board power/reset network",
+          "description": "Common GND: MCU VSS and VSSA, connector grounds and board power returns.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power / SYSTEM RST"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN / P2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P2 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / P2"
+        }
+      ]
+    },
+    {
+      "header": "P3",
+      "pin": 1,
+      "silkscreen": "3.3V",
+      "gpio": null,
+      "net": "3V3",
+      "kind": "power",
+      "mcu_package_pins": [
+        11,
+        27,
+        50,
+        75,
+        100
+      ],
+      "onboard_connections": [
+        {
+          "net": "3V3",
+          "target": "Board power network",
+          "description": "Regulated 3V3 / VDD-MCU rail to MCU VDD; analog supply via FB1; VBAT diode-OR via D4.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "SW Debug / P3"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P3 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / SWD"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "header": "P3",
+      "pin": 2,
+      "silkscreen": "SWDIO",
+      "gpio": "PA13",
+      "net": "SWDIO",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        72
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "SW Debug / P3"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P3 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / SWD"
+        }
+      ],
+      "notes": "Front silkscreen uses DIO/CLK abbreviations; rear labels are shown here. SWD GPIO mapping passes through 22 ohm series resistors."
+    },
+    {
+      "header": "P3",
+      "pin": 3,
+      "silkscreen": "SWCLK",
+      "gpio": "PA14",
+      "net": "SWCLK",
+      "kind": "gpio",
+      "mcu_package_pins": [
+        76
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "SW Debug / P3"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P3 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / SWD"
+        }
+      ],
+      "notes": "Front silkscreen uses DIO/CLK abbreviations; rear labels are shown here. SWD GPIO mapping passes through 22 ohm series resistors."
+    },
+    {
+      "header": "P3",
+      "pin": 4,
+      "silkscreen": "GND",
+      "gpio": null,
+      "net": "GND",
+      "kind": "ground",
+      "mcu_package_pins": [
+        10,
+        19,
+        26,
+        49,
+        74,
+        99
+      ],
+      "onboard_connections": [
+        {
+          "net": "GND",
+          "target": "Board power network",
+          "description": "Common GND: MCU VSS and VSSA, connector grounds and board power returns.",
+          "condition": "As drawn; fitted assembly not checked",
+          "sources": [
+            {
+              "source": "weact-schematic-v1.2",
+              "page": 1,
+              "block": "STM32 Power"
+            }
+          ]
+        }
+      ],
+      "evidence_level": "schematic_and_board_drawing",
+      "bench_confirmation": "not_checked",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "SW Debug / P3"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "P3 numbered pad identifiers"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear silkscreen / SWD"
+        }
+      ],
+      "notes": ""
+    }
+  ],
+  "gpio_onboard_connections": {
+    "PC6": [
+      {
+        "net": "DVP_D0",
+        "target": "J2 camera FPC pin 19",
+        "description": "Camera D0; DCMI path",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / J2"
+          }
+        ]
+      }
+    ],
+    "PC7": [
+      {
+        "net": "DVP_D1",
+        "target": "J2 camera FPC pin 21",
+        "description": "Camera D1; DCMI path",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / J2"
+          }
+        ]
+      }
+    ],
+    "PE0": [
+      {
+        "net": "DVP_D2",
+        "target": "J2 camera FPC pin 22",
+        "description": "Camera D2; DCMI path",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / J2"
+          }
+        ]
+      }
+    ],
+    "PE1": [
+      {
+        "net": "DVP_D3",
+        "target": "J2 camera FPC pin 20",
+        "description": "Camera D3; DCMI path",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / J2"
+          }
+        ]
+      }
+    ],
+    "PE4": [
+      {
+        "net": "DVP_D4",
+        "target": "J2 camera FPC pin 18",
+        "description": "Camera D4; DCMI path",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / J2"
+          }
+        ]
+      }
+    ],
+    "PD3": [
+      {
+        "net": "DVP_D5",
+        "target": "J2 camera FPC pin 16",
+        "description": "Camera D5; DCMI path",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / J2"
+          }
+        ]
+      }
+    ],
+    "PE5": [
+      {
+        "net": "DVP_D6",
+        "target": "J2 camera FPC pin 14",
+        "description": "Camera D6; DCMI path",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / J2"
+          }
+        ]
+      }
+    ],
+    "PE6": [
+      {
+        "net": "DVP_D7",
+        "target": "J2 camera FPC pin 12",
+        "description": "Camera D7; DCMI path",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / J2"
+          }
+        ]
+      }
+    ],
+    "PB7": [
+      {
+        "net": "DVP_VSYNC",
+        "target": "J2 camera FPC pin 7",
+        "description": "Camera VSYNC; DCMI path",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / J2"
+          }
+        ]
+      }
+    ],
+    "PA4": [
+      {
+        "net": "DVP_HSYNC",
+        "target": "J2 camera FPC pin 9",
+        "description": "Camera HSYNC; DCMI path",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / J2"
+          }
+        ]
+      }
+    ],
+    "PA6": [
+      {
+        "net": "DVP_PCLK",
+        "target": "J2 camera FPC pin 17",
+        "description": "Camera PCLK; DCMI path",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / J2"
+          }
+        ]
+      }
+    ],
+    "PA8": [
+      {
+        "net": "DVP_XCLK",
+        "target": "J2 camera FPC pin 13 via R15 (33 ohm)",
+        "description": "Camera clock from RCC_MCO_1; series R15",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI"
+          }
+        ]
+      }
+    ],
+    "PB8": [
+      {
+        "net": "DVP_SCL",
+        "target": "J2 camera FPC pin 5; R17 (4.7 kohm) to 3V3",
+        "description": "Camera I2C1 SCL; onboard pull-up",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI"
+          }
+        ]
+      }
+    ],
+    "PB9": [
+      {
+        "net": "DVP_SDA",
+        "target": "J2 camera FPC pin 3; R16 (4.7 kohm) to 3V3",
+        "description": "Camera I2C1 SDA; onboard pull-up",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI"
+          }
+        ]
+      }
+    ],
+    "PA7": [
+      {
+        "net": "DVP_PWDN",
+        "target": "J2 camera FPC pin 8 via SB1; R18 (10 kohm) to GND",
+        "description": "Optional camera power-down connection",
+        "condition": "Connected to PA7 when SB1 is closed; actual bridge state unverified",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 3,
+            "block": "DCMI / SB1 on page 1"
+          }
+        ]
+      }
+    ],
+    "PC8": [
+      {
+        "net": "MicroSD_D0",
+        "target": "U6 microSD pin 7 via R26 (22 ohm)",
+        "description": "SDMMC1 D0; series termination and ESD network; socket side has a 47 kohm pull-up to 3V3",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 4,
+            "block": "MicroSD"
+          }
+        ]
+      }
+    ],
+    "PC9": [
+      {
+        "net": "MicroSD_D1",
+        "target": "U6 microSD pin 8 via R27 (22 ohm)",
+        "description": "SDMMC1 D1; series termination and ESD network; socket side has a 47 kohm pull-up to 3V3",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 4,
+            "block": "MicroSD"
+          }
+        ]
+      }
+    ],
+    "PC10": [
+      {
+        "net": "MicroSD_D2",
+        "target": "U6 microSD pin 1 via R22 (22 ohm)",
+        "description": "SDMMC1 D2; series termination and ESD network; socket side has a 47 kohm pull-up to 3V3",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 4,
+            "block": "MicroSD"
+          }
+        ]
+      }
+    ],
+    "PC11": [
+      {
+        "net": "MicroSD_D3",
+        "target": "U6 microSD pin 2 via R23 (22 ohm)",
+        "description": "SDMMC1 D3; series termination and ESD network; socket side has a 47 kohm pull-up to 3V3",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 4,
+            "block": "MicroSD"
+          }
+        ]
+      }
+    ],
+    "PC12": [
+      {
+        "net": "MicroSD_CK",
+        "target": "U6 microSD pin 5 via R25 (22 ohm)",
+        "description": "SDMMC1 CK; series termination and ESD network",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 4,
+            "block": "MicroSD"
+          }
+        ]
+      }
+    ],
+    "PD2": [
+      {
+        "net": "MicroSD_CMD",
+        "target": "U6 microSD pin 3 via R24 (22 ohm)",
+        "description": "SDMMC1 CMD; series termination and ESD network; socket side has a 47 kohm pull-up to 3V3",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 4,
+            "block": "MicroSD"
+          }
+        ]
+      }
+    ],
+    "PD4": [
+      {
+        "net": "MicroSD_SW",
+        "target": "U6 card-detect switch via SB2",
+        "description": "Optional microSD insertion-switch connection",
+        "condition": "Connected to PD4 when SB2 is closed; actual bridge state unverified",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / MicroSD"
+          }
+        ]
+      }
+    ],
+    "PD13": [
+      {
+        "net": "QSPI_BK1_IO3",
+        "target": "U7 QSPI flash pin 7 via R30 (33 ohm)",
+        "description": "QSPI flash connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 5,
+            "block": "QSPI & SPI Flash / U7"
+          }
+        ]
+      }
+    ],
+    "PE2": [
+      {
+        "net": "QSPI_BK1_IO2",
+        "target": "U7 QSPI flash pin 3 via R31 (33 ohm)",
+        "description": "QSPI flash connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 5,
+            "block": "QSPI & SPI Flash / U7"
+          }
+        ]
+      }
+    ],
+    "PD12": [
+      {
+        "net": "QSPI_BK1_IO1",
+        "target": "U7 QSPI flash pin 2 via R32 (33 ohm)",
+        "description": "QSPI flash connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 5,
+            "block": "QSPI & SPI Flash / U7"
+          }
+        ]
+      }
+    ],
+    "PD11": [
+      {
+        "net": "QSPI_BK1_IO0",
+        "target": "U7 QSPI flash pin 5 via R33 (33 ohm)",
+        "description": "QSPI flash connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 5,
+            "block": "QSPI & SPI Flash / U7"
+          }
+        ]
+      }
+    ],
+    "PB2": [
+      {
+        "net": "QSPI_CLK",
+        "target": "U7 QSPI flash pin 6 via R34 (33 ohm)",
+        "description": "QSPI flash connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 5,
+            "block": "QSPI & SPI Flash / U7"
+          }
+        ]
+      }
+    ],
+    "PB6": [
+      {
+        "net": "QSPI_BK1_NCS",
+        "target": "U7 QSPI flash pin 1 via R35 (33 ohm)",
+        "description": "QSPI flash connection; R36 100 kohm pulls chip-select high",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 5,
+            "block": "QSPI & SPI Flash / U7"
+          }
+        ]
+      }
+    ],
+    "PB4": [
+      {
+        "net": "SPI_Flash_MISO",
+        "target": "U8 SPI flash pin 2",
+        "description": "SPI flash connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 5,
+            "block": "QSPI & SPI Flash / U8"
+          }
+        ]
+      }
+    ],
+    "PD7": [
+      {
+        "net": "SPI_Flash_MOSI",
+        "target": "U8 SPI flash pin 5",
+        "description": "SPI flash connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 5,
+            "block": "QSPI & SPI Flash / U8"
+          }
+        ]
+      }
+    ],
+    "PB3": [
+      {
+        "net": "SPI_Flash_CLK",
+        "target": "U8 SPI flash pin 6",
+        "description": "SPI flash connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 5,
+            "block": "QSPI & SPI Flash / U8"
+          }
+        ]
+      }
+    ],
+    "PD6": [
+      {
+        "net": "SPI_Flash_CS",
+        "target": "U8 SPI flash pin 1 via SB3; R40 100 kohm to 3V3",
+        "description": "Optional SPI flash chip-select",
+        "condition": "Connected to PD6 when SB3 is closed; actual bridge state unverified",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 5,
+            "block": "QSPI & SPI Flash / SB3 on page 1"
+          }
+        ]
+      }
+    ],
+    "PE14": [
+      {
+        "net": "LCD_SDA",
+        "target": "J3 TFT FPC pin 5",
+        "description": "TFT display connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 6,
+            "block": "TFT-LCD"
+          }
+        ]
+      }
+    ],
+    "PE13": [
+      {
+        "net": "LCD_WR_RS",
+        "target": "J3 TFT FPC pin 4",
+        "description": "TFT display connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 6,
+            "block": "TFT-LCD"
+          }
+        ]
+      }
+    ],
+    "PE12": [
+      {
+        "net": "LCD_SCL",
+        "target": "J3 TFT FPC pin 6",
+        "description": "TFT display connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 6,
+            "block": "TFT-LCD"
+          }
+        ]
+      }
+    ],
+    "PE11": [
+      {
+        "net": "LCD_CS",
+        "target": "J3 TFT FPC pin 8",
+        "description": "TFT display connection; R39 100 kohm pulls chip-select high",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 6,
+            "block": "TFT-LCD"
+          }
+        ]
+      }
+    ],
+    "PE10": [
+      {
+        "net": "LCD_LED",
+        "target": "FET1 gate; J3 pin 1 LEDA via FET1/R38",
+        "description": "Backlight power control (P-channel FET; R37 10 kohm pull-up); not a direct LEDA GPIO connection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 6,
+            "block": "TFT-LCD"
+          }
+        ]
+      }
+    ],
+    "PE3": [
+      {
+        "net": "PE3",
+        "target": "VT2 input / E3 blue user LED",
+        "description": "Active-high transistor-driven LED; R6 current-limiting resistor",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "KEY & LED"
+          }
+        ]
+      }
+    ],
+    "PC13": [
+      {
+        "net": "PC13",
+        "target": "SW2 K1 user button via R8 (330 ohm)",
+        "description": "SW2 connects to VDD-MCU when pressed; D2 ESD protection",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "KEY & LED"
+          }
+        ]
+      }
+    ],
+    "PA11": [
+      {
+        "net": "USB1_DN",
+        "target": "J1 USB-C A7/B7 (D-)",
+        "description": "Native USB-C D-; ESD D8",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 2,
+            "block": "POWER / USB-C"
+          }
+        ]
+      }
+    ],
+    "PA12": [
+      {
+        "net": "USB1_DP",
+        "target": "J1 USB-C A6/B6 (D+)",
+        "description": "Native USB-C D+; ESD D9",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "Peripherals / U1 pin-to-net mapping"
+          },
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 2,
+            "block": "POWER / USB-C"
+          }
+        ]
+      }
+    ],
+    "PA13": [
+      {
+        "net": "SWDIO",
+        "target": "P3 pin 2 via R2 (22 ohm)",
+        "description": "SWD data",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "SW Debug"
+          }
+        ]
+      }
+    ],
+    "PA14": [
+      {
+        "net": "SWCLK",
+        "target": "P3 pin 3 via R3 (22 ohm)",
+        "description": "SWD clock",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "SW Debug"
+          }
+        ]
+      }
+    ],
+    "PH0": [
+      {
+        "net": "PH0",
+        "target": "X1 25 MHz crystal / OSC_IN",
+        "description": "HSE oscillator with C2/C3 load capacitors; not on P1/P2",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "U1B / X1"
+          }
+        ]
+      }
+    ],
+    "PH1": [
+      {
+        "net": "PH1",
+        "target": "X1 25 MHz crystal / OSC_OUT",
+        "description": "HSE oscillator with C2/C3 load capacitors; not on P1/P2",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "U1B / X1"
+          }
+        ]
+      }
+    ],
+    "PC14": [
+      {
+        "net": "PC14",
+        "target": "X2 32.768 kHz crystal / OSC32_IN",
+        "description": "LSE oscillator with C5/C6 load capacitors; not on P1/P2",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "U1A / X2"
+          }
+        ]
+      }
+    ],
+    "PC15": [
+      {
+        "net": "PC15",
+        "target": "X2 32.768 kHz crystal / OSC32_OUT",
+        "description": "LSE oscillator with C5/C6 load capacitors; not on P1/P2",
+        "condition": "As drawn; fitted assembly not checked",
+        "sources": [
+          {
+            "source": "weact-schematic-v1.2",
+            "page": 1,
+            "block": "U1A / X2"
+          }
+        ]
+      }
+    ]
+  },
+  "non_header_contacts": [
+    {
+      "contact": "BOOT0 / SW1",
+      "kind": "boot_select",
+      "mcu_package_pins": [
+        94
+      ],
+      "description": "BOOT0 not on P1/P2/P3; R7 10 kohm to GND, SW1 asserts VDD-MCU, D1 ESD. Front button silk B0.",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "KEY & LED / U1B"
+        }
+      ]
+    },
+    {
+      "contact": "J2",
+      "kind": "24-contact camera FPC",
+      "description": "Onboard connector, not a GPIO expansion header; pin-multiplexed camera connections are recorded per GPIO. Contacts25/26 are mechanical pads."
+    },
+    {
+      "contact": "J3",
+      "kind": "8-contact TFT FPC",
+      "description": "Onboard connector, not a GPIO expansion header; LCD connections are recorded per GPIO/reset. Contacts9/10 are mechanical pads."
+    },
+    {
+      "contact": "J1",
+      "kind": "USB-C receptacle",
+      "description": "Onboard USB2_FS device connector; D-/D+ map to PA11/PA12; CC1/CC2 have 5.1 kohm Rd; VBUS diode/SB6 to5V."
+    },
+    {
+      "contact": "U6",
+      "kind": "microSD socket",
+      "description": "Onboard socket; SDMMC and detect connections are recorded per GPIO."
+    },
+    {
+      "contact": "Rear G/5V and G/3V3 markings near TFT",
+      "kind": "Unnumbered board markings",
+      "description": "Visible in rear drawing; not additional numbered headers in schematic or pad drawing. Do not assign new header IDs or infer probe continuity from these legends; physical pad/rail identification remains unverified.",
+      "sources": [
+        {
+          "source": "weact-board-v1.2",
+          "page": 3,
+          "block": "Rear power legends near TFT"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "Numbered header pads"
+        },
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "I/O PIN"
+        }
+      ]
+    },
+    {
+      "contact": "TP1",
+      "kind": "test_point",
+      "net": "OV_STROBE",
+      "gpio": null,
+      "description": "Camera strobe test point connected to J2 pin 1; no STM32 connection drawn. Not counted among the 92 numbered header contacts.",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 3,
+          "block": "DCMI / TP1 / J2"
+        },
+        {
+          "source": "weact-board-v1.2",
+          "page": 1,
+          "block": "PATP101 numbered pad identifier"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "All92 exposed pin-header contacts P1/P2/P3 are included once. FPC/USB/microSD mating contacts are identified as onboard connectors rather than additional pin headers.",
+    "Only the first module revision marking has been bench-confirmed. Per-contact continuity, bridge population and the second module revision remain unverified.",
+    "The board drawing contains front and mirrored rear views. Use numbered pads on page1 for pin identity, not unqualified left/right counting from page3.",
+    "Do not infer a malfunction from a shared net. Firmware-PC8/microSDD0 and diagnostic-PD13/QSPIIO3 are actual overlaps, with assembly/functional consequences untested.",
+    "Vendor net names USB1_DN/USB1_DP are schematic names: on STM32H743 PA11/PA12 serve USB2_OTG_FS, not the PB14/PB15 USB1 controller. Do not infer controller identity from the vendor net prefix.",
+    "U7 and U8 are drawn as separate W25Qxx devices, each default W25Q64 64Mbit/8MB. Actual flash population and capacity were not inspected."
+  ],
+  "solder_bridges": [
+    {
+      "id": "SB1",
+      "connection": "PA7 to DVP_PWDN / J2 pin8",
+      "state": "actual assembly unverified",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "Peripherals / DCMI"
+        }
+      ]
+    },
+    {
+      "id": "SB2",
+      "connection": "PD4 to MicroSD_SW",
+      "state": "actual assembly unverified",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "Peripherals / MicroSD"
+        }
+      ]
+    },
+    {
+      "id": "SB3",
+      "connection": "PD6 to SPI_Flash_CS / U8 pin1",
+      "state": "actual assembly unverified",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "Peripherals / SPIx"
+        }
+      ]
+    },
+    {
+      "id": "SB4",
+      "connection": "AF-2V8 to camera autofocus supply / J2 pin23",
+      "state": "actual assembly unverified",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 3,
+          "block": "DCMI / J2"
+        }
+      ]
+    },
+    {
+      "id": "SB5",
+      "connection": "GND to camera autofocus ground / J2 pin24",
+      "state": "actual assembly unverified",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 3,
+          "block": "DCMI / J2"
+        }
+      ]
+    },
+    {
+      "id": "SB6",
+      "connection": "USB VBUS to board5V; bypasses Schottky D10",
+      "state": "actual assembly unverified",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 2,
+          "block": "POWER / D10-SB6"
+        }
+      ]
+    },
+    {
+      "id": "R9",
+      "connection": "VREF+ to filtered VDDA / VDD-MCU supply; nominal0ohm",
+      "state": "actual assembly unverified",
+      "sources": [
+        {
+          "source": "weact-schematic-v1.2",
+          "page": 1,
+          "block": "STM32 Power / R9"
+        }
+      ]
+    }
+  ]
+}

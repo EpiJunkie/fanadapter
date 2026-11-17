@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "mcu_file": "mcu.json",
+  "board_file": "weact-v1.2.json",
+  "profile_file": "breadboard-v1.json",
+  "audit_date": "2026-11-17",
+  "scope": "STM32H743VIT6 LQFP100, WeAct V1.2 P1/P2/P3 headers, and every application-configured GPIO/oscillator at the pinned firmware baseline. MCU capabilities, board wiring and firmware assignments are separate datasets joined by GPIO.",
+  "v0_default": "Pending corrected V0 routing; no net assignment established by this audit.",
+  "v0_by_gpio": {
+    "PC8": "Pending V0 pin choice; current PWM shares microSD D0."
+  },
+  "bench_evidence": [
+    {
+      "observation": "First module revision 1.2 read under LCD immediately right of ribbon slot.",
+      "status": "owner-observed",
+      "date": "2026-11-17"
+    },
+    {
+      "observation": "Individual contact mappings and second module revision.",
+      "status": "not-bench-confirmed"
+    },
+    {
+      "observation": "F1 protection remains uncorrected on physical carrier and design.",
+      "status": "owner-confirmed",
+      "date": "2026-11-17"
+    },
+    {
+      "observation": "Dedicated handbrake testing has not occurred.",
+      "status": "owner-confirmed",
+      "date": "2026-11-17"
+    }
+  ],
+  "expected_headers": {
+    "P1": 44,
+    "P2": 44,
+    "P3": 4
+  }
+}

@@ -52,8 +52,13 @@ fastest confirmation.
 
 ## 2. Pin map
 
-Nothing here collides — the USB pins, output pins and console pins are all on separate
-peripherals.
+The current firmware assignments are summarized below. For physical header contacts,
+silkscreen labels, MCU capabilities and shared onboard wiring, see the
+[STM32H743VIT6 / WeAct V1.2 pin audit](PIN-AUDIT.md) and its
+[JSON maintenance and lookup commands](pin-audit/README.md).
+Distinct firmware functions can still share wiring with unused module peripherals:
+PC8 also reaches microSD D0, and several output/heartbeat pins reach camera or flash
+connections. The audit records these overlaps without claiming a measured malfunction.
 
 ### USB (the part that surprises people)
 
