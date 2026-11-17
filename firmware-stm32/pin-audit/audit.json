@@ -16,8 +16,19 @@
       "date": "2026-11-17"
     },
     {
-      "observation": "Individual contact mappings and second module revision.",
+      "observation": "Individual contact continuity and fitted component identification/values.",
       "status": "not-bench-confirmed"
+    },
+    {
+      "observation": "Owner identifies both modules as WeAct V1.2. The first module marking was directly read under the LCD; no independent revision check was performed by this audit.",
+      "status": "owner-reported",
+      "date": "2026-11-17"
+    },
+    {
+      "observation": "On both owner-identified V1.2 modules, SB3 alone appears bridged; SB1, SB2, SB4, SB5 and SB6 appear open. The fitted part type/value and electrical continuity remain pending bench work.",
+      "status": "owner-visual-observation",
+      "date": "2026-11-17",
+      "record": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#rear-silkscreen-dots-and-solder-bridge-observations"
     },
     {
       "observation": "F1 protection remains uncorrected on physical carrier and design.",
@@ -28,6 +39,10 @@
       "observation": "Dedicated handbrake testing has not occurred.",
       "status": "owner-confirmed",
       "date": "2026-11-17"
+    },
+    {
+      "observation": "NRST and connected TFT/camera reset pulses during reboot/dfu have not been measured on the owner boards.",
+      "status": "not-measured"
     }
   ],
   "expected_headers": {

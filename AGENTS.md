@@ -86,6 +86,10 @@ physical wiring and the source-pinned `breadboard-v1` firmware profile. Generate
 Checkout hashes normalize only CRLF to LF; inventory paths use forward slashes.
 CubeMX labels that name onboard nets must match the board JSON. The CLI also
 returns declared non-GPIO roles with evidence and no invented contacts.
+Header identities must match exactly before any `__` suffix. Git checkouts use
+tracked plus unignored files for the firmware inventory; archives without Git
+metadata keep a strict filesystem inventory. The pin guide explains both faces
+with USB-C at the bottom and the hidden PDF pad identifiers/offset rear legends.
 Do not hand-edit the generated table or infer that an unconfigured pin is unwired.
 The two `firmware-stm32/cubemx/` references document MCU/board evidence, not a firmware
 build. Pin reassignments require reviewing/updating this audit with implementation

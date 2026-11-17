@@ -34,7 +34,7 @@ class CheckoutPortabilityTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             shutil.copytree(generate.ROOT / 'firmware-stm32', root / 'firmware-stm32',
-                            ignore=shutil.ignore_patterns('.pio', '__pycache__'))
+                            ignore=shutil.ignore_patterns('.pio', '__pycache__', '.DS_Store', 'Thumbs.db'))
             script = root / 'firmware-stm32/pin-audit/generate.py'
             output = root / 'firmware-stm32/PIN-AUDIT.md'
             source = root / 'firmware-stm32/src/main.c'

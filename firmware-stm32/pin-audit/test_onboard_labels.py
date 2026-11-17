@@ -37,7 +37,8 @@ class OnboardLabelTests(unittest.TestCase):
             firmware.mkdir()
             for name in ('src', 'include', 'pin-audit', 'cubemx'):
                 shutil.copytree(generate.ROOT / 'firmware-stm32' / name,
-                                firmware / name, ignore=shutil.ignore_patterns('__pycache__'))
+                                firmware / name,
+                                ignore=shutil.ignore_patterns('__pycache__', '.DS_Store', 'Thumbs.db'))
             for name in ('platformio.ini', 'apply_tinyusb_patches.py', 'PIN-AUDIT.md'):
                 shutil.copy2(generate.ROOT / 'firmware-stm32' / name, firmware / name)
             audit = firmware / 'pin-audit'

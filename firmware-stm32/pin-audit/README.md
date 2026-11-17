@@ -31,20 +31,32 @@ internal analog switches matter when evaluating a new use.
 P1 and P2 each have 44 contacts; P3 has four SWD contacts. Camera/TFT FPC connectors,
 USB-C, microSD, buttons and other onboard connections are not additional numbered
 expansion headers. They remain explicit connection targets in the board JSON.
-Pin numbers follow the schematic and numbered mechanical drawing, with front/rear
-orientation stated in the generated table. Never infer odd/even columns from a
-mirrored rear view alone.
+The generated guide's [physical orientation](../PIN-AUDIT.md#physical-orientation)
+identifies each header, pin 1 and the odd/even columns from either face, always
+with USB-C at the bottom. Page 1 of the board PDF has hidden Altium pad identifiers,
+not visible printed numbers: use the PDF viewer's exact text search for `PAP101`
+(P1 pin 1), `PAP1030` (P1 pin 30), or `PAP301` (P3 pin 1). Square shape alone is
+ambiguous because P2 pin 44 and P3 pin 4 are also square pads.
+
+Keep the six offset rear labels: `G 5V` at P1 pins 1/2, `G 3V3` at P2 pins 1/2,
+and `B13 B12` at P1 pins 43/44, read left to right from the rear. Matching white
+dots connect each header row to its inboard legend. The JSON and generated guide
+cite the rear drawing for markings and the schematic for their electrical nets.
 
 The first module's **1.2** marking was observed by its owner under the LCD, right
-of the ribbon slot. This confirms that module's revision only. Individual contact
-continuity, bridge/component population and the second module's revision remain
-unverified. Dedicated handbrake testing has not occurred. The legacy carrier's F1
+of the ribbon slot. The owner identifies both modules as V1.2 and visually reports
+SB3 alone appearing bridged on both; SB1, SB2, SB4, SB5 and SB6 appear open.
+These observations are in `audit.json`. Individual contact/bridge continuity,
+fitted component identification and values remain pending bench work; visual
+appearance is not an electrical measurement. Dedicated handbrake testing has not
+occurred. The legacy carrier's F1
 protection is still uncorrected in hardware and design; this audit does not qualify
 a replacement or approve a powered test.
 
 ## Regenerate and verify
 
-Python 3 standard library only; run from the repository root:
+Python 3 standard library plus Git in a Git checkout; no Python packages to install.
+Run from the repository root:
 
 ```sh
 python3 firmware-stm32/pin-audit/generate.py
@@ -58,13 +70,16 @@ has been committed. `--check` validates the expected 92 unique contacts, all 100
 package positions, GPIO/package joins, board citations/pages, firmware role/source
 references, complete application source-file inventory/hashes, and exact Markdown
 agreement. It also checks CubeMX reference hashes, target identity, label counts,
-header identities, represented onboard nets and version agreement against the
+exact header identities, represented onboard nets and version agreement against the
 recorded reopen results. Tests deliberately remove/duplicate contacts, break
 references, drop a firmware role and corrupt source evidence to ensure those errors
 fail. A PD13 regression changes only its JSON net from `QSPI_BK1_IO3` to
 `QSPI_BK1_IO2` in a disposable copy, renders fresh Markdown, and checks that the
 unchanged CubeMX label still rejects it. Restoring IO3 passes. Net comparisons cover
 all 41 net-bearing annotations; LED/button/clock role labels are not net names.
+Header identity is the entire label before `__`: `P2_28_B10` cannot stand in for
+`P2_28_B1`. Tests refresh the deliberately changed `.ioc` hash before checking
+this mismatch; valid net and `_VIA_SB<n>` suffixes still pass.
 
 Text is read as UTF-8; new or changed Markdown is written as UTF-8 with LF line
 endings. Regenerating an already-current document preserves its checkout bytes,
@@ -74,6 +89,14 @@ and `.ioc` checkout hashes normalize **only CRLF to LF** so Git's
 bytes, whitespace and substantive edits remain significant. File inventory paths
 use repository-relative forward slashes on every host. External XML/PDF provenance
 hashes and the historical CubeMX byte-identical reopen record are unchanged.
+
+In a Git checkout, the firmware inventory includes tracked files and unignored
+untracked files using `git ls-files --cached --others --exclude-standard`. Finder's
+ignored `src/.DS_Store` does not trigger a coverage failure. New unignored sources,
+substantive edits and missing tracked sources still fail; an ignore rule cannot
+hide an edit to an already-tracked source. Git inventory errors fail validation.
+Source archives without `.git` use a strict filesystem inventory instead; without
+Git metadata, ignore rules are not interpreted and extra files remain significant.
 
 The source hashes intentionally identify the audited implementation. A substantive
 firmware file change makes validation fail even if its pin behavior may be unchanged. Review
@@ -85,12 +108,14 @@ PlatformIO framework/platform versions unpinned.
 
 ### Checkout portability validation (17 November 2026)
 
-The follow-up review was tested on **macOS 26.7.1 ARM64**, Python **3.15.2**, Git
-**2.50.1 (Apple Git-155)**. The full 15-test suite and `--check` pass in clean local
+The Copilot follow-up was tested on **macOS 26.7.1 ARM64**, Python **3.15.2**, Git
+**2.50.1 (Apple Git-155)**. The full 22-test suite and `--check` pass in clean local
 clones with `core.autocrlf=false` / `core.eol=lf` and with `core.autocrlf=true`.
 Actual LF/CRLF bytes were checked in firmware sources, JSON, Markdown and both
-`.ioc` files. Regeneration leaves a clean Git diff in both clones. A substantive
-`src/main.c` edit fails validation in each clone; restoring it passes.
+`.ioc` files. Two successive regenerations leave a clean Git diff and status in
+both clones. The suite and `--check` also pass with an ignored `src/.DS_Store` in
+each checkout; a new unignored source and a substantive `src/main.c` edit fail.
+Removing the new source and restoring the original source makes validation pass.
 
 The suite also checks Windows drive/backslash paths with `PureWindowsPath`, both
 when matching the JSON inventory and when resolving its slash-separated paths.
@@ -121,6 +146,13 @@ Non-GPIO function lookups return the declared role with its source evidence and
 empty contact, package-contact and onboard lists. They do not invent a mapping to
 NRST or BOOT0 from a software reset/ROM-entry role. Unknown function IDs remain
 errors.
+
+That empty list does not imply NRST stays high. The reset role and P2:10 (`NR`)
+entry cite RM0433 §8.4.2, Figure 43 and the board schematic: the reset controller
+is expected to pulse NRST on `reboot`/`dfu`, with the connected `SYS_RESET` line
+feeding the camera/TFT reset inputs. Waveform, timing and peripheral response on
+the owner's boards are unmeasured. The current ST reference is Rev 8 p. 329;
+Copilot's Rev 7 citation used p. 327 for the same section/figure.
 
 ## Findings at the audited baseline
 

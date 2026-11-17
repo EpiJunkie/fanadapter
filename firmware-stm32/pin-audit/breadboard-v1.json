@@ -793,7 +793,7 @@
       "id": "reset-and-rom-entry",
       "function": "SYSRESETREQ and system-memory bootloader handoff",
       "condition": "reboot / dfu commands; DTCM token checked before all application peripheral initialization",
-      "description": "NVIC_SystemReset requests an internal system reset; dfu first disconnects TinyUSB, writes a DTCM token and resets. A token then branches to ROM at the first statement of main. The application does not drive NRST or BOOT0 via GPIO. ROM code has its own pin configuration, outside this source audit. Software DFU-entry reliability remains separately unresolved.",
+      "description": "NVIC_SystemReset requests an internal system reset; dfu first disconnects TinyUSB, writes a DTCM token and resets. A token then branches to ROM at the first statement of main. The application does not drive NRST or BOOT0 via GPIO. ROM code has its own pin configuration, outside this source audit. Software DFU-entry reliability remains separately unresolved. Both reboot and dfu call NVIC_SystemReset (SYSRESETREQ/SFTRESET). RM0433 §8.4.2, Figure 43 describes an internal reset pulse generator with a minimum 20 µs pulse propagated to NRST. P2:10 (NR) is therefore expected to pulse low and, through R1 (330 ohm), assert SYS_RESET feeding camera DVP_RST (J2 pin 6) and TFT LCD_RESET (J3 pin 3). This reset-controller effect is not a GPIO assignment. Pulse waveform/timing and peripheral response are unmeasured on the owner boards.",
       "sources": [
         {
           "path": "firmware-stm32/src/main.c",
@@ -818,6 +818,24 @@
           "line_start": 390,
           "line_end": 406,
           "symbol": "cmd_reboot / cmd_dfu"
+        }
+      ],
+      "documentation": [
+        {
+          "title": "RM0433 Rev 8 §8.4.2, Figure 43 (p. 329)",
+          "url": "https://www.st.com/resource/en/reference_manual/rm0433-stm32h742-stm32h743753-and-stm32h750-value-line-advanced-armbased-32bit-mcus-stmicroelectronics.pdf#page=329"
+        },
+        {
+          "title": "WeAct V1.2 schematic p. 1: NRST / R1 / SYS_RESET",
+          "url": "https://github.com/WeActStudio/MiniSTM32H7xx/blob/ff1e3d67589293ed734df6b17e751b4668077f90/Hardware/STM32H7xx%20SchDoc%20V12.pdf#page=1"
+        },
+        {
+          "title": "WeAct V1.2 schematic p. 3: camera reset",
+          "url": "https://github.com/WeActStudio/MiniSTM32H7xx/blob/ff1e3d67589293ed734df6b17e751b4668077f90/Hardware/STM32H7xx%20SchDoc%20V12.pdf#page=3"
+        },
+        {
+          "title": "WeAct V1.2 schematic p. 6: TFT reset",
+          "url": "https://github.com/WeActStudio/MiniSTM32H7xx/blob/ff1e3d67589293ed734df6b17e751b4668077f90/Hardware/STM32H7xx%20SchDoc%20V12.pdf#page=6"
         }
       ]
     }
@@ -1000,7 +1018,7 @@
     "findings": [
       "Nineteen explicit GPIO assignments plus two HSE oscillator contacts; port-clock enables do not reserve every contact on that GPIO port.",
       "PA9/PA10 never switch to GPIO inputs on USB mount at this baseline; console remains a mirror/command source.",
-      "Actual USB roles contradict stale comments at main.c709-710 and tusb_config.h47/63; macros and configured functions are authoritative.",
+      "Actual USB roles contradict stale comments at main.c lines 709–710 and tusb_config.h lines 47/63; macros and configured functions are authoritative.",
       "The bring-up heartbeat touches five pins in addition to PE3. Shared onboard nets, especially PD13/QSPI IO3 and PC8/microSD D0, must be recorded as source/drawing overlaps; no electrical malfunction is established here."
     ]
   },

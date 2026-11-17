@@ -36,6 +36,8 @@ The audit validator compares each represented net suffix with the GPIO's onboard
 net in JSON, removing only the `_VIA_SB<n>` routing suffix. The `USER_LED`,
 `SW2_USER_BUTTON` and oscillator labels describe roles rather than literal net
 names; the full JSON wiring remains authoritative for those annotations.
+Header identities before `__` must match exactly; a label such as `P2_28_B10`
+does not match `P2_28_B1`, even if the reference's recorded hash is refreshed.
 
 The stock project's toolchain and clock values remain CubeMX defaults. Its
 EWARM setting is not a Fanadapter toolchain recommendation. CubeMX derives the
@@ -109,8 +111,10 @@ The recorded check reopened both files through the installed CubeMX quiet CLI
 and saved staged copies. All commands returned `OK`. Parsed configuration
 entries, selected pins, and all 82 labels were checked after the round trip.
 No interactive GUI inspection or electrical/bench test was performed for these
-references. The first module's V1.2 marking is owner-confirmed; that does not
-confirm individual connections, solder bridges, or the second module revision.
+references. The first module's V1.2 marking is owner-confirmed; both modules are
+owner-identified as V1.2 with visual solder-bridge observations in `audit.json`.
+Individual connections, bridge continuity and fitted component values remain
+unverified by electrical testing.
 
 WeAct source: [V1.2 schematic](https://github.com/WeActStudio/MiniSTM32H7xx/blob/ff1e3d67589293ed734df6b17e751b4668077f90/Hardware/STM32H7xx%20SchDoc%20V12.pdf)
 and [V1.2 board drawing](https://github.com/WeActStudio/MiniSTM32H7xx/blob/ff1e3d67589293ed734df6b17e751b4668077f90/Hardware/STM32H7xx_BoardShape%20Board%20Shape%20%E5%A4%96%E5%BD%A2%20V12.pdf).

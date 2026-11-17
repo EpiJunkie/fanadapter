@@ -4,8 +4,10 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 
 HERE = Path(__file__).resolve().parent
@@ -32,6 +34,25 @@ def repository_path(path, root):
 def require(condition, message):
     if not condition:
         raise ValueError(message)
+
+
+def firmware_inventory(root):
+    """Honor Git ignores without overlooking tracked or new unignored files."""
+    folders = ['firmware-stm32/src', 'firmware-stm32/include']
+    if (root / '.git').exists():
+        result = subprocess.run(
+            ['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z',
+             '--', *folders], cwd=root, capture_output=True)
+        require(result.returncode == 0,
+                'Cannot inspect Git firmware inventory: ' + os.fsdecode(result.stderr).strip())
+        actual = {os.fsdecode(path) for path in result.stdout.split(b'\0') if path}
+    else:
+        # Source archives have no Git index/ignore context. Keep their inventory
+        # strict rather than silently guessing which local files to omit.
+        actual = {repository_path(p, root) for folder in folders
+                  for p in (root / folder).rglob('*') if p.is_file()}
+    return actual | {'firmware-stm32/platformio.ini',
+                     'firmware-stm32/apply_tinyusb_patches.py'}
 
 
 def validate_onboard_labels(entries, board, gpios):
@@ -105,9 +126,7 @@ def validate(data, root=ROOT):
             'Firmware GPIO inventory differs from reviewed coverage')
     require(set(assigned) <= set(gpios), 'Unresolved firmware GPIO')
     covered = {s['path']: s for s in profile['coverage']['audited_files']}
-    actual = {repository_path(p, root) for folder in ('src', 'include')
-              for p in (root / 'firmware-stm32' / folder).rglob('*') if p.is_file()}
-    actual |= {'firmware-stm32/platformio.ini', 'firmware-stm32/apply_tinyusb_patches.py'}
+    actual = firmware_inventory(root)
     require(actual == set(covered), 'Firmware file inventory changed; review audit coverage')
     for path, record in covered.items():
         require(hashlib.sha256(checkout_text_bytes(root / path)).hexdigest() == record['sha256'],
@@ -140,7 +159,8 @@ def validate(data, root=ROOT):
                 if contact['gpio']:
                     pin = gpios[contact['gpio']]['package_name']
                     identity = f'{contact["header"]}_{contact["pin"]}_{contact["silkscreen"].replace(".", "_")}'
-                    require(identity in entries.get(pin + '.GPIO_Label', ''),
+                    label = entries.get(pin + '.GPIO_Label', '')
+                    require(label.partition('__')[0] == identity,
                             f'CubeMX label disagrees with header contact: {identity}')
             validate_onboard_labels(entries, board, gpios)
     return gpios
@@ -162,6 +182,10 @@ def board_sources(refs, board):
                     for s in refs)
 
 
+def documentation_links(record):
+    return ' '.join(f'[{s["title"]}]({s["url"]})' for s in record.get('documentation', []))
+
+
 def connections(contact, board):
     return board['gpio_onboard_connections'].get(contact['gpio'], []) if contact['gpio'] else contact['onboard_connections']
 
@@ -172,7 +196,9 @@ def contact_label(contact):
 
 def wiring_text(items, board):
     return '<br>'.join(f'{cell(x["target"])}: {cell(x["net"])} — {cell(x["description"])} '
-                      f'({cell(x["condition"])}). {board_sources(x["sources"], board)}' for x in items)
+                      f'({cell(x["condition"])}). {board_sources(x["sources"], board)}'
+                      + (f' {documentation_links(x)}' if x.get('documentation') else '')
+                      for x in items)
 
 
 def contact_row(contact, data, gpios):
@@ -184,7 +210,7 @@ def contact_row(contact, data, gpios):
         if pad.get('note'):
             pin_text += f'<br>{cell(pad["note"])}'
     else:
-        pin_text = f'{cell(contact["net"])} ({contact["kind"]}); pads ' + (', '.join(map(str, contact['mcu_package_pins'])) or 'none directly')
+        pin_text = f'{cell(contact["net"])} ({contact["kind"]}); related MCU pads ' + (', '.join(map(str, contact['mcu_package_pins'])) or 'none directly')
     uses = [r for r in profile['records'] if r['gpio'] == gpio]
     firmware = '<br>'.join(f'**{cell(r["function"])}**; {cell(r["mode"])}. {fw_sources(r, profile)}' for r in uses)
     if not firmware:
@@ -209,6 +235,8 @@ def render(data):
         '[CubeMX reference provenance](cubemx/README.md).', '',
         '## Physical orientation', '']
     lines += [f'- **{h["id"]}** ({h["layout"]}, {h["pin_count"]} contacts): {h["orientation"]}' for h in board['headers']]
+    for note in board.get('reading_guide', []):
+        lines += ['', f'**{note["title"]}.** {note["text"]} {board_sources(note["sources"], board)}']
     lines += ['', 'S = WeAct schematic; B = WeAct board drawing. Links identify the vendor revision, page and block. '
               'Rear silkscreen is shown; front/rear views are mirrored.', '', '## Header contacts', '']
     for header in board['headers']:
@@ -231,7 +259,9 @@ def render(data):
             cell(f'{r["mode"]}. {r["condition"]} {r["description"]}'), fw_sources(r, profile)]) + ' |')
     lines += ['', '### Non-GPIO firmware roles', '']
     for r in profile['non_gpio_roles']:
-        lines += [f'- **{r["function"]}:** {r["description"]} Condition: {r["condition"]} {fw_sources(r, profile)}']
+        lines += [f'- **{r["function"]}:** {r["description"]} Condition: {r["condition"]} '
+                  f'{fw_sources(r, profile)}'
+                  + (f' {documentation_links(r)}' if r.get('documentation') else '')]
     lines += ['', '## MCU capabilities (not firmware selections)', '',
               f'ST CubeMX {mcu["cubemx_version"]}, database {mcu["cubemx_database_version"]}, '
               f'package {mcu["package"]}. {mcu["capabilities_scope"]}', '',
