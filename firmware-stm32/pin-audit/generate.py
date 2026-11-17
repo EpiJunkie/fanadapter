@@ -14,14 +14,42 @@ OUTPUT = HERE.parent / 'PIN-AUDIT.md'
 
 
 def load(directory=HERE):
-    meta = json.loads((directory / 'audit.json').read_text())
-    return (meta, *(json.loads((directory / meta[key]).read_text())
+    meta = json.loads((directory / 'audit.json').read_text(encoding='utf-8'))
+    return (meta, *(json.loads((directory / meta[key]).read_text(encoding='utf-8'))
                     for key in ('mcu_file', 'board_file', 'profile_file')))
+
+
+def checkout_text_bytes(path):
+    """Ignore Git's CRLF checkout conversion, preserving every other byte."""
+    return path.read_bytes().replace(b'\r\n', b'\n')
+
+
+def repository_path(path, root):
+    """Use the JSON's slash-separated repository paths on every host OS."""
+    return path.relative_to(root).as_posix()
 
 
 def require(condition, message):
     if not condition:
         raise ValueError(message)
+
+
+def validate_onboard_labels(entries, board, gpios):
+    """Check net-bearing annotation suffixes against the maintained board wiring."""
+    # These labels describe components, not schematic net names. Clock-only
+    # annotations likewise have no '__' net suffix. The full wiring stays in JSON.
+    role_labels = {'PE3': 'USER_LED', 'PC13': 'SW2_USER_BUTTON'}
+    for gpio, pad in gpios.items():
+        label = entries.get(pad['package_name'] + '.GPIO_Label', '')
+        _, separator, annotation = label.partition('__')
+        if not separator or annotation == role_labels.get(gpio):
+            continue
+        net = re.sub(r'_VIA_SB\d+$', '', annotation)
+        declared = {connection['net'] for connection in
+                    board['gpio_onboard_connections'].get(gpio, [])}
+        require(net in declared,
+                f'CubeMX label disagrees with onboard net: {gpio}: '
+                f'label {net!r}, JSON {sorted(declared)!r}')
 
 
 def validate(data, root=ROOT):
@@ -77,31 +105,31 @@ def validate(data, root=ROOT):
             'Firmware GPIO inventory differs from reviewed coverage')
     require(set(assigned) <= set(gpios), 'Unresolved firmware GPIO')
     covered = {s['path']: s for s in profile['coverage']['audited_files']}
-    actual = {str(p.relative_to(root)) for folder in ('src', 'include')
+    actual = {repository_path(p, root) for folder in ('src', 'include')
               for p in (root / 'firmware-stm32' / folder).rglob('*') if p.is_file()}
     actual |= {'firmware-stm32/platformio.ini', 'firmware-stm32/apply_tinyusb_patches.py'}
     require(actual == set(covered), 'Firmware file inventory changed; review audit coverage')
     for path, record in covered.items():
-        require(hashlib.sha256((root / path).read_bytes()).hexdigest() == record['sha256'],
+        require(hashlib.sha256(checkout_text_bytes(root / path)).hexdigest() == record['sha256'],
                 f'Audited source changed: {path}; refresh the dated audit after reviewing it')
     for r in profile['records'] + profile['non_gpio_roles']:
         require(r['sources'], f'Missing firmware evidence: {r["id"]}')
         for source in r['sources']:
             require(source['path'] in covered, 'Firmware citation outside audited files')
-            count = len((root / source['path']).read_text().splitlines())
+            count = len((root / source['path']).read_text(encoding='utf-8').splitlines())
             require(1 <= source['line_start'] <= source['line_end'] <= count,
                     f'Invalid firmware source lines: {r["id"]}')
     cubemx_dir = root / 'firmware-stm32/cubemx'
-    provenance = json.loads((cubemx_dir / 'validation.json').read_text())
+    provenance = json.loads((cubemx_dir / 'validation.json').read_text(encoding='utf-8'))
     require(provenance['cubemx_version'] == mcu['cubemx_version'] and
             provenance['database_version'] == mcu['cubemx_database_version'],
             'CubeMX and capability snapshot versions differ')
     for reference in provenance['references']:
-        content = (cubemx_dir / reference['file']).read_bytes()
+        content = checkout_text_bytes(cubemx_dir / reference['file'])
         require(hashlib.sha256(content).hexdigest() == reference['sha256'],
                 f'CubeMX reference changed since recorded reopen: {reference["file"]}')
         entries = {key.replace('\\ ', ' '): value for key, value in
-                   (line.split('=', 1) for line in content.decode().splitlines()
+                   (line.split('=', 1) for line in content.decode('utf-8').splitlines()
                     if '=' in line and not line.startswith('#'))}
         require(entries.get('Mcu.CPN') == mcu['mcu'] and entries.get('Mcu.Package') == mcu['package'],
                 'CubeMX reference targets a different MCU/package')
@@ -114,6 +142,7 @@ def validate(data, root=ROOT):
                     identity = f'{contact["header"]}_{contact["pin"]}_{contact["silkscreen"].replace(".", "_")}'
                     require(identity in entries.get(pin + '.GPIO_Label', ''),
                             f'CubeMX label disagrees with header contact: {identity}')
+            validate_onboard_labels(entries, board, gpios)
     return gpios
 
 
@@ -239,10 +268,11 @@ def main():
         meta, mcu, board, profile = data
         if args.function or args.contact or args.gpio:
             if args.function:
-                uses = [r for r in profile['records'] if r['id'] == args.function]
+                uses = [r for r in profile['records'] + profile['non_gpio_roles']
+                        if r['id'] == args.function]
                 require(uses, f'Unknown function: {args.function}')
-                gpio = uses[0]['gpio']
-                contacts = [c for c in board['contacts'] if c['gpio'] == gpio]
+                gpio = uses[0].get('gpio')
+                contacts = [c for c in board['contacts'] if gpio and c['gpio'] == gpio]
             elif args.contact:
                 contacts = [c for c in board['contacts'] if f'{c["header"]}:{c["pin"]}' == args.contact]
                 require(contacts, f'Unknown contact: {args.contact}')
@@ -263,11 +293,16 @@ def main():
                 'onboard': onboard,
                 'firmware': uses, 'v0_planned': meta['v0_by_gpio'].get(gpio, meta['v0_default'])}, indent=2))
         elif args.check:
-            require(OUTPUT.exists() and OUTPUT.read_text() == render(data), 'PIN-AUDIT.md is stale; run generate.py')
+            require(OUTPUT.exists() and OUTPUT.read_text(encoding='utf-8') == render(data),
+                    'PIN-AUDIT.md is stale; run generate.py')
             print(f'PASS: {len(board["contacts"])} unique header contacts; 100 MCU pads; '
                   f'{len(profile["records"])} firmware GPIO/oscillator roles; sources resolve; Markdown is current.')
         else:
-            OUTPUT.write_text(render(data))
+            document = render(data)
+            # Leave an already-current CRLF checkout untouched so regeneration
+            # does not produce a spurious modified status in Git.
+            if not OUTPUT.exists() or OUTPUT.read_text(encoding='utf-8') != document:
+                OUTPUT.write_bytes(document.encode('utf-8'))
             print(f'Generated {OUTPUT.relative_to(ROOT)}')
     except (ValueError, KeyError, OSError) as error:
         print(f'Audit error: {error}', file=sys.stderr)

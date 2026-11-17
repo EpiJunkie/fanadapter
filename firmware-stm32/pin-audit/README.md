@@ -57,17 +57,47 @@ The last command is the clean-regeneration check after the initial generated fil
 has been committed. `--check` validates the expected 92 unique contacts, all 100
 package positions, GPIO/package joins, board citations/pages, firmware role/source
 references, complete application source-file inventory/hashes, and exact Markdown
-agreement. It also checks CubeMX reference hashes, target identity, label counts
-and version agreement against the recorded reopen results. Tests deliberately remove/duplicate contacts, break references,
-drop a firmware role and corrupt source evidence to ensure those errors fail.
+agreement. It also checks CubeMX reference hashes, target identity, label counts,
+header identities, represented onboard nets and version agreement against the
+recorded reopen results. Tests deliberately remove/duplicate contacts, break
+references, drop a firmware role and corrupt source evidence to ensure those errors
+fail. A PD13 regression changes only its JSON net from `QSPI_BK1_IO3` to
+`QSPI_BK1_IO2` in a disposable copy, renders fresh Markdown, and checks that the
+unchanged CubeMX label still rejects it. Restoring IO3 passes. Net comparisons cover
+all 41 net-bearing annotations; LED/button/clock role labels are not net names.
 
-The source hashes intentionally identify the audited implementation. A firmware
-file change makes validation fail even if its pin behavior may be unchanged. Review
+Text is read as UTF-8; new or changed Markdown is written as UTF-8 with LF line
+endings. Regenerating an already-current document preserves its checkout bytes,
+including CRLF, to avoid spurious Git modifications. Firmware
+and `.ioc` checkout hashes normalize **only CRLF to LF** so Git's
+`core.autocrlf=true` conversion does not invalidate the recorded LF hashes. Other
+bytes, whitespace and substantive edits remain significant. File inventory paths
+use repository-relative forward slashes on every host. External XML/PDF provenance
+hashes and the historical CubeMX byte-identical reopen record are unchanged.
+
+The source hashes intentionally identify the audited implementation. A substantive
+firmware file change makes validation fail even if its pin behavior may be unchanged. Review
 the new source, update the baseline/evidence and regenerate; do not blindly replace
 hashes. These checks establish internal consistency and freshness, not the truth of
 a transcribed schematic or physical continuity. Vendor HAL/startup defaults are not
 an exhaustive part of the application-source audit, and the baseline leaves
 PlatformIO framework/platform versions unpinned.
+
+### Checkout portability validation (17 November 2026)
+
+The follow-up review was tested on **macOS 26.7.1 ARM64**, Python **3.15.2**, Git
+**2.50.1 (Apple Git-155)**. The full 15-test suite and `--check` pass in clean local
+clones with `core.autocrlf=false` / `core.eol=lf` and with `core.autocrlf=true`.
+Actual LF/CRLF bytes were checked in firmware sources, JSON, Markdown and both
+`.ioc` files. Regeneration leaves a clean Git diff in both clones. A substantive
+`src/main.c` edit fails validation in each clone; restoring it passes.
+
+The suite also checks Windows drive/backslash paths with `PureWindowsPath`, both
+when matching the JSON inventory and when resolving its slash-separated paths.
+**Native Windows and Linux execution were not performed for this follow-up.**
+Windows path semantics and CRLF checkouts on macOS are not a substitute for a
+native Windows run. No new CubeMX reopen, GUI inspection or hardware test was
+needed or performed; the `.ioc` contents and electrical mappings are unchanged.
 
 ### Required forward and reverse examples
 
@@ -76,6 +106,8 @@ python3 firmware-stm32/pin-audit/generate.py --function handbrake-pwm
 python3 firmware-stm32/pin-audit/generate.py --contact P1:30
 # Additional MCU-centric lookup, including GPIOs with no expansion header:
 python3 firmware-stm32/pin-audit/generate.py --gpio PH0
+# A declared firmware role without an assigned GPIO:
+python3 firmware-stm32/pin-audit/generate.py --function reset-and-rom-entry
 ```
 
 Both required queries resolve **P1 pin 30 (`C8`) → PC8 (LQFP100 pad 65)**,
@@ -84,6 +116,11 @@ to U6 pin 7. ST lists TIM3_CH3 and SDMMC1_D0 as capabilities of PC8; the firmwar
 selects the former, while the board is wired to the latter. The JSON/source links
 keep those three facts distinct. Lookup output includes the citations and pending
 V0 decision, not just an uncited label.
+
+Non-GPIO function lookups return the declared role with its source evidence and
+empty contact, package-contact and onboard lists. They do not invent a mapping to
+NRST or BOOT0 from a software reset/ROM-entry role. Unknown function IDs remain
+errors.
 
 ## Findings at the audited baseline
 

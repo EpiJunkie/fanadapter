@@ -15,7 +15,7 @@ class PinAuditTests(unittest.TestCase):
 
     def test_audit_and_generated_document_agree(self):
         generate.validate(self.data)
-        self.assertEqual(generate.OUTPUT.read_text(), generate.render(self.data))
+        self.assertEqual(generate.OUTPUT.read_text(encoding='utf-8'), generate.render(self.data))
 
     def test_both_directions_identify_handbrake_and_sd_d0(self):
         _, mcu, board, profile = self.data
@@ -91,6 +91,26 @@ class PinAuditTests(unittest.TestCase):
         self.assertEqual(reference['mcu_package_contacts'][0]['package_pin'], 20)
         self.assertIn('R9', str(reference['onboard']))
         self.assertEqual(reference['firmware'], [])
+
+    def test_cli_non_gpio_roles_return_evidence_without_contacts(self):
+        for role in self.data[3]['non_gpio_roles']:
+            with self.subTest(role=role['id']):
+                result = json.loads(subprocess.check_output(
+                    [sys.executable, str(generate.HERE / 'generate.py'),
+                     '--function', role['id']], encoding='utf-8'))
+                self.assertEqual(result['firmware'], [role])
+                self.assertTrue(result['firmware'][0]['sources'])
+                self.assertEqual(result['contacts'], [])
+                self.assertEqual(result['mcu_package_contacts'], [])
+                self.assertEqual(result['onboard'], [])
+
+    def test_cli_unknown_function_is_an_error(self):
+        result = subprocess.run(
+            [sys.executable, str(generate.HERE / 'generate.py'),
+             '--function', 'not-a-declared-function'], capture_output=True, encoding='utf-8')
+        self.assertEqual(result.returncode, 1)
+        self.assertIn('Unknown function: not-a-declared-function', result.stderr)
+        self.assertEqual(result.stdout, '')
 
 
 if __name__ == '__main__':

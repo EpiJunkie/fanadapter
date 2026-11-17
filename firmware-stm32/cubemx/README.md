@@ -32,6 +32,11 @@ bridge is closed on the assembled board. Supply, ground, reset, series
 components, bridge states, and shared-connection details are modeled in the
 JSON because one CubeMX pin selection cannot represent those circuits.
 
+The audit validator compares each represented net suffix with the GPIO's onboard
+net in JSON, removing only the `_VIA_SB<n>` routing suffix. The `USER_LED`,
+`SW2_USER_BUTTON` and oscillator labels describe roles rather than literal net
+names; the full JSON wiring remains authoritative for those annotations.
+
 The stock project's toolchain and clock values remain CubeMX defaults. Its
 EWARM setting is not a Fanadapter toolchain recommendation. CubeMX derives the
 internal project name from the filename before its first dot, so the two
@@ -53,6 +58,12 @@ No firmware package was installed for this audit and no code was generated.
 The selected package version is CubeMX project metadata, separate from the
 MCU database version. Source-file hashes and final reference hashes are in
 [`validation.json`](validation.json).
+
+The original reference files used LF line endings. Audit validation normalizes
+Git checkout CRLF to LF before comparing these text-file hashes. This tolerates
+`core.autocrlf=true` without changing the recorded hashes or implying a new native
+CubeMX round trip. The byte-identical reopen results below describe the original
+files and saved copies, not every possible checkout's raw bytes.
 
 ## Reproduce the stock reference
 

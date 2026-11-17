@@ -83,6 +83,9 @@ tuh_task() → tud_task() → console_cli_poll() → usb_input_task(now)
 physical wiring and the source-pinned `breadboard-v1` firmware profile. Generate
 `firmware-stm32/PIN-AUDIT.md` with `python3 firmware-stm32/pin-audit/generate.py`;
 `--check` validates references, contact coverage, source hashes and regeneration.
+Checkout hashes normalize only CRLF to LF; inventory paths use forward slashes.
+CubeMX labels that name onboard nets must match the board JSON. The CLI also
+returns declared non-GPIO roles with evidence and no invented contacts.
 Do not hand-edit the generated table or infer that an unconfigured pin is unwired.
 The two `firmware-stm32/cubemx/` references document MCU/board evidence, not a firmware
 build. Pin reassignments require reviewing/updating this audit with implementation
