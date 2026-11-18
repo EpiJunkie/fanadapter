@@ -11,10 +11,10 @@ JSON is the maintained source. Edit these files, then regenerate the Markdown:
 
 | File | Authority / purpose |
 | --- | --- |
-| `audit.json` | Dataset filenames, physical scope, bench-evidence distinctions and pending V0 routing |
+| `audit.json` | Dataset filenames, physical scope, bench conditions/tested-build provenance, earlier functional observations and pending V0 routing |
 | `mcu.json` | ST CubeMX package/capability snapshot: 100 LQFP100 contacts, 82 logical GPIO identities, possible signals/AFs and special-pad restrictions |
-| `weact-v1.2.json` | Revision-pinned WeAct drawing evidence: all 92 P1/P2/P3 contacts, rear silkscreen, onboard nets, solder bridges and other connectors |
-| `breadboard-v1.json` | Named current wiring profile: 19 explicit application GPIO assignments plus PH0/PH1 HSE, non-GPIO roles, source ranges and coverage hashes |
+| `weact-v1.2.json` | Revision-pinned WeAct drawing evidence: all 92 P1/P2/P3 contacts, rear silkscreen, onboard nets, bridges/connectors and observations attached to the specific measured segments |
+| `breadboard-v1.json` | Named current wiring profile: 19 explicit application GPIO assignments plus PH0/PH1 HSE, non-GPIO roles, source ranges/hashes and scoped normal-heartbeat/reset observations |
 
 `breadboard-v1` is a stable profile identity. Keep its history in Git; a future V0
 decision can update the audit alongside the corresponding schematic and firmware.
@@ -46,12 +46,42 @@ cite the rear drawing for markings and the schematic for their electrical nets.
 The first module's **1.2** marking was observed by its owner under the LCD, right
 of the ribbon slot. The owner identifies both modules as V1.2 and visually reports
 SB3 alone appearing bridged on both; SB1, SB2, SB4, SB5 and SB6 appear open.
-These observations are in `audit.json`. Individual contact/bridge continuity,
-fitted component identification and values remain pending bench work; visual
-appearance is not an electrical measurement. Dedicated handbrake testing has not
-occurred. The legacy carrier's F1
-protection is still uncorrected in hardware and design; this audit does not qualify
-a replacement or approve a powered test.
+The guided bench review subsequently confirmed Board A's SB3 closure and C8-to-MCU
+continuity. Board B's bridge evidence remains visual. The observations below and
+their limits are retained in the maintained JSON. The legacy carrier's F1
+protection is still uncorrected in hardware and design.
+
+## Guided bench evidence (17 November 2026)
+
+The owner used a **Rigol MHO984** and **Fluke 115**, primarily with a bare WeAct
+module connected to macOS over USB-C. The tested upstream firmware was **v0.6.2**,
+reference build [`6faeb9e`](https://github.com/Gugic/fanadapter/commit/6faeb9ee03a28f27387533552000376cd07580bb).
+The audited source baseline remains `8c48cfe`; the
+[intervening changes](https://github.com/Gugic/fanadapter/compare/6faeb9ee03a28f27387533552000376cd07580bb...8c48cfe422bae50b96b04b9c8de813d434e0bd54)
+affected only the SimHub plugin. These are owner-reported measurements, not a new
+test of every contact or onboard branch.
+
+| Contact or function | Bench result and its scope |
+| --- | --- |
+| **PC8 / P1:30 (`C8`)** | Board A measured approximately **0.1 Ω** from the header to MCU pad 65. Only that segment has measured continuity. The separate R26-to-microSD D0 path remains schematic evidence; readings at an unidentified resistor location do not verify R26. |
+| **PD13 / P1:35 (`D13`)** | Board A read **9.29 MΩ** to presumed pad 60 with uncertain probe contact. This is inconclusive, not evidence of an open trace. The header mapping and R30-to-QSPI IO3 path remain drawing evidence. |
+| **PD6 / P1:13 (`D6`) / SB3** | Board A: shorted leads **0.1 Ω**, SB3 pad-to-pad **0.2 Ω**, and D6 to the probed SB3 pad **0.3 Ω**. SB3 is electrically closed on Board A and D6 reaches it. Board B's closure is visually observed only. Fitted part identity/value and the remainder of the path to U8 chip select are unverified. |
+| **Reset / P2:10 (`NR`)** | The physical button press and software `reboot` were captured at the external contact. `reboot` spent approximately **26 µs near zero** there. That interval does not measure the internal MCU reset duration. `dfu` and downstream TFT/camera reset lines remain unmeasured. |
+| **Heartbeat** | The PE3 blue LED pulsed visibly; PB7 (P1:7) and PB0 (P2:27) showed about **one second high and one second low** (approximately 0.5 Hz full cycle). PB1, PE1 and PD13 remain source-confirmed outputs. All six retain their normal-heartbeat and fatal-error assignments; the scope observations cover normal heartbeat only. |
+
+The [bench report](https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation)
+also records earlier functional observations: H-pattern and sequential shifting,
+pedal UART operation, handbrake PWM activity, and a Web Config handbrake command
+registering in the Fanatec Windows application. Those observations support
+functional signaling but do not identify the route of that command or establish
+full dedicated-handbrake-port coverage. They are distinct from the pin-specific
+measurements above.
+
+Routine bench testing for this mapping audit is complete. The 92-contact map
+retains drawing evidence alongside the measured segments; remaining component
+identification and electrical questions can be revisited when a specific design
+depends on them. Future pin allocation and assembly-label changes are separate
+work.
 
 ## Regenerate and verify
 
@@ -106,9 +136,10 @@ a transcribed schematic or physical continuity. Vendor HAL/startup defaults are 
 an exhaustive part of the application-source audit, and the baseline leaves
 PlatformIO framework/platform versions unpinned.
 
-### Checkout portability validation (17 November 2026)
+### Checkout portability validation at `d1c891b` (17 November 2026)
 
-The Copilot follow-up was tested on **macOS 26.7.1 ARM64**, Python **3.15.2**, Git
+The Copilot follow-up commit [`d1c891b`](https://github.com/EpiJunkie/fanadapter/commit/d1c891b217c60711574fbd51893440e17526bc32)
+was tested on **macOS 26.7.1 ARM64**, Python **3.15.2**, Git
 **2.50.1 (Apple Git-155)**. The full 22-test suite and `--check` pass in clean local
 clones with `core.autocrlf=false` / `core.eol=lf` and with `core.autocrlf=true`.
 Actual LF/CRLF bytes were checked in firmware sources, JSON, Markdown and both
@@ -119,10 +150,11 @@ Removing the new source and restoring the original source makes validation pass.
 
 The suite also checks Windows drive/backslash paths with `PureWindowsPath`, both
 when matching the JSON inventory and when resolving its slash-separated paths.
-**Native Windows and Linux execution were not performed for this follow-up.**
+**Native Windows and Linux execution were not performed in that IDE validation.**
 Windows path semantics and CRLF checkouts on macOS are not a substitute for a
-native Windows run. No new CubeMX reopen, GUI inspection or hardware test was
-needed or performed; the `.ioc` contents and electrical mappings are unchanged.
+native Windows run. That code-validation step did not perform a new CubeMX reopen,
+GUI inspection or hardware test. The later guided bench observations are recorded
+separately above; the `.ioc` contents and electrical mappings are unchanged.
 
 ### Required forward and reverse examples
 
@@ -150,8 +182,11 @@ errors.
 That empty list does not imply NRST stays high. The reset role and P2:10 (`NR`)
 entry cite RM0433 §8.4.2, Figure 43 and the board schematic: the reset controller
 is expected to pulse NRST on `reboot`/`dfu`, with the connected `SYS_RESET` line
-feeding the camera/TFT reset inputs. Waveform, timing and peripheral response on
-the owner's boards are unmeasured. The current ST reference is Rev 8 p. 329;
+feeding the camera/TFT reset inputs. The owner captured a physical button press
+and software `reboot` at `NR`; the approximately 26 µs near-zero interval belongs
+to that external contact waveform. It does not establish internal MCU reset
+duration. `dfu`, downstream reset waveforms and TFT/camera response remain
+unmeasured. The current ST reference is Rev 8 p. 329;
 Copilot's Rev 7 citation used p. 327 for the same section/figure.
 
 ## Findings at the audited baseline
@@ -165,7 +200,9 @@ Copilot's Rev 7 citation used p. 327 for the same section/figure.
   normal and fatal-error paths. PE3 controls the transistor-driven LED. PD13 also
   connects to QSPI flash IO3; PB7/PE1 connect to camera VSYNC/D3. PB0/PB1 have no
   additional onboard connection identified in the drawing. None is a spare pin
-  merely because a user peripheral is not connected.
+  merely because a user peripheral is not connected. Visible PE3 activity and
+  scoped PB7/PB0 waveforms confirm representative normal heartbeat behavior;
+  PB1, PE1, PD13 and the fatal-error path remain source-confirmed.
 - **Other camera overlaps:** PA4 DAC X shares camera HSYNC, and PC6/PC7 sequential
   outputs share camera D0/D1. The camera/TFT/SD/flash peripherals are not initialized
   by this application; their physical wiring nevertheless remains relevant.

@@ -75,7 +75,7 @@
     },
     {
       "title": "Read the offset rear legends using their matching white dots",
-      "text": "Three rear header rows have their legends printed farther inboard. A white dot beside each row matches a white dot at the end of a short line above its offset legend. With USB-C at the bottom, read each pair left to right from the rear: upper-left P1 pins 1/2 are G 5V (GND / 5V); upper-right P2 pins 1/2 are G 3V3 (GND / 3V3); lower-left P1 pins 43/44 are B13 B12 (PB13 / PB12). Keep all six as silkscreen labels for those existing contacts, not additional headers. The rear drawing establishes the markings and dot convention; the schematic independently establishes the nets. Electrical continuity on the owner's boards remains unmeasured.",
+      "text": "Three rear header rows have their legends printed farther inboard. A white dot beside each row matches a white dot at the end of a short line above its offset legend. With USB-C at the bottom, read each pair left to right from the rear: upper-left P1 pins 1/2 are G 5V (GND / 5V); upper-right P2 pins 1/2 are G 3V3 (GND / 3V3); lower-left P1 pins 43/44 are B13 B12 (PB13 / PB12). Keep all six as silkscreen labels for those existing contacts, not additional headers. The rear drawing establishes the markings and dot convention; the schematic independently establishes the nets. These six legend/contact nets were not individually continuity-tested in the guided review.",
       "sources": [
         {
           "source": "weact-board-v1.2",
@@ -315,7 +315,7 @@
         93
       ],
       "evidence_level": "schematic_and_board_drawing",
-      "bench_confirmation": "not_checked",
+      "bench_confirmation": "normal_heartbeat_waveform_observed_at_header",
       "sources": [
         {
           "source": "weact-schematic-v1.2",
@@ -331,6 +331,17 @@
           "source": "weact-board-v1.2",
           "page": 3,
           "block": "Rear silkscreen / P1"
+        }
+      ],
+      "bench_observations": [
+        {
+          "date": "2026-11-17",
+          "status": "owner-measured",
+          "board": "tested module; A/B not specified",
+          "result": "PB7 at P1:7 showed a repeating normal-heartbeat waveform consistent with approximately one second high and one second low (approximately 0.5 Hz full cycle).",
+          "limits": "This is representative normal-operation scope evidence, not a continuity test or a fatal-error-path measurement. PB1, PE1 and PD13 heartbeat outputs remain source-confirmed; all six retain their current firmware assignments.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation",
+          "instrument": "Rigol MHO984"
         }
       ]
     },
@@ -495,7 +506,7 @@
         87
       ],
       "evidence_level": "schematic_and_board_drawing",
-      "bench_confirmation": "not_checked",
+      "bench_confirmation": "header_to_probed_sb3_pad_continuity_measured_board_a",
       "sources": [
         {
           "source": "weact-schematic-v1.2",
@@ -511,6 +522,17 @@
           "source": "weact-board-v1.2",
           "page": 3,
           "block": "Rear silkscreen / P1"
+        }
+      ],
+      "bench_observations": [
+        {
+          "date": "2026-11-17",
+          "status": "owner-measured",
+          "board": "A",
+          "result": "P1:13 (D6) to the reported right/probed SB3 pad measured 0.3 Ω; shorted meter leads measured 0.1 Ω.",
+          "limits": "This verifies the header-to-probed-SB3-pad segment, not U8 population or the full chip-select route. The report does not identify the probe side by schematic pad number.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation",
+          "instrument": "Fluke 115"
         }
       ]
     },
@@ -1005,7 +1027,7 @@
         65
       ],
       "evidence_level": "schematic_and_board_drawing",
-      "bench_confirmation": "not_checked",
+      "bench_confirmation": "header_to_mcu_continuity_measured_board_a",
       "sources": [
         {
           "source": "weact-schematic-v1.2",
@@ -1021,6 +1043,17 @@
           "source": "weact-board-v1.2",
           "page": 3,
           "block": "Rear silkscreen / P1"
+        }
+      ],
+      "bench_observations": [
+        {
+          "date": "2026-11-17",
+          "status": "owner-measured",
+          "board": "A",
+          "result": "P1:30 (C8) to STM32 package pad 65 measured approximately 0.1 Ω, confirming continuity of this header-to-MCU segment.",
+          "limits": "The separate R26 (nominal 22 Ω) to microSD D0 path remains schematic evidence. An additional 0.3 Ω reading and a drifting megohm reading at an unidentified resistor location do not verify R26 or that branch.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation",
+          "instrument": "Fluke 115"
         }
       ]
     },
@@ -1155,7 +1188,7 @@
         60
       ],
       "evidence_level": "schematic_and_board_drawing",
-      "bench_confirmation": "not_checked",
+      "bench_confirmation": "inconclusive_uncertain_probe_contact_board_a",
       "sources": [
         {
           "source": "weact-schematic-v1.2",
@@ -1171,6 +1204,17 @@
           "source": "weact-board-v1.2",
           "page": 3,
           "block": "Rear silkscreen / P1"
+        }
+      ],
+      "bench_observations": [
+        {
+          "date": "2026-11-17",
+          "status": "inconclusive",
+          "board": "A",
+          "result": "P1:35 (D13) to presumed STM32 package pad 60 measured 9.29 MΩ with uncertain probe contact.",
+          "limits": "This inconclusive reading does not establish an open trace. The header mapping and the R30 (nominal 33 Ω) to QSPI IO3 path remain drawing evidence.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation",
+          "instrument": "Fluke 115"
         }
       ]
     },
@@ -1782,8 +1826,8 @@
         {
           "net": "NRST",
           "target": "Board power/reset network",
-          "description": "MCU NRST; reset button SW3 and C4. U9 MAX809 reset via R4; SYS_RESET via R1 330 ohm feeds camera and TFT reset. Both reboot and dfu call NVIC_SystemReset (SYSRESETREQ/SFTRESET). RM0433 §8.4.2, Figure 43 describes an internal reset pulse generator with a minimum 20 µs pulse propagated to NRST. P2:10 (NR) is therefore expected to pulse low and, through R1 (330 ohm), assert SYS_RESET feeding camera DVP_RST (J2 pin 6) and TFT LCD_RESET (J3 pin 3). This reset-controller effect is not a GPIO assignment. Pulse waveform/timing and peripheral response are unmeasured on the owner boards.",
-          "condition": "As drawn; fitted assembly not checked",
+          "description": "MCU NRST; reset button SW3 and C4. U9 MAX809 reset via R4; SYS_RESET through R1 (330 ohm) feeds camera DVP_RST (J2 pin 6) and TFT LCD_RESET (J3 pin 3). Both reboot and dfu call NVIC_SystemReset (SYSRESETREQ/SFTRESET). RM0433 §8.4.2, Figure 43 describes an internal reset pulse generator with a minimum 20 µs pulse propagated to NRST. A button press and software reboot were captured at external P2:10 (NR); the reboot trace spent approximately 26 µs near zero at that contact. This observation is separate from the specified internal pulse duration. dfu and the downstream TFT/camera reset lines remain unmeasured. This reset-controller effect is not a GPIO assignment.",
+          "condition": "External NR button/reboot behavior observed; R1/SYS_RESET continuation and downstream reset behavior remain drawing evidence, with fitted component values unverified",
           "sources": [
             {
               "source": "weact-schematic-v1.2",
@@ -1810,7 +1854,7 @@
         }
       ],
       "evidence_level": "schematic_and_board_drawing",
-      "bench_confirmation": "not_checked",
+      "bench_confirmation": "external_contact_button_and_software_reboot_waveforms_captured",
       "sources": [
         {
           "source": "weact-schematic-v1.2",
@@ -1826,6 +1870,17 @@
           "source": "weact-board-v1.2",
           "page": 3,
           "block": "Rear silkscreen / P2"
+        }
+      ],
+      "bench_observations": [
+        {
+          "date": "2026-11-17",
+          "status": "owner-measured",
+          "board": "tested module; A/B not specified",
+          "result": "At the external P2:10 (NR) contact, rest voltage was approximately 3.3 V; a physical reset-button press held NR low for 157.5 ms. Software reboot spent approximately 26 µs near zero. Falling edge to 1.65 V on recovery was approximately 114 µs; start of rise to 3.0 V was approximately 524 µs, with return to approximately 3.3 V around 1 ms.",
+          "limits": "These intervals use different cursor endpoints at NR and do not measure internal MCU reset duration. dfu, downstream TFT/camera reset lines, peripheral response and the cause of the recovery shape remain unmeasured. Acquisition and cursors were saved on the Rigol; raw export is unconfirmed.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation",
+          "instrument": "Rigol MHO984"
         }
       ]
     },
@@ -2359,7 +2414,7 @@
         34
       ],
       "evidence_level": "schematic_and_board_drawing",
-      "bench_confirmation": "not_checked",
+      "bench_confirmation": "normal_heartbeat_waveform_observed_at_header",
       "sources": [
         {
           "source": "weact-schematic-v1.2",
@@ -2375,6 +2430,17 @@
           "source": "weact-board-v1.2",
           "page": 3,
           "block": "Rear silkscreen / P2"
+        }
+      ],
+      "bench_observations": [
+        {
+          "date": "2026-11-17",
+          "status": "owner-measured",
+          "board": "tested module; A/B not specified",
+          "result": "PB0 at P2:27 showed a repeating normal-heartbeat waveform consistent with approximately one second high and one second low (approximately 0.5 Hz full cycle).",
+          "limits": "This is representative normal-operation scope evidence, not a continuity test or a fatal-error-path measurement. PB1, PE1 and PD13 heartbeat outputs remain source-confirmed; all six retain their current firmware assignments.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation",
+          "instrument": "Rigol MHO984"
         }
       ]
     },
@@ -3430,7 +3496,7 @@
         "net": "MicroSD_D0",
         "target": "U6 microSD pin 7 via R26 (22 ohm)",
         "description": "SDMMC1 D0; series termination and ESD network; socket side has a 47 kohm pull-up to 3V3",
-        "condition": "As drawn; fitted assembly not checked",
+        "condition": "MicroSD branch is drawing evidence; the separate P1:30-to-MCU-pad-65 continuity measurement does not verify R26 or the path to U6 pin 7",
         "sources": [
           {
             "source": "weact-schematic-v1.2",
@@ -3565,7 +3631,7 @@
         "net": "QSPI_BK1_IO3",
         "target": "U7 QSPI flash pin 7 via R30 (33 ohm)",
         "description": "QSPI flash connection",
-        "condition": "As drawn; fitted assembly not checked",
+        "condition": "Drawing evidence; the uncertain header-to-presumed-pad-60 probe reading does not verify or disprove this R30/QSPI IO3 path",
         "sources": [
           {
             "source": "weact-schematic-v1.2",
@@ -3745,7 +3811,7 @@
         "net": "SPI_Flash_CS",
         "target": "U8 SPI flash pin 1 via SB3; R40 100 kohm to 3V3",
         "description": "Optional SPI flash chip-select",
-        "condition": "Connected to PD6 when SB3 is closed; electrical bridge continuity and fitted part identification remain unverified; see audit.json for owner visual observations",
+        "condition": "SB3 is electrically closed on Board A and visually observed closed on Board B; the continuation to U8 pin 1 remains schematic evidence",
         "sources": [
           {
             "source": "weact-schematic-v1.2",
@@ -3756,6 +3822,25 @@
             "source": "weact-schematic-v1.2",
             "page": 5,
             "block": "QSPI & SPI Flash / SB3 on page 1"
+          }
+        ],
+        "bench_observations": [
+          {
+            "date": "2026-11-17",
+            "status": "owner-measured",
+            "board": "A",
+            "result": "SB3 pad-to-pad measured 0.2 Ω, with 0.1 Ω for shorted leads and 0.3 Ω from D6 to the probed SB3 pad. SB3 is electrically closed on Board A and D6 reaches it.",
+            "limits": "The fitted bridge material/part identity and value, U8 population and the remaining path to U8 chip select are not established by these readings.",
+            "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation",
+            "instrument": "Fluke 115"
+          },
+          {
+            "date": "2026-11-17",
+            "status": "owner-observed",
+            "board": "B",
+            "result": "SB3 was visually observed closed; only SB3 appeared closed in the earlier inspection of both boards.",
+            "limits": "Board B has no reported electrical continuity measurement for SB3. The fitted part identity and value remain unverified.",
+            "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation"
           }
         ]
       }
@@ -3865,12 +3950,22 @@
         "net": "PE3",
         "target": "VT2 input / E3 blue user LED",
         "description": "Active-high transistor-driven LED; R6 current-limiting resistor",
-        "condition": "As drawn; fitted assembly not checked",
+        "condition": "The blue LED visibly pulsed; exact component identification/values and PE3 header-to-MCU continuity were not measured",
         "sources": [
           {
             "source": "weact-schematic-v1.2",
             "page": 1,
             "block": "KEY & LED"
+          }
+        ],
+        "bench_observations": [
+          {
+            "date": "2026-11-17",
+            "status": "owner-observed",
+            "board": "tested module; A/B not specified",
+            "result": "The blue user LED on the PE3 path visibly pulsed during normal heartbeat operation.",
+            "limits": "This is visual evidence of the LED path, not a measurement at P2:4 or of the fatal-error path. All six heartbeat pins remain assigned by the source audit.",
+            "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation"
           }
         ]
       }
@@ -4060,7 +4155,7 @@
     {
       "contact": "Rear offset legends G 5V, G 3V3 and B13 B12",
       "kind": "Silkscreen annotations of existing header contacts",
-      "description": "Matching white dots associate these offset rear legends with P1 pins 1/2, P2 pins 1/2 and P1 pins 43/44 respectively. Read each pair left to right from the rear with USB-C at the bottom. They label the existing contacts; they are not extra headers or probe pads. The schematic supplies their GND/5V, GND/3V3 and PB13/PB12 nets; continuity on the owner's boards is unmeasured.",
+      "description": "Matching white dots associate these offset rear legends with P1 pins 1/2, P2 pins 1/2 and P1 pins 43/44 respectively. Read each pair left to right from the rear with USB-C at the bottom. They label the existing contacts; they are not extra headers or probe pads. The schematic supplies their GND/5V, GND/3V3 and PB13/PB12 nets; these six legend/contact nets were not individually continuity-tested in the guided review.",
       "sources": [
         {
           "source": "weact-board-v1.2",
@@ -4101,7 +4196,7 @@
   ],
   "notes": [
     "All 92 exposed pin-header contacts P1/P2/P3 are included once. FPC/USB/microSD mating contacts are identified as onboard connectors rather than additional pin headers.",
-    "Owner-reported module revisions and visual solder-bridge observations are recorded in audit.json. Individual contact continuity and fitted component identification/values remain unverified.",
+    "Owner-reported module revisions and bench setup are recorded in audit.json. Per-contact and per-connection observations below identify the measured Board A C8/SB3 segments, inconclusive D13 probe, external NR traces and representative normal heartbeat evidence. Other paths remain drawing/source evidence; fitted component identification/values remain unverified.",
     "The board drawing contains front and mirrored rear views. Use page 1 PDF text search for hidden pad identifiers and the USB-C-bottom orientations above; page 1 does not visibly print pad numbers, and square pads are not unique pin-1 marks.",
     "Do not infer a malfunction from a shared net. Firmware-PC8/microSD D0 and diagnostic-PD13/QSPI IO3 are actual overlaps, with assembly/functional consequences untested.",
     "Vendor net names USB1_DN/USB1_DP are schematic names: on STM32H743 PA11/PA12 serve USB2_OTG_FS, not the PB14/PB15 USB1 controller. Do not infer controller identity from the vendor net prefix.",
@@ -4137,7 +4232,7 @@
     {
       "id": "SB3",
       "connection": "PD6 to SPI_Flash_CS / U8 pin 1",
-      "state": "Electrical continuity and fitted component identification/value unverified",
+      "state": "Electrically closed on Board A; visually observed closed on Board B; fitted part identity/value unverified",
       "sources": [
         {
           "source": "weact-schematic-v1.2",
@@ -4145,7 +4240,26 @@
           "block": "Peripherals / SPIx"
         }
       ],
-      "owner_observations": "See audit.json for visual observations on the two owner-identified V1.2 modules; visual appearance does not establish electrical continuity."
+      "owner_observations": "Guided Board A measurements and earlier Board B visual observation are recorded separately below. U8 population and the full chip-select route remain unverified.",
+      "bench_observations": [
+        {
+          "date": "2026-11-17",
+          "status": "owner-measured",
+          "board": "A",
+          "result": "SB3 pad-to-pad measured 0.2 Ω, with 0.1 Ω for shorted leads and 0.3 Ω from D6 to the probed SB3 pad. SB3 is electrically closed on Board A and D6 reaches it.",
+          "limits": "The fitted bridge material/part identity and value, U8 population and the remaining path to U8 chip select are not established by these readings.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation",
+          "instrument": "Fluke 115"
+        },
+        {
+          "date": "2026-11-17",
+          "status": "owner-observed",
+          "board": "B",
+          "result": "SB3 was visually observed closed; only SB3 appeared closed in the earlier inspection of both boards.",
+          "limits": "Board B has no reported electrical continuity measurement for SB3. The fitted part identity and value remain unverified.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation"
+        }
+      ]
     },
     {
       "id": "SB4",

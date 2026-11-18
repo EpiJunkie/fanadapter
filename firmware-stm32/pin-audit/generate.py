@@ -186,6 +186,16 @@ def documentation_links(record):
     return ' '.join(f'[{s["title"]}]({s["url"]})' for s in record.get('documentation', []))
 
 
+def bench_text(record):
+    observations = []
+    for item in record.get('bench_observations', []):
+        board = f'Board {item["board"]}' if item['board'] in ('A', 'B') else item['board']
+        observations.append(f'**Bench: {cell(item["status"])} ({cell(board)}, {item["date"]}).** '
+                            f'{cell(item["result"])} {cell(item["limits"])} '
+                            f'[Bench report]({item["report_url"]}).')
+    return '<br>'.join(observations)
+
+
 def connections(contact, board):
     return board['gpio_onboard_connections'].get(contact['gpio'], []) if contact['gpio'] else contact['onboard_connections']
 
@@ -198,6 +208,7 @@ def wiring_text(items, board):
     return '<br>'.join(f'{cell(x["target"])}: {cell(x["net"])} — {cell(x["description"])} '
                       f'({cell(x["condition"])}). {board_sources(x["sources"], board)}'
                       + (f' {documentation_links(x)}' if x.get('documentation') else '')
+                      + (f'<br>{bench_text(x)}' if x.get('bench_observations') else '')
                       for x in items)
 
 
@@ -217,7 +228,9 @@ def contact_row(contact, data, gpios):
         firmware = 'No explicit application GPIO assignment' if gpio else 'Board supply/reference/reset; see non-GPIO roles'
     return '| ' + ' | '.join([contact_label(contact), pin_text,
         wiring_text(connections(contact, board), board) or 'No additional onboard connection identified in the cited drawing',
-        firmware, cell(meta['v0_by_gpio'].get(gpio, meta['v0_default'])), board_sources(contact['sources'], board)]) + ' |'
+        firmware, cell(meta['v0_by_gpio'].get(gpio, meta['v0_default'])),
+        board_sources(contact['sources'], board)
+        + (f'<br>{bench_text(contact)}' if contact.get('bench_observations') else '')]) + ' |'
 
 
 def render(data):
@@ -228,12 +241,24 @@ def render(data):
         f'Profile: **`{profile["profile_id"]}` — {profile["profile_name"]}**. '
         f'Audited firmware: [`{profile["coverage"]["baseline_commit"]}`]({profile["repository"]}/commit/{profile["coverage"]["baseline_commit"]}).', '',
         meta['scope'], '',
-        'All contact mappings below are **drawing evidence, not individual bench confirmation**. '
+        'The 92-contact map is a **drawing-based reference with individually scoped bench observations**. '
+        'A measurement at a header or one connection segment does not verify every attached onboard path. '
         'Capability is not a selected firmware function, and an unconfigured GPIO is not necessarily electrically free. '
         'No GPIO is reassigned by this audit; V0 routing remains planned.', '',
         'See [maintenance, verification and findings](pin-audit/README.md) and '
-        '[CubeMX reference provenance](cubemx/README.md).', '',
-        '## Physical orientation', '']
+        '[CubeMX reference provenance](cubemx/README.md).', '']
+    if meta.get('bench_review'):
+        review = meta['bench_review']
+        tested = review['tested_firmware']
+        lines += ['## Guided bench evidence', '',
+            f'Owner review: {review["date"]}. Tested firmware **v{tested["version"]}**, '
+            f'build [`{tested["commit"][:7]}`]({tested["repository"]}/commit/{tested["commit"]}); '
+            f'audited source remains `{review["audited_source_baseline"][:7]}`. '
+            f'{review["source_comparison_result"]} [Source comparison]({review["source_comparison_url"]}).', '',
+            review['conditions'], '', review['evidence_limits'], '',
+            f'**Earlier functional observations:** {review["earlier_functional_observations"]}', '',
+            f'{review["disposition"]} [Guided bench report]({review["report_url"]}).', '']
+    lines += ['## Physical orientation', '']
     lines += [f'- **{h["id"]}** ({h["layout"]}, {h["pin_count"]} contacts): {h["orientation"]}' for h in board['headers']]
     for note in board.get('reading_guide', []):
         lines += ['', f'**{note["title"]}.** {note["text"]} {board_sources(note["sources"], board)}']
@@ -256,12 +281,14 @@ def render(data):
         if not contacts:
             physical += '<br>' + wiring_text(board['gpio_onboard_connections'].get(r['gpio'], []), board)
         lines.append('| ' + ' | '.join([f'`{r["id"]}` — {cell(r["function"])}', r['gpio'], physical,
-            cell(f'{r["mode"]}. {r["condition"]} {r["description"]}'), fw_sources(r, profile)]) + ' |')
+            cell(f'{r["mode"]}. {r["condition"]} {r["description"]}'), fw_sources(r, profile)
+            + (f'<br>{bench_text(r)}' if r.get('bench_observations') else '')]) + ' |')
     lines += ['', '### Non-GPIO firmware roles', '']
     for r in profile['non_gpio_roles']:
         lines += [f'- **{r["function"]}:** {r["description"]} Condition: {r["condition"]} '
                   f'{fw_sources(r, profile)}'
-                  + (f' {documentation_links(r)}' if r.get('documentation') else '')]
+                  + (f' {documentation_links(r)}' if r.get('documentation') else '')
+                  + (f'<br>{bench_text(r)}' if r.get('bench_observations') else '')]
     lines += ['', '## MCU capabilities (not firmware selections)', '',
               f'ST CubeMX {mcu["cubemx_version"]}, database {mcu["cubemx_database_version"]}, '
               f'package {mcu["package"]}. {mcu["capabilities_scope"]}', '',
@@ -279,8 +306,10 @@ def render(data):
     lines += [f'- [{key}]({s["url"]}); SHA-256 `{s["sha256"]}`.' for key, s in board['sources'].items()]
     lines += [f'- ST CubeMX `{s["relative_path"]}`; SHA-256 `{s["sha256"]}`.' for s in mcu['sources']]
     lines += ['', 'Firmware file hashes, source ranges, conditional-path coverage and exclusions are maintained in '
-              '[breadboard-v1.json](pin-audit/breadboard-v1.json). Bench evidence is maintained in '
-              '[audit.json](pin-audit/audit.json).', '']
+              '[breadboard-v1.json](pin-audit/breadboard-v1.json). Bench conditions and earlier functional '
+              'observations are in [audit.json](pin-audit/audit.json); individual measurements are attached '
+              'to the relevant contacts/connections in [weact-v1.2.json](pin-audit/weact-v1.2.json) and '
+              'firmware roles in the profile.', '']
     return '\n'.join(lines)
 
 

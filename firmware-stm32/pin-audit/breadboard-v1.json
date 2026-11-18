@@ -33,7 +33,17 @@
           "symbol": "main heartbeat and Error_Handler"
         }
       ],
-      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+      "evidence": "Source-audited assignment plus owner-observed visible activity of the PE3 blue LED path during normal operation. PE3 header continuity and the fatal-error waveform were not measured.",
+      "bench_observations": [
+        {
+          "date": "2026-11-17",
+          "status": "owner-observed",
+          "board": "tested module; A/B not specified",
+          "result": "The blue LED on the PE3 path pulsed visibly during normal operation.",
+          "limits": "This is a visible LED-path observation, not a PE3 header-continuity or scope measurement. The fatal-error path remains source-confirmed.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation"
+        }
+      ]
     },
     {
       "id": "heartbeat-pb7",
@@ -68,7 +78,17 @@
           "symbol": "main heartbeat and Error_Handler"
         }
       ],
-      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+      "evidence": "Source-audited assignment plus normal-heartbeat scope activity at the named header contact. This does not establish other onboard-path continuity or measure the fatal-error waveform.",
+      "bench_observations": [
+        {
+          "date": "2026-11-17",
+          "status": "owner-measured",
+          "board": "tested module; A/B not specified",
+          "result": "Rigol MHO984 scope at P1:7 (B7): repeating normal-heartbeat waveform consistent with approximately one second high and one second low (approximately 0.5 Hz full cycle).",
+          "limits": "This confirms normal activity at the named contact only; the fatal-error waveform and other connected board segments were not measured.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation"
+        }
+      ]
     },
     {
       "id": "heartbeat-pb0",
@@ -103,7 +123,17 @@
           "symbol": "main heartbeat and Error_Handler"
         }
       ],
-      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+      "evidence": "Source-audited assignment plus normal-heartbeat scope activity at the named header contact. This does not establish other onboard-path continuity or measure the fatal-error waveform.",
+      "bench_observations": [
+        {
+          "date": "2026-11-17",
+          "status": "owner-measured",
+          "board": "tested module; A/B not specified",
+          "result": "Rigol MHO984 scope at P2:27 (B0): repeating normal-heartbeat waveform consistent with approximately one second high and one second low (approximately 0.5 Hz full cycle).",
+          "limits": "This confirms normal activity at the named contact only; the fatal-error waveform and other connected board segments were not measured.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation"
+        }
+      ]
     },
     {
       "id": "heartbeat-pb1",
@@ -111,7 +141,7 @@
       "function": "GPIO heartbeat / fatal-error indication",
       "mode": "GPIO_MODE_OUTPUT_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW",
       "condition": "Normal application boot after the early ROM-token check; active even before clock/peripheral initialization. Error_Handler uses the same pins.",
-      "description": "additional bring-up heartbeat; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction.",
+      "description": "additional bring-up heartbeat; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction. This output remains source-confirmed; no individual heartbeat waveform was measured in the guided review.",
       "sources": [
         {
           "path": "firmware-stm32/src/main.c",
@@ -146,7 +176,7 @@
       "function": "GPIO heartbeat / fatal-error indication",
       "mode": "GPIO_MODE_OUTPUT_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW",
       "condition": "Normal application boot after the early ROM-token check; active even before clock/peripheral initialization. Error_Handler uses the same pins.",
-      "description": "additional bring-up heartbeat; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction.",
+      "description": "additional bring-up heartbeat; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction. This output remains source-confirmed; no individual heartbeat waveform was measured in the guided review.",
       "sources": [
         {
           "path": "firmware-stm32/src/main.c",
@@ -181,7 +211,7 @@
       "function": "GPIO heartbeat / fatal-error indication",
       "mode": "GPIO_MODE_OUTPUT_PP; GPIO_NOPULL; GPIO_SPEED_FREQ_LOW",
       "condition": "Normal application boot after the early ROM-token check; active even before clock/peripheral initialization. Error_Handler uses the same pins.",
-      "description": "additional bring-up heartbeat; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction.",
+      "description": "additional bring-up heartbeat; all six are initialized by led_init and toggled together once per 1000 ms in the normal loop (approximately 0.5 Hz full cycle). Fatal-error indication toggles in a busy-delay loop; its exact frequency is not guaranteed. PD13/onboard-flash sharing must be assessed against the schematic, not inferred as a measured malfunction. This output remains source-confirmed; no individual heartbeat waveform was measured in the guided review.",
       "sources": [
         {
           "path": "firmware-stm32/src/main.c",
@@ -623,7 +653,7 @@
           "symbol": "SystemClock_Config"
         }
       ],
-      "evidence": "source-audited; individual electrical mapping not bench-confirmed by this audit"
+      "evidence": "Source-audited assignment. Board A continuity from P1:30 (C8) to MCU pad 65 was measured at approximately 0.1 Ω; see the contact observation in weact-v1.2.json. This verifies only the header-to-MCU segment, not R26 or the microSD D0 branch."
     },
     {
       "id": "pedals-tx",
@@ -793,7 +823,7 @@
       "id": "reset-and-rom-entry",
       "function": "SYSRESETREQ and system-memory bootloader handoff",
       "condition": "reboot / dfu commands; DTCM token checked before all application peripheral initialization",
-      "description": "NVIC_SystemReset requests an internal system reset; dfu first disconnects TinyUSB, writes a DTCM token and resets. A token then branches to ROM at the first statement of main. The application does not drive NRST or BOOT0 via GPIO. ROM code has its own pin configuration, outside this source audit. Software DFU-entry reliability remains separately unresolved. Both reboot and dfu call NVIC_SystemReset (SYSRESETREQ/SFTRESET). RM0433 §8.4.2, Figure 43 describes an internal reset pulse generator with a minimum 20 µs pulse propagated to NRST. P2:10 (NR) is therefore expected to pulse low and, through R1 (330 ohm), assert SYS_RESET feeding camera DVP_RST (J2 pin 6) and TFT LCD_RESET (J3 pin 3). This reset-controller effect is not a GPIO assignment. Pulse waveform/timing and peripheral response are unmeasured on the owner boards.",
+      "description": "Both reboot and dfu request NVIC_SystemReset (SYSRESETREQ/SFTRESET). The dfu path first disconnects TinyUSB and writes a DTCM token; the early token check then branches to ROM. The application does not drive NRST or BOOT0 via GPIO. RM0433 §8.4.2, Figure 43 documents the internal reset generator and its specified minimum pulse; that controller effect is distinct from the measured external waveform. At P2:10 (NR), the owner captured a physical button press and software reboot, including approximately 26 µs near zero during reboot. The schematic connects NRST through R1 (330 ohm) to SYS_RESET feeding camera DVP_RST (J2 pin 6) and TFT LCD_RESET (J3 pin 3); these downstream lines and dfu were not measured. The role retains no GPIO assignment. ROM pin configuration is outside this source audit and software DFU-entry reliability remains separately unresolved.",
       "sources": [
         {
           "path": "firmware-stm32/src/main.c",
@@ -836,6 +866,57 @@
         {
           "title": "WeAct V1.2 schematic p. 6: TFT reset",
           "url": "https://github.com/WeActStudio/MiniSTM32H7xx/blob/ff1e3d67589293ed734df6b17e751b4668077f90/Hardware/STM32H7xx%20SchDoc%20V12.pdf#page=6"
+        }
+      ],
+      "bench_observations": [
+        {
+          "date": "2026-11-17",
+          "status": "owner-measured",
+          "board": "tested module; A/B not specified",
+          "result": "Rigol MHO984 capture at external P2:10 (NR): approximately 3.3 V at rest; physical button held NR low for 157.5 ms. Software reboot stayed near zero for approximately 26 µs. Other recorded intervals were approximately 114 µs from falling edge to 1.65 V during recovery, approximately 524 µs from start of rise to 3.0 V, and return to approximately 3.3 V around 1 ms.",
+          "limits": "These intervals have different cursor endpoints and describe the external contact, not internal MCU reset duration. dfu, downstream TFT/camera reset lines and the cause of the recovery shape remain unmeasured. Acquisition/cursors were saved on the Rigol; raw export is unconfirmed.",
+          "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation",
+          "measurements": [
+            {
+              "location": "P2:10 (NR)",
+              "event": "physical button",
+              "interval": "held low",
+              "value": 157.5,
+              "unit": "ms"
+            },
+            {
+              "location": "P2:10 (NR)",
+              "event": "software reboot",
+              "interval": "near zero",
+              "value": 26,
+              "unit": "µs",
+              "approximate": true
+            },
+            {
+              "location": "P2:10 (NR)",
+              "event": "software reboot",
+              "interval": "falling edge to 1.65 V on recovery",
+              "value": 114,
+              "unit": "µs",
+              "approximate": true
+            },
+            {
+              "location": "P2:10 (NR)",
+              "event": "software reboot",
+              "interval": "start of rise to 3.0 V",
+              "value": 524,
+              "unit": "µs",
+              "approximate": true
+            },
+            {
+              "location": "P2:10 (NR)",
+              "event": "software reboot",
+              "interval": "return to approximately 3.3 V",
+              "value": 1,
+              "unit": "ms",
+              "approximate": true
+            }
+          ]
         }
       ]
     }

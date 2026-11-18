@@ -110,11 +110,14 @@ EOF
 The recorded check reopened both files through the installed CubeMX quiet CLI
 and saved staged copies. All commands returned `OK`. Parsed configuration
 entries, selected pins, and all 82 labels were checked after the round trip.
-No interactive GUI inspection or electrical/bench test was performed for these
-references. The first module's V1.2 marking is owner-confirmed; both modules are
-owner-identified as V1.2 with visual solder-bridge observations in `audit.json`.
-Individual connections, bridge continuity and fitted component values remain
-unverified by electrical testing.
+This reference-file round trip did not include interactive GUI inspection or
+electrical measurements. The later [guided bench evidence](../pin-audit/README.md#guided-bench-evidence-17-november-2026)
+records Board A's C8-to-MCU continuity, SB3 closure and D6-to-SB3 connection,
+plus external NR button/reboot captures and representative normal heartbeat
+observations. Board B's SB3 evidence remains visual. R26/microSD and R30/QSPI
+branches, fitted component identity/values, `dfu` and downstream TFT/camera reset
+behavior are not verified by those measurements. These evidence distinctions are
+maintained in the audit JSON; the CubeMX labels remain drawing annotations.
 
 WeAct source: [V1.2 schematic](https://github.com/WeActStudio/MiniSTM32H7xx/blob/ff1e3d67589293ed734df6b17e751b4668077f90/Hardware/STM32H7xx%20SchDoc%20V12.pdf)
 and [V1.2 board drawing](https://github.com/WeActStudio/MiniSTM32H7xx/blob/ff1e3d67589293ed734df6b17e751b4668077f90/Hardware/STM32H7xx_BoardShape%20Board%20Shape%20%E5%A4%96%E5%BD%A2%20V12.pdf).

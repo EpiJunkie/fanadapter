@@ -90,6 +90,10 @@ Header identities must match exactly before any `__` suffix. Git checkouts use
 tracked plus unignored files for the firmware inventory; archives without Git
 metadata keep a strict filesystem inventory. The pin guide explains both faces
 with USB-C at the bottom and the hidden PDF pad identifiers/offset rear legends.
+Keep bench observations attached to the specific contact, connection or firmware
+role measured. A header-to-MCU check does not verify its downstream board branches;
+external NR timing does not measure internal reset duration. Preserve the tested
+build separately from the audited source baseline and earlier functional reports.
 Do not hand-edit the generated table or infer that an unconfigured pin is unwired.
 The two `firmware-stm32/cubemx/` references document MCU/board evidence, not a firmware
 build. Pin reassignments require reviewing/updating this audit with implementation

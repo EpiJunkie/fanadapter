@@ -16,8 +16,10 @@
       "date": "2026-11-17"
     },
     {
-      "observation": "Individual contact continuity and fitted component identification/values.",
-      "status": "not-bench-confirmed"
+      "observation": "The guided bench review verified selected segments on Board A and normal heartbeat/reset observations on the tested module. Other contact segments and fitted component identities/values remain drawing evidence or unverified; the per-record observations define the scope.",
+      "status": "scoped-bench-evidence",
+      "date": "2026-11-17",
+      "record": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation"
     },
     {
       "observation": "Owner identifies both modules as WeAct V1.2. The first module marking was directly read under the LCD; no independent revision check was performed by this audit.",
@@ -25,7 +27,7 @@
       "date": "2026-11-17"
     },
     {
-      "observation": "On both owner-identified V1.2 modules, SB3 alone appears bridged; SB1, SB2, SB4, SB5 and SB6 appear open. The fitted part type/value and electrical continuity remain pending bench work.",
+      "observation": "Earlier visual inspection: SB3 alone appeared closed on both owner-identified V1.2 modules; SB1, SB2, SB4, SB5 and SB6 appeared open. The later guided review electrically confirmed SB3 on Board A only; fitted part identity/value remains unverified.",
       "status": "owner-visual-observation",
       "date": "2026-11-17",
       "record": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#rear-silkscreen-dots-and-solder-bridge-observations"
@@ -36,18 +38,36 @@
       "date": "2026-11-17"
     },
     {
-      "observation": "Dedicated handbrake testing has not occurred.",
-      "status": "owner-confirmed",
-      "date": "2026-11-17"
+      "observation": "Earlier handbrake PWM activity and a Web Config handbrake command registering in the Fanatec Windows application were owner-reported functional observations. The command route and coverage of dedicated handbrake-port configurations remain unspecified.",
+      "status": "earlier-owner-functional-observation",
+      "record": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation"
     },
     {
-      "observation": "NRST and connected TFT/camera reset pulses during reboot/dfu have not been measured on the owner boards.",
-      "status": "not-measured"
+      "observation": "Physical reset-button and software reboot captures were made at external P2:10 (NR). The reboot waveform stayed near zero for approximately 26 µs at that contact; internal reset duration, dfu and downstream TFT/camera reset lines were not measured.",
+      "status": "owner-measured-external-contact",
+      "date": "2026-11-17",
+      "record": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation"
     }
   ],
   "expected_headers": {
     "P1": 44,
     "P2": 44,
     "P3": 4
+  },
+  "bench_review": {
+    "date": "2026-11-17",
+    "report_url": "https://github.com/EpiJunkie/fanadapter/wiki/STM32H743VIT6-and-WeAct-V1.2-Pin-Audit#guided-bench-validation",
+    "tested_firmware": {
+      "version": "0.6.2",
+      "repository": "https://github.com/Gugic/fanadapter",
+      "commit": "6faeb9ee03a28f27387533552000376cd07580bb"
+    },
+    "audited_source_baseline": "8c48cfe422bae50b96b04b9c8de813d434e0bd54",
+    "source_comparison_url": "https://github.com/Gugic/fanadapter/compare/6faeb9ee03a28f27387533552000376cd07580bb...8c48cfe422bae50b96b04b9c8de813d434e0bd54",
+    "source_comparison_result": "Verified from Git: the three intervening commits changed only simhub-plugin/Directory.Build.props and simhub-plugin/src/Fanadapter.Core/PortLocator.cs. Audited firmware files are identical.",
+    "conditions": "Owner-guided review, primarily a bare WeAct Mini STM32H743VIT6 V1.2 module connected to macOS over USB-C; Rigol MHO984 oscilloscope and Fluke 115 multimeter. Board A/B identities are stated where recorded. Reset/heartbeat module A/B identity and the power/isolation state for individual resistance readings were not specified in the report.",
+    "evidence_limits": "Contact and connection observations below verify only their named segments or normal operating behavior. Scope acquisition/cursors were saved on the Rigol; raw export is unconfirmed. Resistance readings are reported as measured, not converted into fitted component values.",
+    "earlier_functional_observations": "Earlier owner reports of H-pattern/sequential shifting, pedal UART operation, handbrake PWM activity and a Web Config handbrake command seen in the Fanatec Windows application are separate functional evidence. They do not establish which handbrake path carried that command or complete dedicated-port coverage.",
+    "disposition": "Routine bench review is complete for this mapping audit. Remaining drawing-only segments and inconclusive readings are limits on evidence, not a requirement to test every pin. Future pin allocation and assembly-label changes are separate work."
   }
 }
